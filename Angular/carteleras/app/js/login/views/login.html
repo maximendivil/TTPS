@@ -42,23 +42,27 @@
                 <h3 class="font-green">Registrarse</h3>
                 <p class="hint"> Ingres&aacute; tus datos personales: </p>
                 <div class="form-group">
-                    <label class="control-label visible-ie8 visible-ie9">Nombre y apellido</label>
-                    <input class="form-control placeholder-no-fix" type="text" placeholder="Nombre y apellido" name="fullname" /> </div>
+                    <input class="form-control placeholder-no-fix" type="text" placeholder="Nombre" name="nombre" />
+                </div>
                 <div class="form-group">
-                    <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
-                    <label class="control-label visible-ie8 visible-ie9">Email</label>
-                    <input class="form-control placeholder-no-fix" type="text" placeholder="Email" name="email" /> </div>
+                    <input class="form-control placeholder-no-fix" type="text" placeholder="Apellido" name="apellido" />
+                </div>
+                <div class="form-group">
+                    <input class="form-control placeholder-no-fix" type="text" placeholder="Fecha de nacimiento" name="fechaNacimiento" />
+                </div>
+                <div class="form-group">
+                    <input class="form-control placeholder-no-fix" type="number" placeholder="DNI" name="dni" />
+                </div>
+                <div class="form-group">
+                    <input class="form-control placeholder-no-fix" type="email" placeholder="Email" name="email" /> </div>
                 <div class="form-group">                    
                 <p class="hint"> Ingres&aacute; los datos de la cuenta: </p>
                 <div class="form-group">
-                    <label class="control-label visible-ie8 visible-ie9">Usuario</label>
                     <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Usuario" name="username" /> </div>
                 <div class="form-group">
-                    <label class="control-label visible-ie8 visible-ie9">Contrase&ntilde;a</label>
-                    <input class="form-control placeholder-no-fix" type="password" autocomplete="off" id="register_password" placeholder="Contrase&ntilde;a" name="password" /> </div>
+                    <input class="form-control placeholder-no-fix" type="password" autocomplete="off" id="register_password" placeholder="Contrase&ntilde;a" name="password1" /> </div>
                 <div class="form-group">
-                    <label class="control-label visible-ie8 visible-ie9">Repetir la contrase&ntilde;a</label>
-                    <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Repetir la contrase&ntilde;a" name="rpassword" />
+                    <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Repetir la contrase&ntilde;a" name="password2" />
                 </div>
                 <div class="form-actions">
                     <button type="button" id="register-back-btn" class="btn green btn-outline">Atr&aacute;s</button>
