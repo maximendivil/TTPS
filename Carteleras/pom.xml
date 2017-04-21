@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>TRABAJO_INTEGRADOR</groupId>
-	<artifactId>Grupo4</artifactId>
+	<artifactId>CartelerasInformatica</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Grupo4 Maven Webapp</name>
@@ -115,7 +115,7 @@
 				
 	</dependencies>
 	<build>
-		<finalName>Grupo4</finalName>
+		<finalName>CartelerasInformatica</finalName>
 		<pluginManagement>
 			<plugins>
 				<plugin>
