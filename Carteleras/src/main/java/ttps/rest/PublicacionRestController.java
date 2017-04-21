@@ -21,7 +21,7 @@ import ttps.clases.Publicacion;
 import ttps.interfacesDAO.PublicacionDAO;
 
 @RestController
-@RequestMapping(value = "/publicaciones")
+@RequestMapping(value = "/Publicaciones")
 public class PublicacionRestController {
 	
 	@Autowired
@@ -48,7 +48,7 @@ public class PublicacionRestController {
         return new ResponseEntity<Publicacion>(publicacion, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/comentarios/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)    
+	@RequestMapping(value = "/Comentarios/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)    
 	public ResponseEntity<List<Comentario>> listarComentarios(@PathVariable("id") long id) {
 		List<Comentario> comentarios = publicacionDAO.obtenerComentarios(id);
 		if (comentarios == null) { 

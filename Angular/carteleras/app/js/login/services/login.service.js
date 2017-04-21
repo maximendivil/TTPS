@@ -10,7 +10,7 @@ angular.module('myapp.login')
   
   var login = function(user, password) {
     var defer = $q.defer();
-    $http.post(ENV.endpoint.url + '/login',
+    $http.post(ENV.endpoint.url + '/Usuarios/Login',
     {
       'usuario': user,
       'password': password

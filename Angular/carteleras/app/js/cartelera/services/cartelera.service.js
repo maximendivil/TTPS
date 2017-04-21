@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('myapp.cartelera')
-.factory('CarteleraService', function($http){
+.factory('CarteleraService', function(ENV, $http){
 
   var getCartelera = function(id){
-    return $http.get('http://localhost:8080/Grupo4/carteleras/' + id);
+    return $http.get(ENV.endpoint.url + '/Carteleras/' + id);
   };
 
   var config = {
@@ -16,19 +16,19 @@ angular.module('myapp.cartelera')
   }
 
   var getCarteleras = function() {
-    return $http.get('http://localhost:8080/Grupo4/carteleras');
+    return $http.get(ENV.endpoint.url + '/Carteleras');
   }
 
   var getTodasPublicaciones = function() {
-    return $http.get('http://localhost:8080/Grupo4/publicaciones');
+    return $http.get(ENV.endpoint.url + '/Publicaciones');
   }
 
   var getPublicacion = function(id) {
-    return $http.get('http://localhost:8080/Grupo4/publicaciones/' + id);
+    return $http.get(ENV.endpoint.url + '/Publicaciones/' + id);
   }
 
   var getComentarios = function(id) {
-    return $http.get('http://localhost:8080/Grupo4/publicaciones/comentarios/' + id);
+    return $http.get(ENV.endpoint.url + '/Publicaciones/Comentarios/' + id);
   }
 
   return {

@@ -45,6 +45,7 @@ import ttps.interfacesDAO.PersonaDAO;
  */
 @CrossOrigin
 @RestController
+@RequestMapping(value = "/Usuarios")
 public class LoginController {
 	
 	@Inject
@@ -53,7 +54,7 @@ public class LoginController {
 	@Inject
 	private TokenManagerSecurity tokenManagerSecurity;
 	
-	@PostMapping("/login")
+	@PostMapping("/Login")
 	public ResponseEntity<?> login(@RequestBody Persona userPost) {
 		try {
 			int rol = loginService.buscarRol(userPost.getUsuario());
@@ -79,7 +80,7 @@ public class LoginController {
 		}
 	}
 	
-	@RequestMapping(value = "/alta", method = RequestMethod.POST)
+	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> Alta(@RequestBody Persona userPost) {		
 		loginService.guardar(userPost);
 		return new ResponseEntity<Void>(HttpStatus.CREATED); 		
