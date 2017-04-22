@@ -15,10 +15,13 @@
         <!-- BEGIN LOGIN -->
         <div class="content">
             <!-- BEGIN LOGIN FORM -->
-            <form class="login-form" action="index.html" method="post">
+            <form class="login-form" action="index.html" method="post" ng-if="formLogin == true">
                 <h3 class="form-title font-green">Ingreso al sistema</h3>                
                 <div ng-if="loginErrorMessage" class="alert alert-danger" role="alert">
                   <small ng-bind="loginErrorMessage"></small>
+                </div>
+                <div ng-if="registroExitoso" class="alert alert-success" role="alert">
+                  <small ng-bind="registroExitoso"></small>
                 </div>
                 <div class="form-group">
                     <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
@@ -32,14 +35,14 @@
                 </div>
                 <div class="create-account">
                     <p>
-                        <a href="javascript:;" id="register-btn" class="uppercase">Crear una cuenta</a>
+                        <a href="#" id="register-btn" class="uppercase" ng-click="registrarUsuario()">Crear una cuenta</a>
                     </p>
                 </div>
             </form>
             <!-- END LOGIN FORM -->
             <!-- BEGIN REGISTRATION FORM -->
-            <form class="register-form" action="index.html" method="post">
-                <h3 class="font-green">Registrarse</h3>
+            <form class="register-form" action="index.html" method="post" ng-if="formLogin == false">
+                <h3 class="font-green">Registrarse</h3>                
                 <p class="hint"> Ingres&aacute; tus datos personales: </p>
                 <div class="form-group">
                     <input class="form-control placeholder-no-fix" type="text" placeholder="Nombre" name="nombre" />
@@ -65,8 +68,8 @@
                     <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Repetir la contrase&ntilde;a" name="password2" />
                 </div>
                 <div class="form-actions">
-                    <button type="button" id="register-back-btn" class="btn green btn-outline">Atr&aacute;s</button>
-                    <button type="submit" id="register-submit-btn" class="btn btn-success uppercase pull-right">Enviar</button>
+                    <a type="button" id="register-back-btn" class="btn green btn-outline" href="#" ng-click="home()">Atr&aacute;s</a>
+                    <a type="button" href="#" id="register-submit-btn" class="btn btn-success uppercase pull-right" ng-click="crearUsuario()">Enviar</a>
                 </div>
             </form>
             <!-- END REGISTRATION FORM -->
