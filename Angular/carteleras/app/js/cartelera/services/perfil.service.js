@@ -1,22 +1,21 @@
 'use strict';
 
-
 angular.module('myapp.perfil')
-.factory('PerfilService', function($http, $q){
+.factory('PerfilService', function(ENV, $http, $q){
 
 	var config = {
-    headers : {
-      'Content-Type': 'application/json;charset=utf-8;',
-    }
-  };
+	    headers : {
+	      'Content-Type': 'application/json;charset=utf-8;',
+	    }
+  	};
 
-	var factory = {
+	/*var factory = {
 		modificarUsuario: modificarUsuario
 	};
-	return factory;
+	return factory;*/
 
 
-	function modificarUsuario(usuario) {
+	var modificarUsuario = function(usuario) {
 		var defer = $q.defer();
 		var usr = {'usuario': usuario};
 		$http.post(ENV.endpoint.url + 'Usuarios/modificar', usr, config)
@@ -31,4 +30,8 @@ angular.module('myapp.perfil')
 		);
 		return defer.promise;
 	}
+
+	return {
+		modificarUsuario: modificarUsuario
+	};
 });

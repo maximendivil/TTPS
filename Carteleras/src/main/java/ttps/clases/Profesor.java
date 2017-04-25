@@ -16,7 +16,7 @@ public class Profesor extends Publicador implements java.io.Serializable{
 	public Profesor(){
 		
 	}
-	public Profesor(String nombre, String apellido, Date fechaNacimiento, long dni, String email, int rol, String usuario, String contraseña){
-		super(nombre,apellido,fechaNacimiento,dni,email,rol,usuario,contraseña);
+	public Profesor(long id, String nombre, String apellido, Date fechaNacimiento, long dni, String email, int rol, String usuario, String contraseña){
+		super(id, nombre,apellido,fechaNacimiento,dni,email,rol,usuario,contraseña);
 	}
 }

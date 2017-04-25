@@ -50,7 +50,8 @@ public class Persona implements java.io.Serializable{
 		this.comentarios = null;
 	}
 	
-	public Persona(String nombre, String apellido, Date fechaNacimiento, long dni, String email, int rol, String usuario, String contraseña){
+	public Persona(long id, String nombre, String apellido, Date fechaNacimiento, long dni, String email, int rol, String usuario, String contraseña){
+		this.id = id;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.fechaNacimiento = fechaNacimiento;

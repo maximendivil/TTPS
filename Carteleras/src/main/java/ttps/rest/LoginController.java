@@ -58,11 +58,12 @@ public class LoginController {
 	@PostMapping("/Login")
 	public ResponseEntity<?> login(@RequestBody Persona userPost) {
 		try {
-			int rol = loginService.buscarRol(userPost.getUsuario());
+			Persona user = loginService.obtenerPorUsuario(userPost.getUsuario());
+			//int rol = loginService.buscarRol(userPost.getUsuario());
 			String clase = "";
-			Persona user = null;
-			if (esPerfilDeGuarani(rol)){
-				clase = setClase(rol);
+			//Persona user = null;
+			if (esPerfilDeGuarani(user.getRol())){
+				clase = setClase(user.getRol());
 				chequearConGuarani(userPost, clase);
 			}
 			else {
@@ -71,7 +72,7 @@ public class LoginController {
 			Token token = new Token(tokenManagerSecurity.createJWT(user));	
 			
 			JSONObject json = new JSONObject();
-			JSONObject json1 = new JSONObject(userPost);
+			JSONObject json1 = new JSONObject(user);
 			JSONObject json2 = new JSONObject(token);
 			json.put("token",json2);
 			json.put("usuario", json1);

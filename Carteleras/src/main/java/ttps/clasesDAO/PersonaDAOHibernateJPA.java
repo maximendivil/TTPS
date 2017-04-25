@@ -34,7 +34,7 @@ public class PersonaDAOHibernateJPA extends GenericDAOHibernateJPA<Persona> impl
 	
 	@Override
 	public Persona obtenerPorUsuario(String usuario){
-		Query q = this.getEntityManager().createQuery("from " + getPersistentClass().getSimpleName() + " Where usuario = :usuario");
+		Query q = this.getEntityManager().createQuery("select new Persona(p.id,p.nombre,p.apellido,p.fechaNacimiento,p.dni,p.email,p.rol,p.usuario,p.password) from Persona p Where usuario = :usuario");
 		q.setParameter("usuario", usuario);
 		Persona resultado = (Persona) q.getSingleResult();
 		return resultado;

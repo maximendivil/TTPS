@@ -70,36 +70,36 @@ public class Prueba extends HttpServlet {
 		AdministradorDAO aDAO = context.getBean(AdministradorDAO.class);
 		
 		//Creamos administradores
-		Administrador a1 = new Administrador("Facundo","Oreja",new Date(),30123456,"admin1@admin.com",1,"admin1","admin");
-		Administrador a2 = new Administrador("Viejo","Cuida Bici",new Date(),30123456,"admin2@admin.com",1,"admin2","admin");
-		Administrador a3 = new Administrador("John","Maddog",new Date(),30123456,"admin3@admin.com",1,"admin3","admin");
+		Administrador a1 = new Administrador(1,"Facundo","Oreja",new Date(),30123456,"admin1@admin.com",1,"admin1","admin");
+		Administrador a2 = new Administrador(2,"Viejo","Cuida Bici",new Date(),30123456,"admin2@admin.com",1,"admin2","admin");
+		Administrador a3 = new Administrador(3,"John","Maddog",new Date(),30123456,"admin3@admin.com",1,"admin3","admin");
 		
 		guardarAdministradores(a1,a2,a3,aDAO);
 		
 		AlumnoDAO alDAO = context.getBean(AlumnoDAO.class);
 		
 		//Creamos alumnos
-		Alumno al1= new Alumno("Maximiliano","Mendivil",new Date(2,1,1993),36734753,"maximendivil22@gmail.com",3,"maximendivil","123","11982/1");
-		Alumno al2= new Alumno("Ezequiel","Ringuelet",new Date(21,9,1993),123456,"ezeringue@gmail.com",3,"ezeringue","123","12000/1");
-		Alumno al3= new Alumno("Luciano","La Frazia",new Date(),321654,"ellucho@gmail.com",3,"lucholafrazia","123","11900/1");
+		Alumno al1= new Alumno(4,"Maximiliano","Mendivil",new Date(2,1,1993),36734753,"maximendivil22@gmail.com",3,"maximendivil","123","11982/1");
+		Alumno al2= new Alumno(5,"Ezequiel","Ringuelet",new Date(21,9,1993),123456,"ezeringue@gmail.com",3,"ezeringue","123","12000/1");
+		Alumno al3= new Alumno(6,"Luciano","La Frazia",new Date(),321654,"ellucho@gmail.com",3,"lucholafrazia","123","11900/1");
 		
 		guardarAlumnos(al1,al2,al3,alDAO);
 		
 		ProfesorDAO pDAO = context.getBean(ProfesorDAO.class);
 		
 		//Creamos Profesores
-		Profesor p1 = new Profesor("Laura","Fava",new Date(),12345678,"laurafava@gmail.com",2,"laurafava","123");
-		Profesor p2 = new Profesor("Gustavo","Rossi",new Date(),12345678,"gustavorossi@gmail.com",2,"grossi","123");
-		Profesor p3 = new Profesor("Juan Pablo","Perez",new Date(),12345678,"jppez@gmail.com",2,"jpperez","123");
+		Profesor p1 = new Profesor(7,"Laura","Fava",new Date(),12345678,"laurafava@gmail.com",2,"laurafava","123");
+		Profesor p2 = new Profesor(8,"Gustavo","Rossi",new Date(),12345678,"gustavorossi@gmail.com",2,"grossi","123");
+		Profesor p3 = new Profesor(9,"Juan Pablo","Perez",new Date(),12345678,"jppez@gmail.com",2,"jpperez","123");
 		
 		guardarProfesores(p1,p2,p3,pDAO);
 		
 		PublicadorDAO puDAO = context.getBean(PublicadorDAO.class);
 		
 		//Creamos Publicadores
-		Publicador pu1 = new Publicador("Publicador","1",new Date(),12345678,"publicador1@gmail.com",4,"publicador1","123");
-		Publicador pu2 = new Publicador("Publicador","2",new Date(),12345678,"publicador2@gmail.com",4,"publicador2","123");
-		Publicador pu3 = new Publicador("Publicador","3",new Date(),12345678,"publicador3@gmail.com",4,"publicador3","123");
+		Publicador pu1 = new Publicador(10,"Publicador","1",new Date(),12345678,"publicador1@gmail.com",4,"publicador1","123");
+		Publicador pu2 = new Publicador(11,"Publicador","2",new Date(),12345678,"publicador2@gmail.com",4,"publicador2","123");
+		Publicador pu3 = new Publicador(12,"Publicador","3",new Date(),12345678,"publicador3@gmail.com",4,"publicador3","123");
 		
 		guardarPublicadores(pu1,pu2,pu3,puDAO);
 		
