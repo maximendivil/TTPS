@@ -58,12 +58,11 @@ public class LoginController {
 	@PostMapping("/Login")
 	public ResponseEntity<?> login(@RequestBody Persona userPost) {
 		try {
-			Persona user = loginService.obtenerPorUsuario(userPost.getUsuario());
-			//int rol = loginService.buscarRol(userPost.getUsuario());
+			int rol = loginService.buscarRol(userPost.getUsuario());
 			String clase = "";
-			//Persona user = null;
-			if (esPerfilDeGuarani(user.getRol())){
-				clase = setClase(user.getRol());
+			Persona user = null;
+			if (esPerfilDeGuarani(rol)){
+				clase = setClase(rol);
 				chequearConGuarani(userPost, clase);
 			}
 			else {
@@ -72,7 +71,7 @@ public class LoginController {
 			Token token = new Token(tokenManagerSecurity.createJWT(user));	
 			
 			JSONObject json = new JSONObject();
-			JSONObject json1 = new JSONObject(user);
+			JSONObject json1 = new JSONObject(userPost);
 			JSONObject json2 = new JSONObject(token);
 			json.put("token",json2);
 			json.put("usuario", json1);
@@ -82,7 +81,13 @@ public class LoginController {
 		}
 	}
 	
-	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping( method = RequestMethod.POST, value = "/modificar", consumes= MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Void> modificarUsuario(@RequestBody Persona userPost) {		
+		loginService.modificar(userPost);
+		return new ResponseEntity<Void>(HttpStatus.OK); 		
+	}
+	
+	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> Alta(@RequestBody Persona userPost) {		
 		loginService.guardar(userPost);
 		return new ResponseEntity<Void>(HttpStatus.CREATED); 		
