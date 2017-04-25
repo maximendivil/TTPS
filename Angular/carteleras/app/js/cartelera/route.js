@@ -1,4 +1,4 @@
-angular.module('myapp.cartelera')
+angular.module('myapp.cartelera')	
 .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 	$stateProvider
 	.state('cartelera', {
@@ -10,6 +10,16 @@ angular.module('myapp.cartelera')
 			}
 		}
 	})
+	.state('perfil', {
+		url:'/perfil',
+		views:{
+			'main':{
+				templateUrl: 'js/cartelera/views/perfil.html',
+				controller: 'PerfilCtrl'
+			}
+		}
+	})
+
 	.state('detail', {
 		url:'/detail',
 		views:{
@@ -22,6 +32,7 @@ angular.module('myapp.cartelera')
 			brick: null
 		}
 	});
+	
 
 	//$urlRouterProvider.otherwise('/cartelera');
 }]);

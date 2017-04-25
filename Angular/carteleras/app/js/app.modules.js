@@ -7,6 +7,7 @@
 angular.module('myapp', [
 	'ui.router',
 	'myapp.cartelera',
+	'myapp.perfil',
 	'LocalStorageModule',
 	'wu.masonry',
 	'myapp.login',
@@ -15,3 +16,4 @@ angular.module('myapp', [
 
 angular.module('myapp.cartelera', []);
 angular.module('myapp.login', []);
+angular.module('myapp.perfil', []);
