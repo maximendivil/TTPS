@@ -36,9 +36,9 @@ angular.module('myapp.perfil')
 	      'apellido' : usuario.apellido,
 	      'fechaNacimiento' : usuario.fechaNacimiento,
 	      'dni' : usuario.dni,
-	      'email' : usuario.dni,
-	      'usuario': usuario.username,
-	      'password' : usuario.password1,
+	      'email' : usuario.email,
+	      'usuario': usuario.usuario,
+	      'password' : usuario.password,
 	      'rol' : usuario.rol
 	    }, config);
 	}
