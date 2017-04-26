@@ -30,25 +30,6 @@ angular.module('myapp.login')
   };
 
   var crearUsuario = function(usuario) {
-    /*var defer = $q.defer();
-    $http.post(ENV.endpoint.url + '/Usuarios',
-    {
-      'nombre' : usuario.nombre,
-      'apellido' : usuario.apellido,
-      'fechaNacimiento' : usuario.fechaNacimiento,
-      'dni' : usuario.dni,
-      'email' : usuario.dni,
-      'usuario': usuario.username,
-      'password' : usuario.password1,
-      'rol' : 4
-    }, config)
-    .success(function(data){
-      //$rootScope.usuario = data.usuario;
-      defer.resolve(data);
-    })
-    .error(defer.reject);
-
-    return defer.promise;*/
     return $http.post(ENV.endpoint.url + '/Usuarios',
     {
       'nombre' : usuario.nombre,

@@ -16,9 +16,9 @@ angular.module('myapp.perfil')
 
 
 	var modificarUsuario = function(usuario) {
-		var defer = $q.defer();
+		/*var defer = $q.defer();
 		var usr = {'usuario': usuario};
-		$http.post(ENV.endpoint.url + 'Usuarios/modificar', usr, config)
+		
 			.then(
 			function (response) {
 				defer.resolve(response.data);
@@ -28,7 +28,19 @@ angular.module('myapp.perfil')
 				defer.reject(errResponse);
 			}
 		);
-		return defer.promise;
+		return defer.promise;*/
+		return $http.put(ENV.endpoint.url + '/Usuarios/modificar',
+		{
+	      'nombre' : usuario.nombre,
+	      'id' : usuario.id,
+	      'apellido' : usuario.apellido,
+	      'fechaNacimiento' : usuario.fechaNacimiento,
+	      'dni' : usuario.dni,
+	      'email' : usuario.dni,
+	      'usuario': usuario.username,
+	      'password' : usuario.password1,
+	      'rol' : usuario.rol
+	    }, config);
 	}
 
 	return {
