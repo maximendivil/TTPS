@@ -5,7 +5,7 @@
         <a href="javascript:;" class="menu-toggler"></a>
         <div class="top-menu">
           <ul class="nav navbar-nav pull-right">
-            <li class="dropdown dropdown-extended dropdown-notification dropdown-dark" id="header_notification_bar">
+            <!--<li class="dropdown dropdown-extended dropdown-notification dropdown-dark" id="header_notification_bar">
               <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                 <i class="icon-bell"></i>
                 <span class="badge badge-default">7</span>
@@ -111,8 +111,8 @@
                   </ul>
                 </li>
               </ul>
-            </li>
-            <li class="dropdown dropdown-extended dropdown-tasks dropdown-dark" id="header_task_bar">
+            </li>-->
+            <!--<li class="dropdown dropdown-extended dropdown-tasks dropdown-dark" id="header_task_bar">
               <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                 <i class="icon-calendar"></i>
                 <span class="badge badge-default">3</span>
@@ -220,11 +220,11 @@
                   </ul>
                 </li>
               </ul>
-            </li>
-            <li class="droddown dropdown-separator">
+            </li>-->
+            <!--<li class="droddown dropdown-separator">
               <span class="separator"></span>
-            </li>
-            <li class="dropdown dropdown-extended dropdown-inbox dropdown-dark" id="header_inbox_bar">
+            </li>-->
+            <!--<li class="dropdown dropdown-extended dropdown-inbox dropdown-dark" id="header_inbox_bar">
               <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                 <span class="circle">3</span>
                 <span class="corner"></span>
@@ -301,16 +301,16 @@
                   </ul>
                 </li>
               </ul>
-            </li>
+            </li>-->
             <li class="dropdown dropdown-user dropdown-dark">
               <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                <img alt="" class="img-circle" src="../app/assets/layouts/layout3/img/avatar9.jpg">
+                <img alt="" class="img-circle" src="../app/js/cartelera/img/oreja_opt.jpg">
                 <span class="username username-hide-mobile">{{ usuario.usuario }}</span>
               </a>
               <ul class="dropdown-menu dropdown-menu-default">
                 <li>
                   <a href="#" ui-sref="perfil()">
-                    <i class="icon-user"></i> My Profile
+                    <i class="icon-user"></i> Mi Perfil
                   </a>
                 </li>
                 <li>
@@ -331,11 +331,11 @@
                   </a>
                 </li>
                 <li class="divider"> </li>
-                <li>
+                <!--<li>
                   <a href="page_user_lock_1.html">
                     <i class="icon-lock"></i> Lock Screen
                   </a>
-                </li>
+                </li>-->
                 <li>
                   <a href="#" ng-click="logout()">
                     <i class="icon-key"></i> Cerrar sesión
@@ -352,10 +352,10 @@
         <div class="hor-menu  ">
           <ul class="nav navbar-nav">
             <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown active">
-                <a href="javascript:;"> Dashboard
+                <a href="javascript:;"> ABM Carteleras
                     <span class="arrow"></span>
                 </a>
-                <ul class="dropdown-menu pull-left">
+                <!--<ul class="dropdown-menu pull-left">
                     <li aria-haspopup="true" class=" active">
                         <a href="index.html" class="nav-link  active">
                             <i class="icon-bar-chart"></i> Default Dashboard
@@ -372,7 +372,22 @@
                             <span class="badge badge-danger">3</span>
                         </a>
                     </li>
-                </ul>
+                </ul>-->
+            </li>
+            <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown">
+                <a href="javascript:;"> ABM Publicaciones
+                    <span class="arrow"></span>
+                </a>
+            </li>
+            <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown">
+                <a href="javascript:;"> Administrar Permisos
+                    <span class="arrow"></span>
+                </a>
+            </li>
+            <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown">
+                <a href="javascript:;"> ABM Usuarios
+                    <span class="arrow"></span>
+                </a>
             </li>
           </ul>
         </div>

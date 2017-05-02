@@ -80,7 +80,7 @@
                     <div class="caption">
                       <i class="icon-bubbles font-dark hide"></i>
                       <!--<span class="caption-subject font-dark bold uppercase">Comentarios</span>-->
-                      <strong>Manuel Ortiz</strong><span class="text-muted"> comentando ahora</span>
+                      <strong>{{ usuario.nombre }} {{ usuario.apellido }}</strong><span class="text-muted"> comentando ahora</span>
                     </div>
                   </div>
                   <div class="portlet-body">
@@ -126,7 +126,7 @@
                           <div class="mt-comment-body">
                             <div class="mt-comment-info">
                               <span class="mt-comment-author">{{c.creador.nombre}} {{c.creador.apellido}}</span>
-                              <span class="mt-comment-date">26 Feb, 10:30AM</span>
+                              <span class="mt-comment-date">{{ c.fechaCreacion | date }}</span>
                             </div>
                             <div class="mt-comment-text"> {{c.texto}} </div>
                           </div>

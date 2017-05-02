@@ -2,6 +2,7 @@ package ttps.clasesDAO;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
@@ -74,7 +75,6 @@ public class GenericDAOHibernateJPA<T> implements GenericDAO<T> {
 		return entity;
 	}
 	
-	@Override
 	public List<Comentario> obtenerComentarios(long id){
 		Query q = this.getEntityManager().createQuery("from " + getPersistentClass().getSimpleName() + " p where p.id=:id" );
 		q.setParameter("id", id);

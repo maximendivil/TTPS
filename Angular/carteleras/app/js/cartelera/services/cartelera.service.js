@@ -3,17 +3,15 @@
 angular.module('myapp.cartelera')
 .factory('CarteleraService', function(ENV, $http){
 
-  var getCartelera = function(id){
-    return $http.get(ENV.endpoint.url + '/Carteleras/' + id);
-  };
-
   var config = {
     headers : {
-      'Access-Control-Allow-Origin':'*',
-      'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type, Authorization, Content-Length, X-Requested-With'
+      'Content-Type': 'application/json;charset=utf-8;',
     }
-  }
+  };
+
+  var getCartelera = function(id){
+    return $http.get(ENV.endpoint.url + '/Carteleras/' + id);
+  };  
 
   var getCarteleras = function() {
     return $http.get(ENV.endpoint.url + '/Carteleras');
@@ -31,11 +29,26 @@ angular.module('myapp.cartelera')
     return $http.get(ENV.endpoint.url + '/Publicaciones/Comentarios/' + id);
   }
 
+  var agregarComentario = function(usuario, texto, idPublicacion) {
+    return $http.post(ENV.endpoint.url + '/Publicaciones/Comentarios/' + idPublicacion,
+    {
+      "texto": texto,
+      "fechaCreacion": new Date(),
+      "publicacion": { 
+        "id" : idPublicacion
+      },
+      "creador": { 
+        "id" :  usuario
+      }
+    }, config);
+  };
+
   return {
     getCartelera:getCartelera,
     getCarteleras:getCarteleras,
     getTodasPublicaciones,
     getPublicacion:getPublicacion,
-    getComentarios:getComentarios
+    getComentarios:getComentarios,
+    agregarComentario:agregarComentario
   };
 });

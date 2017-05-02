@@ -99,17 +99,16 @@
                     </span>
                 </div>
                 <div class="form-group">
-                    <input class="form-control placeholder-no-fix" type="password" autocomplete="off" id="register_password" placeholder="Contrase&ntilde;a" name="password1" ng-model="registro.password1" ng-minlength="6" required/>
+                    <input class="form-control placeholder-no-fix" type="password" autocomplete="off" id="password1" placeholder="Contrase&ntilde;a" name="password1" ng-model="registro.password1" required/>
                     <span class="help-block" ng-show="formularioRegistro.$submitted || formularioRegistro.password1.$touched">
                         <span ng-show="formularioRegistro.password1.$error.required">La password es requerida.</span>
-                        <span ng-show="formularioRegistro.password1.$error.minlength">La password debe tener al menos 6 caracteres.</span>
                     </span>
                 </div>
                 <div class="form-group">
-                    <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Repetir la contrase&ntilde;a" name="password2" ng-model="registro.password2" ng-minlength="6" required/>
+                    <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Repetir la contrase&ntilde;a" name="password2" ng-model="registro.password2" required pw-check='password1'/>
                     <span class="help-block" ng-show="formularioRegistro.$submitted || formularioRegistro.password2.$touched">
                         <span ng-show="formularioRegistro.password2.$error.required">La password es requerida.</span>
-                        <span ng-show="formularioRegistro.password2.$error.minlength">La password debe tener al menos 6 caracteres.</span>
+                        <span ng-show="formularioRegistro.password2.$error.pwmatch">Las passwords no coinciden.</span>
                     </span>
                 </div>
                 <div class="form-actions">
@@ -121,25 +120,4 @@
             <!-- END REGISTRATION FORM -->
         </div>
 
-        <!-- BEGIN CORE PLUGINS -->
-        <script src="assets/global/plugins/jquery.min.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
-        <!-- END CORE PLUGINS -->
-        <!-- BEGIN PAGE LEVEL PLUGINS -->
-        <script src="assets/global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/jquery-validation/js/additional-methods.min.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/select2/js/select2.full.min.js" type="text/javascript"></script>
-        <!-- END PAGE LEVEL PLUGINS -->
-        <!-- BEGIN THEME GLOBAL SCRIPTS -->
-        <script src="assets/global/scripts/app.min.js" type="text/javascript"></script>
-        <!-- END THEME GLOBAL SCRIPTS -->
-        <!-- BEGIN PAGE LEVEL SCRIPTS -->
-        <!--<script src="assets/pages/scripts/login.min.js" type="text/javascript"></script>-->
-        <!-- END PAGE LEVEL SCRIPTS -->
-        <!-- BEGIN THEME LAYOUT SCRIPTS -->
-        <!-- END THEME LAYOUT SCRIPTS -->
-    
+        

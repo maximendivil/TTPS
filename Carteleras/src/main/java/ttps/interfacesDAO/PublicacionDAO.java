@@ -2,6 +2,7 @@ package ttps.interfacesDAO;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 import ttps.clases.Cartelera;
 import ttps.clases.Comentario;

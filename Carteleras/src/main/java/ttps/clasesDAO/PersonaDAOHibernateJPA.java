@@ -1,12 +1,14 @@
 package ttps.clasesDAO;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
 import ttps.clases.Administrador;
+import ttps.clases.Comentario;
 import ttps.clases.Persona;
 import ttps.clases.Publicacion;
 import ttps.entityManager.EMF;
@@ -41,6 +43,14 @@ public class PersonaDAOHibernateJPA extends GenericDAOHibernateJPA<Persona> impl
 	}
 	
 	@Override
+	public Persona obtenerPorId(long id){
+		Query q = this.getEntityManager().createQuery("select new Persona(p.id,p.nombre,p.apellido,p.fechaNacimiento,p.dni,p.email,p.rol,p.usuario,p.password) from Persona p Where id = :id");
+		q.setParameter("id", id);
+		Persona resultado = (Persona) q.getSingleResult();
+		return resultado;
+	}
+	
+	@Override
 	public void logout(Persona user) {
 		
 	}
@@ -50,6 +60,14 @@ public class PersonaDAOHibernateJPA extends GenericDAOHibernateJPA<Persona> impl
 		Query q = this.getEntityManager().createQuery("select rol from " + getPersistentClass().getSimpleName() + " Where usuario = :usuario");
 		q.setParameter("usuario", usuario);
 		int resultado = (int) q.getSingleResult();
+		return resultado;
+	}
+	
+	@Override
+	public List<Comentario> obtenerComentarios(long id){
+		Query q = this.getEntityManager().createQuery("Select new Comentario(c.id, c.texto, c.fechaCreacion, pe.id, pe.nombre, pe.apellido, pe.usuario) from Persona pe JOIN pe.comentarios c JOIN c.publicacion p Where pe.borrado=0 and pe.id=:id");
+		q.setParameter("id", id);
+		List<Comentario> resultado = (List<Comentario>) q.getResultList();
 		return resultado;
 	}
 }

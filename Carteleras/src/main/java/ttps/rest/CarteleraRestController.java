@@ -26,6 +26,7 @@ import ttps.clases.Publicacion;
 import ttps.interfacesDAO.CarteleraDAO;
 import ttps.interfacesDAO.PublicacionDAO;
 
+@CrossOrigin
 @RestController
 @RequestMapping(value = "/Carteleras")
 public class CarteleraRestController {

@@ -1,12 +1,14 @@
 package ttps.rest;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,15 +19,25 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import ttps.clases.Alumno;
 import ttps.clases.Comentario;
+import ttps.clases.Persona;
 import ttps.clases.Publicacion;
+import ttps.interfacesDAO.ComentarioDAO;
+import ttps.interfacesDAO.PersonaDAO;
 import ttps.interfacesDAO.PublicacionDAO;
 
+@CrossOrigin
 @RestController
 @RequestMapping(value = "/Publicaciones")
 public class PublicacionRestController {
 	
 	@Autowired
 	private PublicacionDAO publicacionDAO;
+	
+	@Autowired
+	private ComentarioDAO comentarioDAO;
+	
+	@Autowired
+	private PersonaDAO usuarioDAO;
 	
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
@@ -55,6 +67,12 @@ public class PublicacionRestController {
 			return new ResponseEntity<List<Comentario>>(HttpStatus.NOT_FOUND);
 		}
         return new ResponseEntity<List<Comentario>>(comentarios, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/Comentarios/{id}", method = RequestMethod.POST)    
+	public ResponseEntity<Void> agregarComentario(@RequestBody Comentario comentario) {
+		comentarioDAO.guardar(comentario);
+		return new ResponseEntity<Void>(HttpStatus.CREATED); 
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)

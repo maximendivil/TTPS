@@ -11,9 +11,13 @@ angular.module('myapp.cartelera')
 
   $scope.comments = [];
 
-  CarteleraService.getComentarios($idPublicacion).then(function(response){
-    $scope.comments = response.data;  
-  });
+  $scope.cargarComentarios = function() {
+    CarteleraService.getComentarios($idPublicacion).then(function(response){
+      $scope.comments = response.data;  
+    });
+  }
+
+  $scope.cargarComentarios();
   //$scope.comments = [];
 
   /*$scope.comments.push({
@@ -23,18 +27,21 @@ angular.module('myapp.cartelera')
 
   $scope.submit = function(){
     $scope.viewComment = false;
-    var comment = {
-        creador: { nombre : 'Manuel', apellido : 'Ortiz' },
-        texto: $scope.newComment  //binding entre la vista y el controller a traves del $scope
-    };
 
-    if(comment.texto){
+    CarteleraService.agregarComentario($scope.usuario.id,$scope.newComment,$idPublicacion).then(function(){
+      $scope.cargarComentarios();
+      console.log("Se agregó el comentario correctamente");
+    })
+    .catch(function(){
+      console.log("Ocurrió un error al crear el comentario");
+    });
+    /*if(comment.texto){
       //agrego el nuevo comentario a la lista de comentarios
       $scope.comments.push(comment);
 
       //reseteo la variable
       $scope.newComment = '';
-    }
+    }*/
   };
 
   $scope.usuario = angular.fromJson(localStorage.getItem('usuario'));
