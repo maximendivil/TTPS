@@ -21,6 +21,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 public class Cartelera implements java.io.Serializable {
 	@Id @GeneratedValue
 	private long id;
+	private boolean publica;
 	private int borrado;
 	private String nombre;
 	private Date fechaCreacion;
@@ -117,5 +118,13 @@ public class Cartelera implements java.io.Serializable {
 	
 	public void agregarPublicacion(Publicacion publicacion){
 		this.publicaciones.add(publicacion);
+	}
+
+	public boolean isPublica() {
+		return publica;
+	}
+
+	public void setPublica(boolean publica) {
+		this.publica = publica;
 	}
 }

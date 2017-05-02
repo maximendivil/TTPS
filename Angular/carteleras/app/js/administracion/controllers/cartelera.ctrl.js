@@ -1,7 +1,7 @@
-angular.module('myapp.cartelera')
-.controller('CarteleraCtrl', function($scope, $state, CarteleraService, LoginService, $rootScope){
+angular.module('myapp.administracion')
+.controller('AdministracionCtrl', function($scope, $state, CarteleraService, LoginService, $rootScope){
 
-	var  imagenRandom = function () {
+	/*var  imagenRandom = function () {
 		var height = ~~(Math.random() * 500) + 100;
 		var id = ~~(Math.random() * 10000);
 		return 'http://lorempixel.com/g/280/' + height + '/?' + id;
@@ -46,17 +46,6 @@ angular.module('myapp.cartelera')
 	);
 	$scope.usuario = angular.fromJson(localStorage.getItem('usuario'));
 	/*$scope.anioActivo = 'primero';
-	//inicializo la cartelera con el primer año*/
-  	$scope.cargarPublicaciones(1,"Ingresantes");
+  	$scope.cargarPublicaciones(1,"Ingresantes");*/
 
-})
-.directive('header', function() {
-    return {
-        templateUrl: '../app/js/cartelera/views/menu.html'
-    };
-})
-.directive('footer', function() {
-    return {
-        templateUrl: '../app/js/cartelera/views/footer.html'
-    };
 });
