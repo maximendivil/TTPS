@@ -91,11 +91,8 @@ public class CarteleraRestController {
 		if (actual == null) {
 			return new ResponseEntity<Cartelera>(HttpStatus.NOT_FOUND);
 		}
-		actual.setAlumnosInteresados(cartelera.getAlumnosInteresados());
-		actual.setFechaCreacion(cartelera.getFechaCreacion());
 		actual.setNombre(cartelera.getNombre());
-		actual.setPersonasHabilitadas(cartelera.getPersonasHabilitadas());
-		actual.setPublicaciones(cartelera.getPublicaciones());
+		actual.setPublica(cartelera.getPublica());
 		carteleraDAO.modificar(actual);
 		return new ResponseEntity<Cartelera>(actual, HttpStatus.OK);
 	}
@@ -106,8 +103,8 @@ public class CarteleraRestController {
         if (cartelera == null) {
         	return new ResponseEntity<Cartelera>(HttpStatus.NOT_FOUND);
     	}
- 
-        carteleraDAO.remover(id);;
-        return new ResponseEntity<Cartelera>(HttpStatus.NO_CONTENT);
+        cartelera.setBorrado(1);
+        carteleraDAO.modificar(cartelera);
+        return new ResponseEntity<Cartelera>(cartelera, HttpStatus.OK);
     }
 }

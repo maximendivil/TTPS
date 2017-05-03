@@ -1,5 +1,7 @@
 <div class="page-wrapper">
-    <div header style="width: 100%; display: table-row-group;"></div>
+    <div ng-controller="AdministracionCtrl">
+        <div ng-include src="'js/cartelera/views/menu.html'"></div>
+    </div>
     <div class="page-wrapper-row full-height">
         <div class="page-wrapper-middle">
             <!-- BEGIN CONTAINER -->
@@ -57,10 +59,10 @@
                                                             <tr ng-repeat="cartelera in carteleras">
                                                                 <td style="width: 70%;">{{ cartelera.nombre }}</td>
                                                                 <td>
-                                                                    <button type="button" class="btn yellow btn-sm btn-outline" ng-click="editaCartelera = true">
+                                                                    <a type="button" class="btn yellow btn-sm btn-outline" ui-sref="editarCartelera({cartelera: cartelera})">
                                                                         <i class="fa fa-pencil"></i> Editar
-                                                                    </button> 
-                                                                    <button type="button" class="btn red btn-sm btn-outline">
+                                                                    </a> 
+                                                                    <button type="button" class="btn red btn-sm btn-outline" ng-click="eliminarCartelera(cartelera.id);">
                                                                         <i class="fa fa-trash-o"></i> Eliminar
                                                                     </button>
                                                                 </td>
@@ -93,11 +95,11 @@
                                                         <div class="col-md-6">
                                                             <div class="mt-radio-inline">
                                                                 <label class="mt-radio">
-                                                                    <input type="radio" name="permisos" ng-model="permisos.value" value="false" /><span></span>
+                                                                    <input type="radio" name="permisos" ng-model="permisos.value" value="0" /><span></span>
                                                                     Privada
                                                                 </label>
                                                                 <label class="mt-radio">
-                                                                    <input type="radio" name="permisos" ng-model="permisos.value" value="true"/><span></span>
+                                                                    <input type="radio" name="permisos" ng-model="permisos.value" value="1"/><span></span>
                                                                     Pública
                                                                 </label>
                                                             </div>

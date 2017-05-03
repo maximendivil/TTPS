@@ -1,5 +1,5 @@
 angular.module('myapp.administracion')
-.controller('AdministracionCtrl', function($scope, $state, CarteleraService, LoginService, $rootScope){	
+.controller('AdministracionCtrl', function($scope, $state, $stateParams, CarteleraService, LoginService, $rootScope){	
 	$scope.usuario = angular.fromJson(localStorage.getItem('usuario'));
 
 	$scope.cargarCarteleras = function() {
@@ -11,26 +11,50 @@ angular.module('myapp.administracion')
 	  	})
  	};
 
+ 	$scope.perfilAdministrador = function() {
+		$state.go('administracion');
+	}
+
  	$scope.cargarCarteleras();
 
 	$scope.permisos = {
-		value: "false"
+		value: 0
 	};
 
 	$scope.cartelera = {};
 
 	$scope.nuevaCartelara = false;
+	$scope.editaCartelera = false;
+	$scope.carteleraEdit = $stateParams.cartelera;
 
 	$scope.crearCartelera = function() {
-		console.log("Permisos: " + $scope.permisos.value  + ", Nombre: " + $scope.cartelera.nombre + " Fecha: " + new Date());
 		CarteleraService.agregarCartelera($scope.cartelera.nombre, $scope.permisos.value)
 	    .then(function(){
 	      $scope.nuevaCartelera = false;
-	      $scope.registroExitoso = 'La cartelera se agregó correctamente!';
 	      $scope.cargarCarteleras();
 	    })
 	    .catch(function(){
-	      $scope.registroExitoso = 'Ocurrió un error al dar de alta la cartelera';
+	      console.log('Ocurrió un error al eliminar la cartelera');
+	    });
+	}
+
+	$scope.modificarCartelera = function() {
+		CarteleraService.modificarCartelera($scope.carteleraEdit.id, $scope.carteleraEdit.nombre, $scope.carteleraEdit.publica)
+	    .then(function(){
+	      $state.go("administracion");
+	    })
+	    .catch(function(){
+	      console.log('Ocurrió un error al eliminar la cartelera');
+	    });
+	}
+
+	$scope.eliminarCartelera = function(id) {
+		CarteleraService.eliminarCartelera(id)
+	    .then(function(){
+	      $scope.cargarCarteleras();
+	    })
+	    .catch(function(){
+	      console.log('Ocurrió un error al eliminar la cartelera');
 	    });
 	}
 });

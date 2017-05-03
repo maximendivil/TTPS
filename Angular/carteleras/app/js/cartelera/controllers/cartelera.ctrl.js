@@ -17,10 +17,6 @@ angular.module('myapp.cartelera')
 		});
 	};
 
-	$scope.perfilAdministrador = function() {
-		$state.go('administracion');
-	}
-
 	$scope.logout = function() {
 		LoginService.logout()
 		.then(function(){

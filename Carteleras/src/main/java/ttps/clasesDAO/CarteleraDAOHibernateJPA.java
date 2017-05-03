@@ -23,7 +23,7 @@ public class CarteleraDAOHibernateJPA extends GenericDAOHibernateJPA<Cartelera> 
 	
 	@Override
 	public List<Cartelera> obtenerCarteleras() {
-		Query q = this.getEntityManager().createQuery("Select new Cartelera(c.id,c.nombre,c.fechaCreacion) from Cartelera c Where c.borrado=0");
+		Query q = this.getEntityManager().createQuery("Select new Cartelera(c.id,c.nombre,c.fechaCreacion,c.publica) from Cartelera c Where c.borrado=0");
 		List<Cartelera> resultado = (List<Cartelera>) q.getResultList();
 		return resultado;
 	}

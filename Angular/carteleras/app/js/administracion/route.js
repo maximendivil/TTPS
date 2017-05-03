@@ -9,6 +9,18 @@ angular.module('myapp.administracion')
 				controller: 'AdministracionCtrl'
 			}
 		}
+	})
+	.state('editarCartelera', {
+		url:'/editarCartelera',
+		views:{
+			'main':{
+				templateUrl: 'js/administracion/views/editarCartelera.html',
+				controller: 'AdministracionCtrl'
+			}
+		},
+		params:{
+			cartelera: null
+		}
 	});
 	
 

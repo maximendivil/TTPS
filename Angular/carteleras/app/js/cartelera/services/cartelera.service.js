@@ -52,6 +52,18 @@ angular.module('myapp.cartelera')
     }, config);
   };
 
+  var modificarCartelera = function(id, nombre, privacidad) {
+    return $http.put(ENV.endpoint.url + '/Carteleras/' + id,
+    {
+      "nombre": nombre,
+      "publica": privacidad
+    }, config);
+  };
+
+  var eliminarCartelera = function(id) {
+    return $http.delete(ENV.endpoint.url + '/Carteleras/' + id, config);
+  };
+
   return {
     getCartelera:getCartelera,
     getCarteleras:getCarteleras,
@@ -59,6 +71,8 @@ angular.module('myapp.cartelera')
     getPublicacion:getPublicacion,
     getComentarios:getComentarios,
     agregarComentario:agregarComentario,
-    agregarCartelera:agregarCartelera
+    agregarCartelera:agregarCartelera,
+    modificarCartelera:modificarCartelera,
+    eliminarCartelera:eliminarCartelera
   };
 });
