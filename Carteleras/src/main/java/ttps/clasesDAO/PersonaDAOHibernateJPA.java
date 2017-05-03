@@ -56,6 +56,12 @@ public class PersonaDAOHibernateJPA extends GenericDAOHibernateJPA<Persona> impl
 	}
 	
 	@Override
+	public Persona modificar(Persona entity){
+		this.getEntityManager().merge(entity);
+		return entity;
+	}
+	
+	@Override
 	public int buscarRol(String usuario){
 		Query q = this.getEntityManager().createQuery("select rol from " + getPersistentClass().getSimpleName() + " Where usuario = :usuario");
 		q.setParameter("usuario", usuario);

@@ -57,7 +57,7 @@
                                                             <tr ng-repeat="cartelera in carteleras">
                                                                 <td style="width: 70%;">{{ cartelera.nombre }}</td>
                                                                 <td>
-                                                                    <button type="button" class="btn yellow btn-sm btn-outline">
+                                                                    <button type="button" class="btn yellow btn-sm btn-outline" ng-click="editaCartelera = true">
                                                                         <i class="fa fa-pencil"></i> Editar
                                                                     </button> 
                                                                     <button type="button" class="btn red btn-sm btn-outline">
@@ -78,11 +78,14 @@
                                                 </div>
                                             </div>
                                             <div class="portlet-body">
-                                                <form class="form-horizontal">
+                                                <form class="form-horizontal" name="formularioCartelera" method="POST">
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label" for="nombre">Nombre:</label>
                                                         <div class="col-md-6">
-                                                            <input class="form-control" type="text" name="nombre" id="nombre" ng-model="registro.nombre" required/>
+                                                            <input class="form-control" type="text" name="nombre" id="nombre" ng-model="cartelera.nombre" required/>
+                                                            <span class="help-block" ng-show="formularioCartelera.$submitted || formularioCartelera.nombre.$touched">
+                                                                <span ng-show="formularioCartelera.nombre.$error.required">El nombre es requerido.</span>
+                                                            </span>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -90,11 +93,11 @@
                                                         <div class="col-md-6">
                                                             <div class="mt-radio-inline">
                                                                 <label class="mt-radio">
-                                                                    <input type="radio" name="permisos" id="privada" value="Privada" checked/><span></span>
+                                                                    <input type="radio" name="permisos" ng-model="permisos.value" value="false" /><span></span>
                                                                     Privada
                                                                 </label>
                                                                 <label class="mt-radio">
-                                                                    <input type="radio" name="permisos" id="publico" value="Pública"/><span></span>
+                                                                    <input type="radio" name="permisos" ng-model="permisos.value" value="true"/><span></span>
                                                                     Pública
                                                                 </label>
                                                             </div>
@@ -104,7 +107,7 @@
                                                         <div class="form-group">
                                                             <div class="col-md-3 col-md-offset-9">
                                                                 <button type="button" class="btn default" ng-click="nuevaCartelera = false">Atrás</button>
-                                                                <button type="button" class="btn green">Enviar</button>
+                                                                <input type="submit" class="btn green" value="Enviar" ng-click="crearCartelera()" ng-disabled="formularioCartelera.$invalid"/>
                                                             </div>
                                                         </div>
                                                     </div>

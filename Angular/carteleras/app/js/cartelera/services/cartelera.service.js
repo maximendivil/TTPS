@@ -43,12 +43,22 @@ angular.module('myapp.cartelera')
     }, config);
   };
 
+  var agregarCartelera = function(nombre, privacidad) {
+    return $http.post(ENV.endpoint.url + '/Carteleras',
+    {
+      "nombre": nombre,
+      "publica": privacidad,
+      "fechaCreacion": new Date()
+    }, config);
+  };
+
   return {
     getCartelera:getCartelera,
     getCarteleras:getCarteleras,
     getTodasPublicaciones,
     getPublicacion:getPublicacion,
     getComentarios:getComentarios,
-    agregarComentario:agregarComentario
+    agregarComentario:agregarComentario,
+    agregarCartelera:agregarCartelera
   };
 });
