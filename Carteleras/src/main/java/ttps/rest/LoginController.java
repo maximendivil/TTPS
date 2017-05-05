@@ -81,13 +81,36 @@ public class LoginController {
 	}
 	
 	@RequestMapping( method = RequestMethod.PUT, value = "/modificar", consumes= MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Persona> modificarUsuario(@RequestBody Persona userPost) {		
-		loginService.modificar(userPost);
-		return new ResponseEntity<Persona>(userPost, HttpStatus.OK);		
+	public ResponseEntity<Void> modificarUsuario(@RequestBody Persona userPost) {	
+		Persona persona;
+		if (userPost.getRol() == 1) {
+			persona = new Administrador();
+		}
+		else if (userPost.getRol() == 2) {
+			persona = new Profesor();
+		}
+		else if(userPost.getRol() == 3) {
+			persona = new Alumno();
+		}
+		else {
+			persona = new Publicador();
+		}
+		persona.setId(userPost.getId());
+		persona.setApellido(userPost.getApellido());
+		persona.setNombre(userPost.getNombre());
+		persona.setBorrado(userPost.getBorrado());
+		persona.setDni(userPost.getDni());
+		persona.setEmail(userPost.getEmail());
+		persona.setFechaNacimiento(userPost.getFechaNacimiento());
+		persona.setRol(userPost.getRol());
+		persona.setUsuario(userPost.getUsuario());
+		persona.setPassword(userPost.getPassword());
+		loginService.modificar(persona);
+		return new ResponseEntity<Void>(HttpStatus.OK);		
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> Alta(@RequestBody Persona userPost) {		
+	public ResponseEntity<Void> Alta(@RequestBody Publicador userPost) {		
 		loginService.guardar(userPost);
 		return new ResponseEntity<Void>(HttpStatus.CREATED); 		
 	}

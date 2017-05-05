@@ -68,6 +68,20 @@ public class Persona implements java.io.Serializable{
 		this.comentarios = new HashSet<Comentario>();
 	}
 	
+	public Persona(String nombre, String apellido, Date fechaNacimiento, long dni, String email, int rol, String usuario, String contraseña){
+		//this.id = id;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.fechaNacimiento = fechaNacimiento;
+		this.dni = dni;
+		this.email = email;
+		this.rol = rol;
+		this.usuario = usuario;
+		this.password = contraseña;
+		this.borrado = 0;
+		this.comentarios = new HashSet<Comentario>();
+	}
+	
 	public Persona(long id, String nombre, String apellido, String usuario) {
 		this.id = id;
 		this.nombre = nombre;

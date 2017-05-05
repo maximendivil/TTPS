@@ -5,12 +5,15 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 
+import javax.persistence.Entity;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
@@ -33,10 +36,25 @@ import ttps.interfacesDAO.PublicadorDAO;
 /**
  * Servlet implementation class Prueba
  */
-@WebServlet("/Prueba")
+@Service
+@WebServlet("/Prueba1")
 public class Prueba extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+	@Autowired
+	private CarteleraDAO carteleraDAO;
+	@Autowired
+	private AdministradorDAO administradorDAO;
+	@Autowired
+	private AlumnoDAO alumnoDAO;
+	@Autowired
+	private ProfesorDAO profesorDAO;
+	@Autowired
+	private PublicadorDAO publicadorDAO;
+	@Autowired
+	private PublicacionDAO publicacionDAO;
+	@Autowired
+	private ComentarioDAO comentarioDAO;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -52,7 +70,7 @@ public class Prueba extends HttpServlet {
 		WebApplicationContext context = WebApplicationContextUtils
 	            .getWebApplicationContext(getServletContext());
 		
-		CarteleraDAO cDAO = context.getBean(CarteleraDAO.class);
+		//CarteleraDAO cDAO = context.getBean(CarteleraDAO.class);
 		
 		//Creamos las carteleras
 		Cartelera c = new Cartelera("Ingresantes", new Date());
@@ -65,45 +83,45 @@ public class Prueba extends HttpServlet {
 		Cartelera c7 = new Cartelera("Eventos", new Date());
 		Cartelera c8 = new Cartelera("Ofrecimientos laborales", new Date());
 		
-		guardarCarteleras(c,c1,c2,c3,c4,c5,c6,c7,c8,cDAO);
+		guardarCarteleras(c,c1,c2,c3,c4,c5,c6,c7,c8,carteleraDAO);
 		
-		AdministradorDAO aDAO = context.getBean(AdministradorDAO.class);
+		//AdministradorDAO aDAO = context.getBean(AdministradorDAO.class);
 		
 		//Creamos administradores
 		Administrador a1 = new Administrador(1,"Facundo","Oreja",new Date(),30123456,"admin1@admin.com",1,"admin1","admin");
 		Administrador a2 = new Administrador(2,"Viejo","Cuida Bici",new Date(),30123456,"admin2@admin.com",1,"admin2","admin");
 		Administrador a3 = new Administrador(3,"John","Maddog",new Date(),30123456,"admin3@admin.com",1,"admin3","admin");
 		
-		guardarAdministradores(a1,a2,a3,aDAO);
+		guardarAdministradores(a1,a2,a3,administradorDAO);
 		
-		AlumnoDAO alDAO = context.getBean(AlumnoDAO.class);
+		//AlumnoDAO alDAO = context.getBean(AlumnoDAO.class);
 		
 		//Creamos alumnos
 		Alumno al1= new Alumno(4,"Maximiliano","Mendivil",new Date(2,1,1993),36734753,"maximendivil22@gmail.com",3,"maximendivil","123","11982/1");
 		Alumno al2= new Alumno(5,"Ezequiel","Ringuelet",new Date(21,9,1993),123456,"ezeringue@gmail.com",3,"ezeringue","123","12000/1");
 		Alumno al3= new Alumno(6,"Luciano","La Frazia",new Date(),321654,"ellucho@gmail.com",3,"lucholafrazia","123","11900/1");
 		
-		guardarAlumnos(al1,al2,al3,alDAO);
+		guardarAlumnos(al1,al2,al3,alumnoDAO);
 		
-		ProfesorDAO pDAO = context.getBean(ProfesorDAO.class);
+		//ProfesorDAO pDAO = context.getBean(ProfesorDAO.class);
 		
 		//Creamos Profesores
 		Profesor p1 = new Profesor(7,"Laura","Fava",new Date(),12345678,"laurafava@gmail.com",2,"laurafava","123");
 		Profesor p2 = new Profesor(8,"Gustavo","Rossi",new Date(),12345678,"gustavorossi@gmail.com",2,"grossi","123");
 		Profesor p3 = new Profesor(9,"Juan Pablo","Perez",new Date(),12345678,"jppez@gmail.com",2,"jpperez","123");
 		
-		guardarProfesores(p1,p2,p3,pDAO);
+		guardarProfesores(p1,p2,p3,profesorDAO);
 		
-		PublicadorDAO puDAO = context.getBean(PublicadorDAO.class);
+		//PublicadorDAO puDAO = context.getBean(PublicadorDAO.class);
 		
 		//Creamos Publicadores
 		Publicador pu1 = new Publicador(10,"Publicador","1",new Date(),12345678,"publicador1@gmail.com",4,"publicador1","123");
 		Publicador pu2 = new Publicador(11,"Publicador","2",new Date(),12345678,"publicador2@gmail.com",4,"publicador2","123");
 		Publicador pu3 = new Publicador(12,"Publicador","3",new Date(),12345678,"publicador3@gmail.com",4,"publicador3","123");
 		
-		guardarPublicadores(pu1,pu2,pu3,puDAO);
+		guardarPublicadores(pu1,pu2,pu3,publicadorDAO);
 		
-		PublicacionDAO publicacionDAO = context.getBean(PublicacionDAO.class);
+		//PublicacionDAO publicacionDAO = context.getBean(PublicacionDAO.class);
 		
 		//Creamos las publicaciones
 		Publicacion publicacion = new Publicacion("Prueba","Es una prueba","casa",new Date(),p1);
@@ -121,7 +139,7 @@ public class Prueba extends HttpServlet {
 		
 		guardarPublicaciones(publicacion,publicacion2,publicacion3,publicacion4,publicacion5,publicacion6,publicacionDAO);
 		
-		ComentarioDAO coDAO = context.getBean(ComentarioDAO.class);
+		//ComentarioDAO coDAO = context.getBean(ComentarioDAO.class);
 		
 		//Creamos comentarios
 		Comentario co1 = new Comentario("Comentario 1",new Date(),al1);
@@ -137,7 +155,7 @@ public class Prueba extends HttpServlet {
 		Comentario co6 = new Comentario("Comentario 6",new Date(),pu1);
 		co6.setPublicacion(publicacion6);
 		
-		guardarComentarios(co1,co2,co3,co4,co5,co6,coDAO);
+		guardarComentarios(co1,co2,co3,co4,co5,co6,comentarioDAO);
 		
 		//Agregar intereses al alumno Mendivil
 		al1.agregarInteres(c8);
@@ -155,7 +173,7 @@ public class Prueba extends HttpServlet {
 		al3.agregarInteres(c4);
 		al3.agregarInteres(c5);
 		
-		modificarAlumnos(al1, al2, al3, alDAO);
+		//modificarAlumnos(al1, al2, al3, alDAO);
 		
 		//Agregar carteleras habilitadas a la profesora Fava
 		p1.agregarCartelera(c2);
@@ -171,7 +189,7 @@ public class Prueba extends HttpServlet {
 		p3.agregarCartelera(c3);
 		p3.agregarCartelera(c4);
 		
-		modificarProfesores(p1, p2, p3, pDAO);
+		//modificarProfesores(p1, p2, p3, pDAO);
 		
 		
 		//Agregar carteleras habilitadas al publicador1
@@ -185,7 +203,7 @@ public class Prueba extends HttpServlet {
 		//Agregar carteleras habilitadas al publicador3
 		pu3.agregarCartelera(c8);
 		
-		modificarPublicadores(pu1, pu2, pu3, puDAO);
+		//modificarPublicadores(pu1, pu2, pu3, puDAO);
 		
 		/*
 		System.out.println("\nLISTADO DE ALUMNOS:");

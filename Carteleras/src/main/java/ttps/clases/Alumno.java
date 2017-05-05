@@ -37,6 +37,12 @@ public class Alumno extends Persona implements java.io.Serializable{
 		this.intereses = new HashSet<Cartelera>();
 	}
 	
+	public Alumno(String nombre, String apellido, Date fechaNacimiento, long dni, String email, int rol, String usuario, String contraseña, String legajo){
+		super(nombre, apellido, fechaNacimiento, dni, email, rol, usuario, contraseña);
+		this.legajo = legajo;
+		this.intereses = new HashSet<Cartelera>();
+	}
+	
 	//Getters y setters
 	public String getLegajo() {
 		return legajo;

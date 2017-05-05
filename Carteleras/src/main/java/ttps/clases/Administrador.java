@@ -27,6 +27,12 @@ public class Administrador extends Publicador implements java.io.Serializable {
 		/*this.publicaciones = new ArrayList<Publicacion>();
 		this.comentarios = new ArrayList<Comentario>();*/
 	}
+	
+	public Administrador(String nombre, String apellido, Date fechaNacimiento, long dni, String email, int rol, String usuario, String contraseña){
+		super(nombre, apellido, fechaNacimiento, dni, email, rol, usuario, contraseña);
+		/*this.publicaciones = new ArrayList<Publicacion>();
+		this.comentarios = new ArrayList<Comentario>();*/
+	}
 
 	/*public List<Publicacion> getPublicaciones() {
 		return publicaciones;
