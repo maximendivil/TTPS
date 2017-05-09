@@ -1,4 +1,4 @@
-angular.module('myapp.administracion')	
+angular.module('myapp.ABMpublicaciones')	
 .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 	$stateProvider
 	.state('ABMpublicaciones', {

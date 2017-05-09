@@ -15,6 +15,10 @@ angular.module('myapp.administracion')
 		$state.go('ABMcarteleras');
 	}	
 
+	$scope.ABMpublicaciones = function() {
+		$state.go('ABMpublicaciones');
+	}	
+
 	$scope.eliminarCartelera = function(id) {
 		CarteleraService.eliminarCartelera(id)
 	    .then(function(){

@@ -19,3 +19,4 @@ angular.module('myapp.cartelera', []);
 angular.module('myapp.login', []);
 angular.module('myapp.perfil', []);
 angular.module('myapp.administracion', []);
+angular.module('myapp.ABMpublicaciones', []);
