@@ -6,8 +6,11 @@ angular.module('myapp.ABMpublicaciones')
 		views:{
 			'main':{
 				templateUrl: 'js/ABMpublicaciones/views/ABMpublicaciones.html',
-				controller: 'ABMPublicacionesCtrl'
+				controller: 'ABMpublicacionesCtrl'
 			}
 		}
 	});
+	
+
+	//$urlRouterProvider.otherwise('/cartelera');
 }]);

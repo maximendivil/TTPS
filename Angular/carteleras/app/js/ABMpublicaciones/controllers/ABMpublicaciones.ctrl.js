@@ -1,5 +1,5 @@
 angular.module('myapp.ABMpublicaciones')
-.controller('ABMPublicacionesCtrl', function($scope, $state, $stateParams, CarteleraService, LoginService, $rootScope){	
+.controller('ABMpublicacionesCtrl', function($scope, $state, $stateParams, CarteleraService, LoginService, $rootScope){	
 	$scope.usuario = angular.fromJson(localStorage.getItem('usuario'));
 
 	/*$scope.cargarCarteleras = function() {

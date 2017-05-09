@@ -9,6 +9,7 @@ angular.module('myapp', [
 	'myapp.cartelera',
 	'myapp.perfil',
 	'myapp.administracion',
+	'myapp.ABMpublicaciones',
 	'LocalStorageModule',
 	'wu.masonry',
 	'myapp.login',
