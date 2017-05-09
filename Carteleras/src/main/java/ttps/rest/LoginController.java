@@ -31,6 +31,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -78,6 +79,19 @@ public class LoginController {
 		} catch (Exception e) {
 			return new ResponseEntity<>(Collections.singletonMap("AuthenticationException",e.getMessage()), HttpStatus.UNAUTHORIZED);
 		}
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseEntity<List<Persona>> listarUsuarios() {
+	    List<Persona> usuarios = loginService.obtenerTodosLosUsuarios();
+	    //List<Cartelera> carteleras = carteleraDAO.obtenerTodos();
+	    if(usuarios.isEmpty()){
+	    	//return new ResponseEntity<List<Cartelera>>(HttpStatus.NO_CONTENT); 
+    	}
+	    //String json = new Gson().toJson(carteleras);
+	    return new ResponseEntity<List<Persona>>(usuarios,HttpStatus.OK);
+	    //return json;
 	}
 	
 	@RequestMapping( method = RequestMethod.PUT, value = "/modificar", consumes= MediaType.APPLICATION_JSON_VALUE)

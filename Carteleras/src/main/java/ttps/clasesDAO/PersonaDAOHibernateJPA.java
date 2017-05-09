@@ -1,5 +1,6 @@
 package ttps.clasesDAO;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -8,6 +9,7 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 
 import ttps.clases.Administrador;
+import ttps.clases.Cartelera;
 import ttps.clases.Comentario;
 import ttps.clases.Persona;
 import ttps.clases.Publicacion;
@@ -19,6 +21,13 @@ import ttps.interfacesDAO.PersonaDAO;
 public class PersonaDAOHibernateJPA extends GenericDAOHibernateJPA<Persona> implements PersonaDAO{
 	public PersonaDAOHibernateJPA(){
 		super(Persona.class);
+	}
+	
+	@Override
+	public List<Persona> obtenerTodosLosUsuarios() {
+		Query q = this.getEntityManager().createQuery("Select new Persona(p.id, p.nombre, p.apellido, p.fechaNacimiento, p.dni, p.email, p.rol, p.usuario, p.password) from Persona p Where p.borrado=0");
+		List<Persona> resultado = (List<Persona>) q.getResultList();
+		return resultado;
 	}
 	
 	@Override

@@ -1,5 +1,7 @@
 package ttps.interfacesDAO;
 
+import java.util.List;
+
 import ttps.clases.Administrador;
 import ttps.clases.Persona;
 
@@ -9,4 +11,5 @@ public interface PersonaDAO extends GenericDAO<Persona>{
 	public Persona obtenerPorUsuario(String usuario);
 	public Persona obtenerPorId(long id);
 	public int buscarRol(String usuario);
+	public List<Persona> obtenerTodosLosUsuarios();
 }

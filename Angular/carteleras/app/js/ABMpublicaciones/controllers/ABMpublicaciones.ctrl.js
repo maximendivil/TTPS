@@ -11,6 +11,6 @@ angular.module('myapp.ABMpublicaciones')
 	  	})
  	};
 
-	$scope.cargarCarteleras();	*/
+	$scope.cargarCarteleras();*/
 
 });

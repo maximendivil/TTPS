@@ -1,0 +1,92 @@
+<div class="page-wrapper">
+    <div ng-controller="AdministracionCtrl">
+        <div ng-include src="'js/cartelera/views/menu.html'"></div>
+    </div>
+    <div class="page-wrapper-row full-height">
+        <div class="page-wrapper-middle">
+            <!-- BEGIN CONTAINER -->
+            <div class="page-container">
+                <!-- BEGIN CONTENT -->
+                <div class="page-content-wrapper">
+                    <!-- BEGIN CONTENT BODY -->
+                    <div class="page-head">
+                        <div class="container">
+                          <div class="page-title">
+                            <h1>Cartelera de la Facultad de Informática <br/>
+                              <small>Trabajo final</small>
+                            </h1>
+                          </div>
+                        </div>
+                    </div>
+                    <!-- BEGIN PAGE CONTENT BODY -->
+                    <div class="page-content">
+                        <div class="container">
+                            <!-- BEGIN PAGE BREADCRUMBS -->
+                            <ul class="page-breadcrumb breadcrumb">
+                                <li>
+                                    <a href="#" ui-sref="cartelera">Home</a> 
+                                    <i class="fa fa-circle"></i>
+                                </li>
+                                <li>
+                                    <span>Mi Perfil</span>
+                                </li>
+                            </ul>
+                            <div class="page-content-inner">
+                                <div class="row">
+                                    <div class="col-md-10 col-md-offset-1">
+                                        <!-- BEGIN Portlet PORTLET-->
+                                        <div class="portlet light">
+                                            <div class="portlet-title">
+                                                <div class="caption">
+                                                    <span class="caption-subject bold uppercase"> Usuarios</span>
+                                                </div>
+                                                <div class="actions">
+                                                    <a type="button" class="btn blue btn-sm btn-outline uppercase" ui-sref="">
+                                                        <i class="fa fa-plus"></i> Agregar
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="portlet-body">
+                                                <div class="table-responsive" style="overflow: auto">
+                                                    <table class="table table-striped table-bordered table-hover">
+                                                        <thead>
+                                                            <tr class="uppercase">
+                                                                <th>Username</th>
+                                                                <th>Rol</th>
+                                                                <th>Acción</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr ng-repeat="usuario in usuarios">
+                                                                <td style="width: 35%;">{{ usuario.usuario }}</td>
+                                                                <td ng-show="usuario.rol == 1" style="width: 35%;">Administrador</td>
+                                                                <td ng-show="usuario.rol == 2" style="width: 35%;">Profesor</td>
+                                                                <td ng-show="usuario.rol == 3" style="width: 35%;">Alumno</td>
+                                                                <td ng-show="usuario.rol == 4" style="width: 35%;">Publicador</td>
+                                                                <td>
+                                                                    <a type="button" class="btn yellow btn-sm btn-outline" ui-sref="">
+                                                                        <i class="fa fa-pencil"></i> Editar
+                                                                    </a> 
+                                                                    <button type="button" class="btn red btn-sm btn-outline" ng-click="eliminarCartelera(cartelera.id);">
+                                                                        <i class="fa fa-trash-o"></i> Eliminar
+                                                                    </button>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>     
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<div footer style="width: 100%; display: table-row-group;"></div>
+</div>
+
+            
