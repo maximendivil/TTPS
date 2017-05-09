@@ -11,9 +11,6 @@ angular.module('myapp.ABMpublicaciones')
 	  	})
  	};
 
-<<<<<<< HEAD
-	$scope.cargarCarteleras();*/
-=======
 	$scope.cargarCarteleras();
 
 	$scope.cargarPublicaciones = function(){
@@ -24,6 +21,5 @@ angular.module('myapp.ABMpublicaciones')
 			console.log(response.data);
 		});
 	};
->>>>>>> 922d72361ba8fc797e43025714dfc47e76cb726b
 
 });
