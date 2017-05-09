@@ -10,12 +10,21 @@ angular.module('myapp.administracion')
 			}
 		}
 	})
+	.state('nuevaCartelera', {
+		url:'/nuevaCartelera',
+		views:{
+			'main':{
+				templateUrl: 'js/administracion/views/nuevaCartelera.html',
+				controller: 'NuevaCarteleraCtrl'
+			}
+		}
+	})
 	.state('editarCartelera', {
 		url:'/editarCartelera',
 		views:{
 			'main':{
 				templateUrl: 'js/administracion/views/editarCartelera.html',
-				controller: 'AdministracionCtrl'
+				controller: 'EdicionCarteleraCtrl'
 			}
 		},
 		params:{
