@@ -1,8 +1,8 @@
 angular.module('myapp.administracion')	
 .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 	$stateProvider
-	.state('administracion', {
-		url:'/administracion',
+	.state('ABMcarteleras', {
+		url:'/ABMcarteleras',
 		views:{
 			'main':{
 				templateUrl: 'js/administracion/views/ABMCartelera.html',
