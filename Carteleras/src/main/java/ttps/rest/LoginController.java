@@ -124,8 +124,29 @@ public class LoginController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> Alta(@RequestBody Publicador userPost) {		
-		loginService.guardar(userPost);
+	public ResponseEntity<Void> Alta(@RequestBody Persona userPost) {
+		Persona nuevoUsuario;
+		if (userPost.getRol() == 1) {
+			nuevoUsuario = new Administrador();			
+		}
+		else if (userPost.getRol() == 2) {
+			nuevoUsuario = new Profesor();
+		}
+		else if (userPost.getRol() == 3) {
+			nuevoUsuario = new Alumno();
+		}
+		else {
+			nuevoUsuario = new Publicador();
+		}
+		nuevoUsuario.setApellido(userPost.getApellido());
+		nuevoUsuario.setNombre(userPost.getNombre());
+		nuevoUsuario.setDni(userPost.getDni());
+		nuevoUsuario.setEmail(userPost.getEmail());
+		nuevoUsuario.setFechaNacimiento(userPost.getFechaNacimiento());
+		nuevoUsuario.setRol(userPost.getRol());
+		nuevoUsuario.setUsuario(userPost.getUsuario());
+		nuevoUsuario.setPassword(userPost.getPassword());
+		loginService.guardar(nuevoUsuario);
 		return new ResponseEntity<Void>(HttpStatus.CREATED); 		
 	}
 	

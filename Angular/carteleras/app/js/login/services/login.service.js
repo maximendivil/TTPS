@@ -39,7 +39,7 @@ angular.module('myapp.login')
       'email' : usuario.dni,
       'usuario': usuario.username,
       'password' : usuario.password1,
-      'rol' : 4
+      'rol' : usuario.rol
     }, config);
   };
 

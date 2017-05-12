@@ -9,6 +9,15 @@ angular.module('myapp.ABMusuarios')
 				controller: 'ABMusuariosCtrl'
 			}
 		}
+	})
+	.state('AltaUsuarios', {
+		url:'/AltaUsuarios',
+		views:{
+			'main':{
+				templateUrl: 'js/ABMusuarios/views/AltaUsuarios.html',
+				controller: 'AltaUsuariosCtrl'
+			}
+		}
 	});
 	
 
