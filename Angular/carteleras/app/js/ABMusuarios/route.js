@@ -18,6 +18,18 @@ angular.module('myapp.ABMusuarios')
 				controller: 'AltaUsuariosCtrl'
 			}
 		}
+	})
+	.state('EdicionUsuarios', {
+		url:'/EdicionUsuarios',
+		views:{
+			'main':{
+				templateUrl: 'js/ABMusuarios/views/EdicionUsuarios.html',
+				controller: 'EdicionUsuariosCtrl'
+			}
+		},
+		params:{
+			usuario: null
+		}
 	});
 	
 

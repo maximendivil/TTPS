@@ -27,6 +27,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -94,6 +95,15 @@ public class LoginController {
 	    //return json;
 	}
 	
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)    
+	public ResponseEntity<Persona> obtenerUsuario(@PathVariable("id") long id) {
+		Persona usuario = loginService.obtenerPorId(id);
+		if (usuario == null) { 
+			return new ResponseEntity<Persona>(HttpStatus.NOT_FOUND);
+		}
+        return new ResponseEntity<Persona>(usuario, HttpStatus.OK);
+	}
+	
 	@RequestMapping( method = RequestMethod.PUT, value = "/modificar", consumes= MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Void> modificarUsuario(@RequestBody Persona userPost) {	
 		Persona persona;
@@ -119,6 +129,14 @@ public class LoginController {
 		persona.setRol(userPost.getRol());
 		persona.setUsuario(userPost.getUsuario());
 		persona.setPassword(userPost.getPassword());
+		loginService.modificar(persona);
+		return new ResponseEntity<Void>(HttpStatus.OK);		
+	}
+	
+	@RequestMapping( method = RequestMethod.PUT, value = "/modificarPermisos", consumes= MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Void> modificarPermisos(@RequestBody Persona userPost) {	
+		Persona persona = loginService.obtener(userPost.getId());
+		persona.setRol(userPost.getRol());
 		loginService.modificar(persona);
 		return new ResponseEntity<Void>(HttpStatus.OK);		
 	}

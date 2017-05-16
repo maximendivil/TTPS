@@ -1,5 +1,5 @@
 angular.module('myapp.perfil')
-.controller('PerfilCtrl', function($scope, $state, PerfilService, $http){
+.controller('PerfilCtrl', function($scope, $state, PerfilService, UsuarioService, $http){
 
   var formdata = new FormData();
     $scope.getTheFiles = function ($files) {
@@ -29,7 +29,7 @@ angular.module('myapp.perfil')
             });
     }
 
-	$scope.modificarUsuario = function(usuario){
+    $scope.modificarUsuario = function(usuario){
         console.log($scope.usuario);
         PerfilService.modificarUsuario($scope.usuario)
         .then(function(response){

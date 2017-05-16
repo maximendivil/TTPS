@@ -13,7 +13,21 @@ angular.module('myapp.ABMusuarios')
     return $http.get(ENV.endpoint.url + '/Usuarios');
   };
 
+  var getUsuario = function(id){
+    return $http.get(ENV.endpoint.url + '/Usuarios/' + id);
+  };
+
+  var modificarPermisos = function(usuario) {
+    return $http.put(ENV.endpoint.url + '/Usuarios/modificarPermisos',
+    {
+        'id' : usuario.id,
+        'rol' : usuario.rol
+    }, config);
+  };
+
   return {
-    getUsuarios:getUsuarios
+    getUsuarios:getUsuarios,
+    getUsuario:getUsuario,
+    modificarPermisos:modificarPermisos
   };
 });
