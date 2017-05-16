@@ -133,129 +133,61 @@
                                                                 <!-- END PERSONAL INFO TAB -->
                                                                 <!-- CHANGE AVATAR TAB -->
                                                                 <div class="tab-pane" id="tab_1_2">
-                                                                    <p> Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa
-                                                                        nesciunt laborum eiusmod. </p>
                                                                     <form action="#" role="form">
                                                                         <div class="form-group">
                                                                             <div class="fileinput fileinput-new" data-provides="fileinput">
-                                                                                <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+                                                                                <!-- <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
                                                                                     <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" />
-                                                                                </div>
-                                                                                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div>
+                                                                                </div> -->
+                                                                                <!-- <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div> -->
                                                                                 <div>
                                                                                     <span class="btn default btn-file">
-                                                                                        <span class="fileinput-new"> Select image </span>
-                                                                                        <span class="fileinput-exists"> Change </span>
-                                                                                        <input type="file" name="..."> </span>
-                                                                                    <a href="javascript:;" class="btn default fileinput-exists" data-dismiss="fileinput"> Remove </a>
+                                                                                        <span class="fileinput-new"> Elige una Imagen </span>
+                                                                                        <!-- <span class="fileinput-exists"> Change </span> -->
+                                                                                        <input type="file" id="file1" ng-files="getTheFiles($files)" name="file"> </span>
+                                                                                    <!-- <a href="javascript:;" class="btn default fileinput-exists" data-dismiss="fileinput"> Remove </a> -->
                                                                                 </div>
-                                                                            </div>
-                                                                            <div class="clearfix margin-top-10">
-                                                                                <span class="label label-danger">NOTE! </span>
-                                                                                <span>Attached image thumbnail is supported in Latest Firefox, Chrome, Opera, Safari and Internet Explorer 10 only </span>
                                                                             </div>
                                                                         </div>
                                                                         <div class="margin-top-10">
-                                                                            <a href="javascript:;" class="btn green"> Submit </a>
-                                                                            <a href="javascript:;" class="btn default"> Cancel </a>
+                                                                            <a href="#" ng-click="uploadFiles()" class="btn green"> Cambiar Foto </a>
+                                                                            <a href="javascript:;" class="btn default"> Cancelar </a>
                                                                         </div>
                                                                     </form>
                                                                 </div>
                                                                 <!-- END CHANGE AVATAR TAB -->
                                                                 <!-- CHANGE PASSWORD TAB -->
                                                                 <div class="tab-pane" id="tab_1_3">
-                                                                    <form action="#">
+                                                                    <form action="#" name="formularioPassword">
                                                                         <div class="form-group">
                                                                             <label class="control-label">Contraseña Actual</label>
-                                                                            <input type="password" class="form-control" ng-model="passActual" />
+                                                                            <input type="password" class="form-control" ng-model="passActual" name="passActual" required />
+                                                                            <span class="help-block" ng-show="formularioPassword.$submitted || formularioPassword.passActual.$touched">
+                                                                                <span ng-show="formularioPassword.passActual.$error.required">La password es requerida.</span>
+                                                                            </span>
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <label class="control-label">Nueva Contraseña</label>
-                                                                            <input type="password" class="form-control"  ng-model="passNuevo1"/> </div>
+                                                                            <input type="password" autocomplete="off" class="form-control"  ng-model="passNuevo1" name="pass1" id="pass1" required /> 
+                                                                              <span class="help-block" ng-show="formularioPassword.$submitted || formularioPassword.pass1.$touched">
+                                                                                <span ng-show="formularioPassword.pass1.$error.required">La password nueva es requerida.</span>
+                                                                            </span>
+                                                                        </div>
                                                                         <div class="form-group">
                                                                             <label class="control-label">Repetir Contraseña</label>
-                                                                            <input type="password" class="form-control"  ng-model="passNuevo2"/>
+                                                                            <input type="password" autocomplete="off" class="form-control"  ng-model="passNuevo2" required pw-check="pass1" name="pass2" />
+                                                                            <span class="help-block" ng-show="formularioPassword.$submitted || formularioPassword.pass2.$touched">
+                                                                                <span ng-show="formularioPassword.pass2.$error.required">La password es requerida.</span>
+                                                                                <span ng-show="formularioPassword.pass2.$error.pwmatch">Las passwords no coinciden.</span>
+                                                                            </span>
                                                                         </div>
                                                                         <div class="margin-top-10">
-                                                                            <a type="button" ng-click="modificarPassword(passNuevo1)"  class="btn green"> Cambiar Contraseña </a>
+                                                                            <a type="button" ng-click="modificarPassword(passNuevo1)"  class="btn green" > Cambiar Contraseña </a>
                                                                             <a href="javascript:;" class="btn default"> Cancelar </a>
                                                                         </div>
                                                                     </form>
                                                                 </div>
                                                                 <!-- END CHANGE PASSWORD TAB -->
-                                                                <!-- PRIVACY SETTINGS TAB -->
-                                                                <div class="tab-pane" id="tab_1_4">
-                                                                    <form action="#">
-                                                                        <table class="table table-light table-hover">
-                                                                            <tr>
-                                                                                <td> Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus.. </td>
-                                                                                <td>
-                                                                                    <div class="mt-radio-inline">
-                                                                                        <label class="mt-radio">
-                                                                                            <input type="radio" name="optionsRadios1" value="option1" /> Yes
-                                                                                            <span></span>
-                                                                                        </label>
-                                                                                        <label class="mt-radio">
-                                                                                            <input type="radio" name="optionsRadios1" value="option2" checked/> No
-                                                                                            <span></span>
-                                                                                        </label>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td> Enim eiusmod high life accusamus terry richardson ad squid wolf moon </td>
-                                                                                <td>
-                                                                                    <div class="mt-radio-inline">
-                                                                                        <label class="mt-radio">
-                                                                                            <input type="radio" name="optionsRadios11" value="option1" /> Yes
-                                                                                            <span></span>
-                                                                                        </label>
-                                                                                        <label class="mt-radio">
-                                                                                            <input type="radio" name="optionsRadios11" value="option2" checked/> No
-                                                                                            <span></span>
-                                                                                        </label>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td> Enim eiusmod high life accusamus terry richardson ad squid wolf moon </td>
-                                                                                <td>
-                                                                                    <div class="mt-radio-inline">
-                                                                                        <label class="mt-radio">
-                                                                                            <input type="radio" name="optionsRadios21" value="option1" /> Yes
-                                                                                            <span></span>
-                                                                                        </label>
-                                                                                        <label class="mt-radio">
-                                                                                            <input type="radio" name="optionsRadios21" value="option2" checked/> No
-                                                                                            <span></span>
-                                                                                        </label>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td> Enim eiusmod high life accusamus terry richardson ad squid wolf moon </td>
-                                                                                <td>
-                                                                                    <div class="mt-radio-inline">
-                                                                                        <label class="mt-radio">
-                                                                                            <input type="radio" name="optionsRadios31" value="option1" /> Yes
-                                                                                            <span></span>
-                                                                                        </label>
-                                                                                        <label class="mt-radio">
-                                                                                            <input type="radio" name="optionsRadios31" value="option2" checked/> No
-                                                                                            <span></span>
-                                                                                        </label>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                        </table>
-                                                                        <!--end profile-settings-->
-                                                                        <div class="margin-top-10">
-                                                                            <a href="javascript:;" class="btn red"> Save Changes </a>
-                                                                            <a href="javascript:;" class="btn default"> Cancel </a>
-                                                                        </div>
-                                                                    </form>
-                                                                </div>
-                                                                <!-- END PRIVACY SETTINGS TAB -->
                                                             </div>
                                                         </div>
                                                     </div>
