@@ -31,6 +31,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -80,6 +81,19 @@ public class LoginController {
 		}
 	}
 	
+	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseEntity<List<Persona>> listarUsuarios() {
+	    List<Persona> usuarios = loginService.obtenerTodosLosUsuarios();
+	    //List<Cartelera> carteleras = carteleraDAO.obtenerTodos();
+	    if(usuarios.isEmpty()){
+	    	//return new ResponseEntity<List<Cartelera>>(HttpStatus.NO_CONTENT); 
+    	}
+	    //String json = new Gson().toJson(carteleras);
+	    return new ResponseEntity<List<Persona>>(usuarios,HttpStatus.OK);
+	    //return json;
+	}
+	
 	@RequestMapping( method = RequestMethod.PUT, value = "/modificar", consumes= MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Void> modificarUsuario(@RequestBody Persona userPost) {	
 		Persona persona;
@@ -110,8 +124,29 @@ public class LoginController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> Alta(@RequestBody Publicador userPost) {		
-		loginService.guardar(userPost);
+	public ResponseEntity<Void> Alta(@RequestBody Persona userPost) {
+		Persona nuevoUsuario;
+		if (userPost.getRol() == 1) {
+			nuevoUsuario = new Administrador();			
+		}
+		else if (userPost.getRol() == 2) {
+			nuevoUsuario = new Profesor();
+		}
+		else if (userPost.getRol() == 3) {
+			nuevoUsuario = new Alumno();
+		}
+		else {
+			nuevoUsuario = new Publicador();
+		}
+		nuevoUsuario.setApellido(userPost.getApellido());
+		nuevoUsuario.setNombre(userPost.getNombre());
+		nuevoUsuario.setDni(userPost.getDni());
+		nuevoUsuario.setEmail(userPost.getEmail());
+		nuevoUsuario.setFechaNacimiento(userPost.getFechaNacimiento());
+		nuevoUsuario.setRol(userPost.getRol());
+		nuevoUsuario.setUsuario(userPost.getUsuario());
+		nuevoUsuario.setPassword(userPost.getPassword());
+		loginService.guardar(nuevoUsuario);
 		return new ResponseEntity<Void>(HttpStatus.CREATED); 		
 	}
 	

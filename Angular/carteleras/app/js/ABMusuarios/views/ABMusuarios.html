@@ -38,10 +38,10 @@
                                         <div class="portlet light">
                                             <div class="portlet-title">
                                                 <div class="caption">
-                                                    <span class="caption-subject bold uppercase"> Carteleras</span>
+                                                    <span class="caption-subject bold uppercase"> Usuarios</span>
                                                 </div>
                                                 <div class="actions">
-                                                    <a type="button" class="btn blue btn-sm btn-outline uppercase" ui-sref="nuevaCartelera()">
+                                                    <a type="button" class="btn blue btn-sm btn-outline uppercase" ui-sref="AltaUsuarios()">
                                                         <i class="fa fa-plus"></i> Agregar
                                                     </a>
                                                 </div>
@@ -51,15 +51,20 @@
                                                     <table class="table table-striped table-bordered table-hover">
                                                         <thead>
                                                             <tr class="uppercase">
-                                                                <th>Nombre</th>
+                                                                <th>Username</th>
+                                                                <th>Rol</th>
                                                                 <th>Acción</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr ng-repeat="cartelera in carteleras">
-                                                                <td style="width: 70%;">{{ cartelera.nombre }}</td>
+                                                            <tr ng-repeat="usuario in usuarios">
+                                                                <td style="width: 35%;">{{ usuario.usuario }}</td>
+                                                                <td ng-show="usuario.rol == 1" style="width: 35%;">Administrador</td>
+                                                                <td ng-show="usuario.rol == 2" style="width: 35%;">Profesor</td>
+                                                                <td ng-show="usuario.rol == 3" style="width: 35%;">Alumno</td>
+                                                                <td ng-show="usuario.rol == 4" style="width: 35%;">Publicador</td>
                                                                 <td>
-                                                                    <a type="button" class="btn yellow btn-sm btn-outline" ui-sref="editarCartelera({cartelera: cartelera})">
+                                                                    <a type="button" class="btn yellow btn-sm btn-outline" ui-sref="">
                                                                         <i class="fa fa-pencil"></i> Editar
                                                                     </a> 
                                                                     <button type="button" class="btn red btn-sm btn-outline" ng-click="eliminarCartelera(cartelera.id);">
@@ -73,7 +78,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div>     
                             </div>
                         </div>
                     </div>

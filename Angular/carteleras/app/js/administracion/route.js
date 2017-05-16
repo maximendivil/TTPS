@@ -1,12 +1,21 @@
 angular.module('myapp.administracion')	
 .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 	$stateProvider
-	.state('administracion', {
-		url:'/administracion',
+	.state('ABMcarteleras', {
+		url:'/ABMcarteleras',
 		views:{
 			'main':{
 				templateUrl: 'js/administracion/views/ABMCartelera.html',
 				controller: 'AdministracionCtrl'
+			}
+		}
+	})
+	.state('nuevaCartelera', {
+		url:'/nuevaCartelera',
+		views:{
+			'main':{
+				templateUrl: 'js/administracion/views/nuevaCartelera.html',
+				controller: 'NuevaCarteleraCtrl'
 			}
 		}
 	})
@@ -15,7 +24,7 @@ angular.module('myapp.administracion')
 		views:{
 			'main':{
 				templateUrl: 'js/administracion/views/editarCartelera.html',
-				controller: 'AdministracionCtrl'
+				controller: 'EdicionCarteleraCtrl'
 			}
 		},
 		params:{

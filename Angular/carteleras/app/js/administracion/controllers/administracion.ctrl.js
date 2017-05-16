@@ -10,33 +10,22 @@ angular.module('myapp.administracion')
 	      console.log("algo anduvo mal");
 	  	})
  	};
-
- 	$scope.perfilAdministrador = function() {
-		$state.go('administracion');
-	}
-
- 	$scope.cargarCarteleras();
-
-	$scope.permisos = {
-		value: 0
-	};
-
-	$scope.cartelera = {};
-
-	$scope.nuevaCartelara = false;
-	$scope.editaCartelera = false;
-	$scope.carteleraEdit = $stateParams.cartelera;
-
-	$scope.crearCartelera = function() {
-		CarteleraService.agregarCartelera($scope.cartelera.nombre, $scope.permisos.value)
+ 	
+	$scope.eliminarCartelera = function(id) {
+		CarteleraService.eliminarCartelera(id)
 	    .then(function(){
-	      $scope.nuevaCartelera = false;
 	      $scope.cargarCarteleras();
 	    })
 	    .catch(function(){
 	      console.log('Ocurrió un error al eliminar la cartelera');
 	    });
 	}
+
+	$scope.cargarCarteleras();	
+
+})
+.controller('EdicionCarteleraCtrl', function($scope, $state, $stateParams, CarteleraService, LoginService, $rootScope){
+	$scope.carteleraEdit = $stateParams.cartelera;
 
 	$scope.modificarCartelera = function() {
 		CarteleraService.modificarCartelera($scope.carteleraEdit.id, $scope.carteleraEdit.nombre, $scope.carteleraEdit.publica)
@@ -47,10 +36,18 @@ angular.module('myapp.administracion')
 	      console.log('Ocurrió un error al eliminar la cartelera');
 	    });
 	}
+})
+.controller('NuevaCarteleraCtrl', function($scope, $state, $stateParams, CarteleraService, LoginService, $rootScope){
+	$scope.permisos = {
+		value: 0
+	};
 
-	$scope.eliminarCartelera = function(id) {
-		CarteleraService.eliminarCartelera(id)
+	$scope.cartelera = {};
+
+	$scope.crearCartelera = function() {
+		CarteleraService.agregarCartelera($scope.cartelera.nombre, $scope.permisos.value)
 	    .then(function(){
+	      $scope.nuevaCartelera = false;
 	      $scope.cargarCarteleras();
 	    })
 	    .catch(function(){

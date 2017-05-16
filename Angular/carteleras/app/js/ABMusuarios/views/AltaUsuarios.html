@@ -1,0 +1,151 @@
+<div class="page-wrapper">
+    <div ng-controller="AdministracionCtrl">
+        <div ng-include src="'js/cartelera/views/menu.html'"></div>
+    </div>
+    <div class="page-wrapper-row full-height">
+        <div class="page-wrapper-middle">
+            <!-- BEGIN CONTAINER -->
+            <div class="page-container">
+                <!-- BEGIN CONTENT -->
+                <div class="page-content-wrapper">
+                    <!-- BEGIN CONTENT BODY -->
+                    <div class="page-head">
+                        <div class="container">
+                          <div class="page-title">
+                            <h1>Cartelera de la Facultad de Informática <br/>
+                              <small>Trabajo final</small>
+                            </h1>
+                          </div>
+                        </div>
+                    </div>
+                    <!-- BEGIN PAGE CONTENT BODY -->
+                    <div class="page-content">
+                        <div class="container">
+                            <!-- BEGIN PAGE BREADCRUMBS -->
+                            <ul class="page-breadcrumb breadcrumb">
+                                <li>
+                                    <a href="#" ui-sref="cartelera">Home</a> 
+                                    <i class="fa fa-circle"></i>
+                                </li>
+                                <li>
+                                    <span>Mi Perfil</span>
+                                </li>
+                            </ul>
+                            <div class="page-content-inner">
+                                <div class="row">
+                                    <div class="col-md-10 col-md-offset-1">
+                                        <div class="portlet light">
+                                            <div class="portlet-title">
+                                                <div class="caption">
+                                                    <span class="caption-subject bold uppercase"> Nuevo usuario</span>
+                                                </div>
+                                            </div>
+                                            <div class="portlet-body">
+                                                <form class="form-horizontal" name="formularioUsuario" method="POST">
+                                                    <div class="form-group">
+                                                        <label class="col-md-3 control-label" for="nombre">Nombre:</label>
+                                                        <div class="col-md-6">
+                                                            <input class="form-control" type="text" name="nombre" id="nombre" ng-model="usuario.nombre" required/>
+                                                            <span class="help-block" ng-show="formularioUsuario.$submitted || formularioUsuario.nombre.$touched">
+                                                                <span ng-show="formularioUsuario.nombre.$error.required">El nombre es requerido.</span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-md-3 control-label" for="apellido">Apellido:</label>
+                                                        <div class="col-md-6">
+                                                            <input class="form-control" type="text" name="apellido" id="apellido" ng-model="usuario.apellido" required/>
+                                                            <span class="help-block" ng-show="formularioUsuario.$submitted || formularioUsuario.apellido.$touched">
+                                                                <span ng-show="formularioUsuario.nombre.$error.required">El apellido es requerido.</span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-md-3 control-label" for="fechaNacimiento">Fecha de nacimiento:</label>
+                                                        <div class="col-md-6">
+                                                            <input class="form-control" type="date" name="fechaNacimiento" id="fechaNacimiento" ng-model="usuario.fechaNacimiento" required/>
+                                                            <span class="help-block" ng-show="formularioUsuario.$submitted || formularioUsuario.fechaNacimiento.$touched">
+                                                                <span ng-show="formularioUsuario.fechaNacimiento.$error.required">La fecha de nacimiento es requerida.</span>
+                                                                <span ng-show="formularioUsuario.fechaNacimiento.$error.date">La fecha es inválida.</span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-md-3 control-label" for="dni">DNI:</label>
+                                                        <div class="col-md-6">
+                                                            <input class="form-control" type="number" name="dni" id="dni" ng-model="usuario.dni" min="1" max="99999999" required/>
+                                                            <span class="help-block" ng-show="formularioUsuario.$submitted || formularioUsuario.dni.$touched">
+                                                                <span ng-show="formularioUsuario.dni.$error.required">El dni es requerido.</span>
+                                                                <span ng-show="formularioUsuario.dni.$error.min">El DNI no puede ser menor a 1.</span>
+                                                                <span ng-show="formularioUsuario.dni.$error.max">El DNI no puede ser mayor a 99999999.</span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-md-3 control-label" for="email">Email:</label>
+                                                        <div class="col-md-6">
+                                                            <input class="form-control" type="email" name="email" id="email" ng-model="usuario.email" required/>
+                                                            <span class="help-block" ng-show="formularioUsuario.$submitted || formularioUsuario.email.$touched">
+                                                                <span ng-show="formularioUsuario.email.$error.required">El email es requerido.</span>
+                                                                <span ng-show="formularioUsuario.email.$error.email">El email es inválido.</span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-md-3 control-label" for="username">Usuario:</label>
+                                                        <div class="col-md-6">
+                                                            <input class="form-control" type="text" name="username" id="username" ng-model="usuario.username" ng-minlength="6" required/>
+                                                            <span class="help-block" ng-show="formularioUsuario.$submitted || formularioUsuario.usuario.$touched">
+                                                                <span ng-show="formularioUsuario.usuario.$error.required">El usuario es requerido.</span>
+                                                                <span ng-show="formularioUsuario.usuario.$error.minlength">El usuario debe contener al menos 6 caracteres.</span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-md-3 control-label" for="password1">Password:</label>
+                                                        <div class="col-md-6">
+                                                            <input class="form-control" type="password" autocomplete="off" id="password1" name="password1" ng-model="usuario.password1" required/>
+                                                            <span class="help-block" ng-show="formularioUsuario.$submitted || formularioUsuario.password1.$touched">
+                                                                <span ng-show="formularioUsuario.password1.$error.required">La password es requerida.</span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-md-3 control-label" for="password2">Repita la password:</label>
+                                                        <div class="col-md-6">
+                                                            <input class="form-control" type="password" autocomplete="off" name="password2" ng-model="usuario.password2" required pw-check='password1'/>
+                                                            <span class="help-block" ng-show="formularioUsuario.$submitted || formularioUsuario.password2.$touched">
+                                                                <span ng-show="formularioUsuario.password2.$error.required">La password es requerida.</span>
+                                                                <span ng-show="formularioUsuario.password2.$error.pwmatch">Las passwords no coinciden.</span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div clas="form-group">
+                                                        <label class="col-md-3 control-label" for="rol">Rol:</label>
+                                                        <div class="col-md-6">
+                                                            <select class="form-control" name="rol" id="rol" ng-options="option.name for option in roles.availableOptions track by option.id" ng-model="roles.rol">
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-actions">
+                                                        <div class="form-group">
+                                                            <div class="col-md-3 col-md-offset-9">
+                                                                <a type="button" class="btn default" ui-sref="ABMusuarios()">Atrás</a>
+                                                                <input type="submit" class="btn green" value="Enviar" ng-click="agregarUsuario()" ng-disabled="formularioUsuario.$invalid"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<div footer style="width: 100%; display: table-row-group;"></div>
+</div>

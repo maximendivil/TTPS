@@ -43,6 +43,7 @@ angular.module('myapp.login')
 
   //Se llama cuando se registra a un usuario
   $scope.crearUsuario = function(){
+    $scope.registro.rol = 4;
     LoginService.crearUsuario($scope.registro)
     .then(function(){
       $scope.formLogin = true;

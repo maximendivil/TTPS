@@ -33,15 +33,22 @@
                             </ul>
                             <div class="page-content-inner">
                                 <div class="row">
-                                    <div class="col-md-10 col-md-offset-1">
+                                        <div clas="form-group">
+                                            <label class="col-md-3 control-label">Cartelera:</label>
+                                                <select class="form-control" ng-change="cargarPublicaciones()" ng-model="selected">
+                                                    <option ng-repeat="cartelera in carteleras" value="{{cartelera.id}}">{{cartelera.nombre}}</option>
+                                                </select>
+                                        </div>
+
+                                        <div class="col-md-10 col-md-offset-1">
                                         <!-- BEGIN Portlet PORTLET-->
                                         <div class="portlet light">
                                             <div class="portlet-title">
                                                 <div class="caption">
-                                                    <span class="caption-subject bold uppercase"> Carteleras</span>
+                                                    <span class="caption-subject bold uppercase"> Publicaciones en cartelera {{carteleraActual}}</span>
                                                 </div>
                                                 <div class="actions">
-                                                    <a type="button" class="btn blue btn-sm btn-outline uppercase" ui-sref="nuevaCartelera()">
+                                                    <a type="button" class="btn blue btn-sm btn-outline uppercase" ui-sref="nuevaPublicacion()">
                                                         <i class="fa fa-plus"></i> Agregar
                                                     </a>
                                                 </div>
@@ -56,13 +63,13 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr ng-repeat="cartelera in carteleras">
-                                                                <td style="width: 70%;">{{ cartelera.nombre }}</td>
+                                                            <tr ng-repeat="publicacion in cartelera">
+                                                                <td style="width: 70%;">{{ publicacion.titulo }}</td>
                                                                 <td>
-                                                                    <a type="button" class="btn yellow btn-sm btn-outline" ui-sref="editarCartelera({cartelera: cartelera})">
+                                                                    <a type="button" class="btn yellow btn-sm btn-outline" ui-sref="editarPublicacion({publicacion: publicacion})">
                                                                         <i class="fa fa-pencil"></i> Editar
                                                                     </a> 
-                                                                    <button type="button" class="btn red btn-sm btn-outline" ng-click="eliminarCartelera(cartelera.id);">
+                                                                    <button type="button" class="btn red btn-sm btn-outline" ng-click="eliminarPublicacion(publicacion.id);">
                                                                         <i class="fa fa-trash-o"></i> Eliminar
                                                                     </button>
                                                                 </td>
@@ -73,7 +80,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div>     
                             </div>
                         </div>
                     </div>
