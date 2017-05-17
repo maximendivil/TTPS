@@ -16,19 +16,6 @@ angular.module('myapp.perfil')
 
 
 	var modificarUsuario = function(usuario) {
-		/*var defer = $q.defer();
-		var usr = {'usuario': usuario};
-		
-			.then(
-			function (response) {
-				defer.resolve(response.data);
-			},
-			function (errResponse){
-				console.error('Error al modificar el usuario');
-				defer.reject(errResponse);
-			}
-		);
-		return defer.promise;*/
 		return $http.put(ENV.endpoint.url + '/Usuarios/modificar',
 		{
 	      'nombre' : usuario.nombre,

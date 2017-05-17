@@ -10,6 +10,7 @@ public interface PersonaDAO extends GenericDAO<Persona>{
 	public void logout(Persona user);
 	public Persona obtenerPorUsuario(String usuario);
 	public Persona obtenerPorId(long id);
+	public List<Persona> obtenerPorRol(int rol);
 	public int buscarRol(String usuario);
 	public List<Persona> obtenerTodosLosUsuarios();
 }

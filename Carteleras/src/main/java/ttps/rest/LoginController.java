@@ -95,6 +95,19 @@ public class LoginController {
 	    //return json;
 	}
 	
+	@RequestMapping(value="/Get/{rol}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseEntity<List<Persona>> listarUsuariosPorRol(@PathVariable("rol") int rol) {
+	    List<Persona> usuarios = loginService.obtenerPorRol(rol);
+	    //List<Cartelera> carteleras = carteleraDAO.obtenerTodos();
+	    if(usuarios.isEmpty()){
+	    	//return new ResponseEntity<List<Cartelera>>(HttpStatus.NO_CONTENT); 
+    	}
+	    //String json = new Gson().toJson(carteleras);
+	    return new ResponseEntity<List<Persona>>(usuarios,HttpStatus.OK);
+	    //return json;
+	}
+	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)    
 	public ResponseEntity<Persona> obtenerUsuario(@PathVariable("id") long id) {
 		Persona usuario = loginService.obtenerPorId(id);
@@ -167,6 +180,14 @@ public class LoginController {
 		loginService.guardar(nuevoUsuario);
 		return new ResponseEntity<Void>(HttpStatus.CREATED); 		
 	}
+	
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)    
+	public ResponseEntity<Void> eliminarUsuario(@PathVariable("id") long id) {
+		Persona persona = loginService.obtener(id);
+		persona.setBorrado(1);
+		loginService.modificar(persona);
+		return new ResponseEntity<Void>(HttpStatus.OK);
+    }
 	
 	private boolean esPerfilDeGuarani(int rol) {
 		if ((rol == 2) || (rol == 3)){

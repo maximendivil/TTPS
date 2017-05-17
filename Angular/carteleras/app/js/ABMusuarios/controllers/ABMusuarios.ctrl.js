@@ -3,7 +3,7 @@ angular.module('myapp.ABMusuarios')
 	$scope.usuario = angular.fromJson(localStorage.getItem('usuario'));
 
 	$scope.cargarUsuarios = function() {
-		UsuarioService.getUsuarios().then(function(response){
+		UsuarioService.getAdministradores().then(function(response){
 	  		$scope.usuarios = response.data;
 		}, 
 		function(response) {
@@ -12,6 +12,16 @@ angular.module('myapp.ABMusuarios')
  	};
 
 	$scope.cargarUsuarios();
+
+	$scope.eliminarAdministrador = function(id) {
+		UsuarioService.eliminarUsuario(id)
+	    .then(function(){
+	      $scope.cargarUsuarios();
+	    })
+	    .catch(function(){
+	      console.log('Ocurrió un error al eliminar la cartelera');
+	    });
+	}
 })
 .controller('AltaUsuariosCtrl', function($scope, $state, $stateParams, UsuarioService, LoginService, $rootScope){	
 	$scope.usuario = {};
@@ -36,22 +46,12 @@ angular.module('myapp.ABMusuarios')
 	    });
 	};
 })
-.controller('EdicionUsuariosCtrl', function($scope, $state, $stateParams, UsuarioService, LoginService, $rootScope){
+.controller('EdicionUsuariosCtrl', function($scope, $state, $stateParams, UsuarioService, PerfilService, $rootScope){
 	$scope.usuario = $stateParams.usuario;
 	$scope.usuario.fechaNacimiento = new Date($scope.usuario.fechaNacimiento);
-	$scope.roles = {
-	    availableOptions: [
-	      {id: '1', name: 'Administrador'},
-	      {id: '2', name: 'Profesor'},
-	      {id: '3', name: 'Alumno'},
-	      {id: '4', name: 'Publicador'}
-	    ],
-	    rol: {id: $scope.usuario.rol } //This sets the default value of the select in the ui
-    };
-	$scope.modificarPermisos = function(){
+	$scope.modificarAdministrador = function(){
         console.log($scope.usuario);
-        $scope.usuario.rol = $scope.roles.rol.id;
-        UsuarioService.modificarPermisos($scope.usuario)
+        PerfilService.modificarUsuario($scope.usuario)
         .then(function(response){
         	console.log('Usuario modificado con éxito');
         	$state.go("ABMusuarios");	

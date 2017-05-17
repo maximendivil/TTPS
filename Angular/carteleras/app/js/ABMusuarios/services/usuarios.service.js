@@ -13,8 +13,16 @@ angular.module('myapp.ABMusuarios')
     return $http.get(ENV.endpoint.url + '/Usuarios');
   };
 
+  var getAdministradores = function(){
+    return $http.get(ENV.endpoint.url + '/Usuarios/Get/1');
+  };
+
   var getUsuario = function(id){
     return $http.get(ENV.endpoint.url + '/Usuarios/' + id);
+  };
+
+  var eliminarUsuario = function(id){
+    return $http.delete(ENV.endpoint.url + '/Usuarios/' + id);
   };
 
   var modificarPermisos = function(usuario) {
@@ -27,7 +35,8 @@ angular.module('myapp.ABMusuarios')
 
   return {
     getUsuarios:getUsuarios,
+    getAdministradores:getAdministradores,
     getUsuario:getUsuario,
-    modificarPermisos:modificarPermisos
+    eliminarUsuario:eliminarUsuario
   };
 });

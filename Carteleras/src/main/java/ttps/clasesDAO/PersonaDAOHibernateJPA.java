@@ -60,6 +60,14 @@ public class PersonaDAOHibernateJPA extends GenericDAOHibernateJPA<Persona> impl
 	}
 	
 	@Override
+	public List<Persona> obtenerPorRol(int rol){
+		Query q = this.getEntityManager().createQuery("select new Persona(p.id,p.nombre,p.apellido,p.fechaNacimiento,p.dni,p.email,p.rol,p.usuario,p.password) from Persona p Where rol = :rol and borrado=0");
+		q.setParameter("rol", rol);
+		List<Persona> resultado = (List<Persona>) q.getResultList();
+		return resultado;
+	}
+	
+	@Override
 	public void logout(Persona user) {
 		
 	}
