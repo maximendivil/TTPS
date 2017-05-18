@@ -21,6 +21,38 @@ angular.module('myapp.ABMusuarios')
     return $http.get(ENV.endpoint.url + '/Usuarios/' + id);
   };
 
+  var getIntereses = function(id){
+    return $http.get(ENV.endpoint.url + '/Usuarios/GetIntereses/' + id);
+  };
+
+  var agregarInteres = function(usuario, idCartelera){
+    return $http.post(ENV.endpoint.url + '/Usuarios/Intereses/' + idCartelera, 
+    {
+      'nombre' : usuario.nombre,
+      'id' : usuario.id,
+      'apellido' : usuario.apellido,
+      'dni' : usuario.dni,
+      'email' : usuario.email,
+      'usuario': usuario.usuario,
+      'password' : usuario.password,
+      'rol' : usuario.rol
+    }, config);
+  };
+
+  var quitarInteres = function(usuario, idCartelera){
+    return $http.put(ENV.endpoint.url + '/Usuarios/Intereses/' + idCartelera, 
+    {
+      'nombre' : usuario.nombre,
+      'id' : usuario.id,
+      'apellido' : usuario.apellido,
+      'dni' : usuario.dni,
+      'email' : usuario.email,
+      'usuario': usuario.usuario,
+      'password' : usuario.password,
+      'rol' : usuario.rol
+    }, config);
+  };
+
   var eliminarUsuario = function(id){
     return $http.delete(ENV.endpoint.url + '/Usuarios/' + id);
   };
@@ -28,8 +60,8 @@ angular.module('myapp.ABMusuarios')
   var modificarPermisos = function(usuario) {
     return $http.put(ENV.endpoint.url + '/Usuarios/modificarPermisos',
     {
-        'id' : usuario.id,
-        'rol' : usuario.rol
+      'id' : usuario.id,
+      'rol' : usuario.rol
     }, config);
   };
 
@@ -37,6 +69,9 @@ angular.module('myapp.ABMusuarios')
     getUsuarios:getUsuarios,
     getAdministradores:getAdministradores,
     getUsuario:getUsuario,
-    eliminarUsuario:eliminarUsuario
+    eliminarUsuario:eliminarUsuario,
+    getIntereses:getIntereses,
+    agregarInteres:agregarInteres,
+    quitarInteres:quitarInteres
   };
 });

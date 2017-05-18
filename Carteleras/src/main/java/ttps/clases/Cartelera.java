@@ -43,6 +43,14 @@ public class Cartelera implements java.io.Serializable {
 		
 	}
 	
+	public Cartelera(long id){
+		this.id = id;
+		this.nombre = "";
+		this.borrado = 0;
+		this.publicaciones = new HashSet<Publicacion>();
+		this.alumnosInteresados = new HashSet<Alumno>();
+	}
+	
 	public Cartelera(long id, String nombre){
 		this.id = id;
 		this.nombre = nombre;
@@ -127,5 +135,9 @@ public class Cartelera implements java.io.Serializable {
 
 	public void setPublica(int publica) {
 		this.publica = publica;
+	}
+	
+	public void agregarAlumnoInteresado(Alumno alumno) {
+		this.alumnosInteresados.add(alumno);
 	}
 }

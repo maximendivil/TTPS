@@ -11,6 +11,7 @@ angular.module('myapp', [
 	'myapp.administracion',
 	'myapp.ABMpublicaciones',
 	'myapp.ABMusuarios',
+	'myapp.Intereses',
 	'LocalStorageModule',
 	'wu.masonry',
 	'myapp.login',
@@ -23,3 +24,4 @@ angular.module('myapp.perfil', []);
 angular.module('myapp.administracion', []);
 angular.module('myapp.ABMpublicaciones', []);
 angular.module('myapp.ABMusuarios', []);
+angular.module('myapp.Intereses', []);

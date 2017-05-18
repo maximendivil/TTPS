@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -39,6 +40,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 import ttps.clases.*;
 import ttps.jwt.TokenManagerSecurity;
 import ttps.clasesDAO.*;
+import ttps.interfacesDAO.AlumnoDAO;
+import ttps.interfacesDAO.CarteleraDAO;
 import ttps.interfacesDAO.PersonaDAO;
 
 /**
@@ -53,6 +56,12 @@ public class LoginController {
 	
 	@Inject
 	private PersonaDAO loginService;
+	
+	@Inject
+	private CarteleraDAO carteleraDAO;
+	
+	@Inject
+	private AlumnoDAO alumnoDAO;
 	
 	@Inject
 	private TokenManagerSecurity tokenManagerSecurity;
@@ -99,13 +108,10 @@ public class LoginController {
 	@ResponseBody
 	public ResponseEntity<List<Persona>> listarUsuariosPorRol(@PathVariable("rol") int rol) {
 	    List<Persona> usuarios = loginService.obtenerPorRol(rol);
-	    //List<Cartelera> carteleras = carteleraDAO.obtenerTodos();
 	    if(usuarios.isEmpty()){
 	    	//return new ResponseEntity<List<Cartelera>>(HttpStatus.NO_CONTENT); 
     	}
-	    //String json = new Gson().toJson(carteleras);
 	    return new ResponseEntity<List<Persona>>(usuarios,HttpStatus.OK);
-	    //return json;
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)    
@@ -115,6 +121,46 @@ public class LoginController {
 			return new ResponseEntity<Persona>(HttpStatus.NOT_FOUND);
 		}
         return new ResponseEntity<Persona>(usuario, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/GetIntereses/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)    
+	public ResponseEntity<List<Cartelera>> obtenerIntereses(@PathVariable("id") long id) {
+		List<Cartelera> carteleras = loginService.obtenerIntereses(id);
+		if (carteleras == null) { 
+			return new ResponseEntity<List<Cartelera>>(HttpStatus.NOT_FOUND);
+		}
+        return new ResponseEntity<List<Cartelera>>(carteleras, HttpStatus.OK);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, value="/Intereses/{idCartelera}", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Void> agregarInteres(@RequestBody Alumno alumno, @PathVariable("idCartelera") long idCartelera) {
+		Cartelera cartelera = carteleraDAO.obtener(idCartelera);
+		Alumno a = alumnoDAO.obtener(alumno.getId());
+		a.agregarInteres(cartelera);
+		/*cartelera.agregarAlumnoInteresado(alumno);
+		carteleraDAO.modificar(cartelera);*/
+		alumnoDAO.modificar(a);
+		return new ResponseEntity<Void>(HttpStatus.OK);
+	}
+	
+	@RequestMapping(method = RequestMethod.PUT, value="/Intereses/{idCartelera}", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Void> quitarInteres(@RequestBody Alumno alumno, @PathVariable("idCartelera") long idCartelera) {
+		Cartelera cartelera = carteleraDAO.obtener(idCartelera);
+		Alumno a = alumnoDAO.obtener(alumno.getId());		
+		//a.quitarInteres(cartelera);
+		Iterator<Cartelera> it = a.getIntereses().iterator();
+		Cartelera borrar = new Cartelera();
+		while (it.hasNext()){
+			Cartelera aux = it.next();
+			if (aux.getId() == cartelera.getId()){
+				borrar = aux;
+			}
+		}
+		a.quitarInteres(borrar);
+		/*cartelera.agregarAlumnoInteresado(alumno);
+		carteleraDAO.modificar(cartelera);*/
+		alumnoDAO.modificar(a);
+		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 	
 	@RequestMapping( method = RequestMethod.PUT, value = "/modificar", consumes= MediaType.APPLICATION_JSON_VALUE)

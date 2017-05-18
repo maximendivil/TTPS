@@ -68,6 +68,14 @@ public class PersonaDAOHibernateJPA extends GenericDAOHibernateJPA<Persona> impl
 	}
 	
 	@Override
+	public List<Cartelera> obtenerIntereses(long id){
+		Query q = this.getEntityManager().createQuery("select i.id from Alumno a JOIN a.intereses i Where a.id = :id");
+		q.setParameter("id", id);
+		List<Cartelera> resultado = (List<Cartelera>) q.getResultList();
+		return resultado;
+	}
+	
+	@Override
 	public void logout(Persona user) {
 		
 	}

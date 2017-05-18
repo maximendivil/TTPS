@@ -3,6 +3,7 @@ package ttps.interfacesDAO;
 import java.util.List;
 
 import ttps.clases.Administrador;
+import ttps.clases.Cartelera;
 import ttps.clases.Persona;
 
 public interface PersonaDAO extends GenericDAO<Persona>{
@@ -13,4 +14,5 @@ public interface PersonaDAO extends GenericDAO<Persona>{
 	public List<Persona> obtenerPorRol(int rol);
 	public int buscarRol(String usuario);
 	public List<Persona> obtenerTodosLosUsuarios();
+	public List<Cartelera> obtenerIntereses(long id);
 }

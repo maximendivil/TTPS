@@ -64,4 +64,9 @@ public class Alumno extends Persona implements java.io.Serializable{
 		this.intereses.add(c);
 		c.getAlumnosInteresados().add(this);
 	}
+	
+	public void quitarInteres(Cartelera c){
+		this.intereses.remove(c);
+		c.getAlumnosInteresados().remove(this);
+	}
 }

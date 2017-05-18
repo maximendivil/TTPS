@@ -45,16 +45,26 @@
         </div>
       </div>
     </div>
-    <div class="page-header-menu" ng-if="usuario.rol != 3">
+    <div class="page-header-menu">
       <div class="container">                                
         <div class="hor-menu  ">
           <ul class="nav navbar-nav">
-            <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown active" ng-if="usuario.rol == 1">
+            <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown">
+                <a type="button" ui-sref="cartelera()"> Inicio
+                    <span class="arrow"></span>
+                </a>
+            </li>
+            <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown" ng-if="usuario.rol == 3">
+                <a type="button" ui-sref="Intereses()"> Mis intereses
+                    <span class="arrow"></span>
+                </a>
+            </li>
+            <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown" ng-if="usuario.rol == 1">
                 <a type="button" ui-sref="ABMcarteleras()"> ABM Carteleras
                     <span class="arrow"></span>
                 </a>
             </li>
-            <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown">
+            <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown" ng-if="usuario.rol == 1">
                 <a type="button" ui-sref="ABMpublicaciones()"> ABM Publicaciones
                     <span class="arrow"></span>
                 </a>
