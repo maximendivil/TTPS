@@ -15,24 +15,7 @@
                   <a href="#" ui-sref="perfil()">
                     <i class="icon-user"></i> Mi Perfil
                   </a>
-                </li>
-                <li>
-                  <a href="app_calendar.html">
-                    <i class="icon-calendar"></i> My Calendar
-                  </a>
-                </li>
-                <li>
-                  <a href="app_inbox.html">
-                    <i class="icon-envelope-open"></i> My Inbox
-                    <span class="badge badge-danger"> 3 </span>
-                  </a>
-                </li>
-                <li>
-                  <a href="app_todo_2.html">
-                    <i class="icon-rocket"></i> My Tasks
-                    <span class="badge badge-success"> 7 </span>
-                  </a>
-                </li>
+                </li>                
                 <li class="divider"> </li>
                 <li>
                   <a href="#" ng-click="logout()">
@@ -71,6 +54,11 @@
             </li>
             <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown" ng-if="usuario.rol == 1">
                 <a type="button" ui-sref="ABMusuarios()"> ABM Administradores
+                    <span class="arrow"></span>
+                </a>
+            </li>
+            <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown" ng-if="usuario.rol == 1">
+                <a type="button" ui-sref="ABMpermisos()"> Permisos cartelera
                     <span class="arrow"></span>
                 </a>
             </li>

@@ -10,8 +10,12 @@ angular.module('myapp.cartelera')
   };
 
   var getCartelera = function(id){
-    return $http.get(ENV.endpoint.url + '/Carteleras/' + id);
+    return $http.get(ENV.endpoint.url + '/Carteleras/Publicaciones/' + id);
   };  
+
+  var getCarteleraPorId = function(id){
+    return $http.get(ENV.endpoint.url + '/Carteleras/' + id);
+  };    
 
   var getCarteleras = function() {
     return $http.get(ENV.endpoint.url + '/Carteleras');
@@ -73,6 +77,7 @@ angular.module('myapp.cartelera')
     agregarComentario:agregarComentario,
     agregarCartelera:agregarCartelera,
     modificarCartelera:modificarCartelera,
-    eliminarCartelera:eliminarCartelera
+    eliminarCartelera:eliminarCartelera,
+    getCarteleraPorId:getCarteleraPorId
   };
 });

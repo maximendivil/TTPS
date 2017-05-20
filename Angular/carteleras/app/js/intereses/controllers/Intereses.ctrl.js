@@ -14,6 +14,7 @@ angular.module('myapp.Intereses')
 	$scope.cargarIntereses = function() {
 		UsuarioService.getIntereses($scope.usuario.id).then(function(response){
 	  		$scope.intereses = response.data;
+	  		console.log($scope.intereses);
 		}, 
 		function(response) {
 	  		console.log("algo anduvo mal");

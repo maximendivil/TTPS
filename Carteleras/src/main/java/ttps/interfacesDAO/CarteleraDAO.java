@@ -12,4 +12,5 @@ public interface CarteleraDAO extends GenericDAO<Cartelera>{
 	void eliminar(Cartelera entity);
 	void remover(long id);
 	List<Cartelera> obtenerCarteleras();
+	Cartelera obtenerPorId(long id);
 }

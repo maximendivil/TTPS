@@ -13,6 +13,18 @@ angular.module('myapp.ABMusuarios')
     return $http.get(ENV.endpoint.url + '/Usuarios');
   };
 
+  var getPublicadores = function(){
+    return $http.get(ENV.endpoint.url + '/Usuarios/Publicadores');
+  };
+
+  var getPublicadoresHabilitados = function(idCartelera){
+    return $http.get(ENV.endpoint.url + '/Usuarios/PublicadoresHabilitados/' + idCartelera);
+  };
+
+  var getPublicadoresSinPermiso = function(idCartelera){
+    return $http.get(ENV.endpoint.url + '/Usuarios/PublicadoresSinPermiso/' + idCartelera);
+  };
+
   var getAdministradores = function(){
     return $http.get(ENV.endpoint.url + '/Usuarios/Get/1');
   };
@@ -23,6 +35,34 @@ angular.module('myapp.ABMusuarios')
 
   var getIntereses = function(id){
     return $http.get(ENV.endpoint.url + '/Usuarios/GetIntereses/' + id);
+  };
+
+  var darPermisos = function(usuario, idCartelera){
+    return $http.post(ENV.endpoint.url + '/Usuarios/Publicadores/DarPermiso/' + idCartelera, 
+    {
+      'nombre' : usuario.nombre,
+      'id' : usuario.id,
+      'apellido' : usuario.apellido,
+      'dni' : usuario.dni,
+      'email' : usuario.email,
+      'usuario': usuario.usuario,
+      'password' : usuario.password,
+      'rol' : usuario.rol
+    }, config);
+  };
+
+  var quitarPermisos = function(usuario, idCartelera){
+    return $http.put(ENV.endpoint.url + '/Usuarios/Publicadores/QuitarPermiso/' + idCartelera, 
+    {
+      'nombre' : usuario.nombre,
+      'id' : usuario.id,
+      'apellido' : usuario.apellido,
+      'dni' : usuario.dni,
+      'email' : usuario.email,
+      'usuario': usuario.usuario,
+      'password' : usuario.password,
+      'rol' : usuario.rol
+    }, config);
   };
 
   var agregarInteres = function(usuario, idCartelera){
@@ -72,6 +112,11 @@ angular.module('myapp.ABMusuarios')
     eliminarUsuario:eliminarUsuario,
     getIntereses:getIntereses,
     agregarInteres:agregarInteres,
-    quitarInteres:quitarInteres
+    quitarInteres:quitarInteres,
+    getPublicadores:getPublicadores,
+    getPublicadoresHabilitados:getPublicadoresHabilitados,
+    getPublicadoresSinPermiso:getPublicadoresSinPermiso,
+    darPermisos:darPermisos,
+    quitarPermisos:quitarPermisos
   };
 });

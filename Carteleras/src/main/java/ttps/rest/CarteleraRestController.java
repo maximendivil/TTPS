@@ -49,13 +49,19 @@ public class CarteleraRestController {
 	    //return json;
 	}
 	
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)    
-	public ResponseEntity<List<Publicacion>> listarCartelera(@PathVariable("id") long id) {
+	@RequestMapping(value = "/Publicaciones/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)    
+	public ResponseEntity<List<Publicacion>> listarPublicacionesCartelera(@PathVariable("id") long id) {
 		List<Publicacion> publicaciones = carteleraDAO.obtenerPublicaciones(id);
 		if (publicaciones == null) { 
 			return new ResponseEntity<List<Publicacion>>(HttpStatus.NOT_FOUND);
 		}
         return new ResponseEntity<List<Publicacion>>(publicaciones, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)    
+	public ResponseEntity<Cartelera> listarCartelera(@PathVariable("id") long id) {
+		Cartelera cartelera = carteleraDAO.obtenerPorId(id);
+        return new ResponseEntity<Cartelera>(cartelera, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/{id}/AlumnosInteresados", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)    

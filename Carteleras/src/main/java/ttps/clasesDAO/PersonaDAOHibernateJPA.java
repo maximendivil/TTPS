@@ -13,6 +13,7 @@ import ttps.clases.Cartelera;
 import ttps.clases.Comentario;
 import ttps.clases.Persona;
 import ttps.clases.Publicacion;
+import ttps.clases.Publicador;
 import ttps.entityManager.EMF;
 import ttps.interfacesDAO.AdministradorDAO;
 import ttps.interfacesDAO.PersonaDAO;
@@ -27,6 +28,13 @@ public class PersonaDAOHibernateJPA extends GenericDAOHibernateJPA<Persona> impl
 	public List<Persona> obtenerTodosLosUsuarios() {
 		Query q = this.getEntityManager().createQuery("Select new Persona(p.id, p.nombre, p.apellido, p.fechaNacimiento, p.dni, p.email, p.rol, p.usuario, p.password) from Persona p Where p.borrado=0");
 		List<Persona> resultado = (List<Persona>) q.getResultList();
+		return resultado;
+	}
+	
+	@Override
+	public List<Publicador> obtenerPublicadores() {
+		Query q = this.getEntityManager().createQuery("Select new Publicador(p.id, p.nombre, p.apellido, p.fechaNacimiento, p.dni, p.email, p.rol, p.usuario, p.password) from Publicador p Where p.borrado=0 and (p.rol=2 or p.rol=4)");
+		List<Publicador> resultado = (List<Publicador>) q.getResultList();
 		return resultado;
 	}
 	

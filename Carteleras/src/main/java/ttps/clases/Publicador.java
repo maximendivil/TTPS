@@ -71,5 +71,11 @@ public class Publicador extends Persona implements java.io.Serializable{
 	
 	public void agregarCartelera(Cartelera c){
 		this.cartelerasHabilitadas.add(c);
+		c.getPersonasHabilitadas().add(this);
+	}
+	
+	public void quitarPermisos(Cartelera c){
+		this.cartelerasHabilitadas.remove(c);
+		c.getPersonasHabilitadas().remove(this);
 	}
 }

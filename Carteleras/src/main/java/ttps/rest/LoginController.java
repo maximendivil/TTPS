@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
@@ -43,6 +44,7 @@ import ttps.clasesDAO.*;
 import ttps.interfacesDAO.AlumnoDAO;
 import ttps.interfacesDAO.CarteleraDAO;
 import ttps.interfacesDAO.PersonaDAO;
+import ttps.interfacesDAO.PublicadorDAO;
 
 /**
  * @author Manuel Ortiz - ortizman@gmail.com
@@ -62,6 +64,9 @@ public class LoginController {
 	
 	@Inject
 	private AlumnoDAO alumnoDAO;
+	
+	@Inject
+	private PublicadorDAO publicadorDAO;
 	
 	@Inject
 	private TokenManagerSecurity tokenManagerSecurity;
@@ -104,6 +109,33 @@ public class LoginController {
 	    //return json;
 	}
 	
+	@RequestMapping(value = "/Publicadores", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseEntity<List<Publicador>> listarPublicadores() {
+	    List<Publicador> usuarios = loginService.obtenerPublicadores();
+	    Iterator<Publicador> it = usuarios.iterator();
+	    while (it.hasNext()) {
+	    	Publicador p = it.next();
+	    	p.setCartelerasHabilitadas(new HashSet(publicadorDAO.obtenerCartelerasHabilitadas(p.getId())));
+	    }
+	    return new ResponseEntity<List<Publicador>>(usuarios,HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/PublicadoresHabilitados/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseEntity<List<Publicador>> listarPublicadoresHabilitados(@PathVariable("id") long idCartelera) {
+	    List<Publicador> usuarios = publicadorDAO.obtenerPublicadoresHabilitados(idCartelera);
+	    return new ResponseEntity<List<Publicador>>(usuarios,HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/PublicadoresSinPermiso/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseEntity<List<Publicador>> listarPublicadoresSinPermiso(@PathVariable("id") long idCartelera) {
+		Cartelera cartelera = carteleraDAO.obtenerPorId(idCartelera);
+	    List<Publicador> usuarios = publicadorDAO.obtenerPublicadoresSinPermiso(cartelera);
+	    return new ResponseEntity<List<Publicador>>(usuarios,HttpStatus.OK);
+	}
+	
 	@RequestMapping(value="/Get/{rol}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<List<Persona>> listarUsuariosPorRol(@PathVariable("rol") int rol) {
@@ -132,13 +164,38 @@ public class LoginController {
         return new ResponseEntity<List<Cartelera>>(carteleras, HttpStatus.OK);
 	}
 	
+	@RequestMapping(method = RequestMethod.POST, value="/Publicadores/DarPermiso/{idCartelera}", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Void> agregarPermiso(@RequestBody Publicador publicador, @PathVariable("idCartelera") long idCartelera) {
+		Cartelera cartelera = carteleraDAO.obtener(idCartelera);
+		Publicador p = publicadorDAO.obtener(publicador.getId());
+		p.agregarCartelera(cartelera);
+		publicadorDAO.modificar(p);
+		return new ResponseEntity<Void>(HttpStatus.OK);
+	}
+	
+	@RequestMapping(method = RequestMethod.PUT, value="/Publicadores/QuitarPermiso/{idCartelera}", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Void> quitarPermiso(@RequestBody Publicador publicador, @PathVariable("idCartelera") long idCartelera) {
+		Cartelera cartelera = carteleraDAO.obtener(idCartelera);
+		Publicador p = publicadorDAO.obtener(publicador.getId());
+		
+		Iterator<Cartelera> it = p.getCartelerasHabilitadas().iterator();
+		Cartelera borrar = new Cartelera();
+		while (it.hasNext()){
+			Cartelera aux = it.next();
+			if (aux.getId() == cartelera.getId()){
+				borrar = aux;
+			}
+		}
+		p.quitarPermisos(borrar);
+		publicadorDAO.modificar(p);
+		return new ResponseEntity<Void>(HttpStatus.OK);
+	}
+	
 	@RequestMapping(method = RequestMethod.POST, value="/Intereses/{idCartelera}", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Void> agregarInteres(@RequestBody Alumno alumno, @PathVariable("idCartelera") long idCartelera) {
 		Cartelera cartelera = carteleraDAO.obtener(idCartelera);
 		Alumno a = alumnoDAO.obtener(alumno.getId());
 		a.agregarInteres(cartelera);
-		/*cartelera.agregarAlumnoInteresado(alumno);
-		carteleraDAO.modificar(cartelera);*/
 		alumnoDAO.modificar(a);
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
@@ -157,8 +214,6 @@ public class LoginController {
 			}
 		}
 		a.quitarInteres(borrar);
-		/*cartelera.agregarAlumnoInteresado(alumno);
-		carteleraDAO.modificar(cartelera);*/
 		alumnoDAO.modificar(a);
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
