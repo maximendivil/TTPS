@@ -28,18 +28,11 @@
                                     <i class="fa fa-circle"></i>
                                 </li>
                                 <li>
-                                    <span>Mi Perfil</span>
+                                    <span>ABM publicaciones</span>
                                 </li>
                             </ul>
                             <div class="page-content-inner">
                                 <div class="row">
-                                        <div clas="form-group">
-                                            <label class="col-md-3 control-label">Cartelera:</label>
-                                                <select class="form-control" ng-change="cargarPublicaciones()" ng-model="selected">
-                                                    <option ng-repeat="cartelera in carteleras" value="{{cartelera.id}}">{{cartelera.nombre}}</option>
-                                                </select>
-                                        </div>
-
                                         <div class="col-md-10 col-md-offset-1">
                                         <!-- BEGIN Portlet PORTLET-->
                                         <div class="portlet light">
@@ -47,24 +40,35 @@
                                                 <div class="caption">
                                                     <span class="caption-subject bold uppercase"> Publicaciones en cartelera {{carteleraActual}}</span>
                                                 </div>
-                                                <div class="actions">
-                                                    <a type="button" class="btn blue btn-sm btn-outline uppercase" ui-sref="nuevaPublicacion()">
-                                                        <i class="fa fa-plus"></i> Agregar
-                                                    </a>
-                                                </div>
                                             </div>
                                             <div class="portlet-body">
-                                                <div class="table-responsive" style="overflow: auto">
+                                                <form class="form-horizontal" name="formularioUsuario" method="POST" ng-show="carteleras.length > 0">
+                                                    <div class="form-group">
+                                                        <label class="col-md-1 control-label" for="cartelera">Cartelera:</label>
+                                                        <div class="col-md-4">
+                                                            <select class="form-control" ng-model="selected" ng-change="cargarPublicaciones()">
+                                                                <option value="">Elija una cartelera</option>
+                                                                <option ng-repeat="cartelera in carteleras" ng-value="{{cartelera.id}}">{{cartelera.nombre}}</option>
+                                                            </select>                                                            
+                                                        </div>
+                                                        <div class="col-md-7">
+                                                            <a type="button" class="btn btn-primary uppercase col-md-6 col-md-offset-6" ng-show="selected && carteleras.length > 0" ui-sref="AgregarPermisos({cartelera: carteleraSeleccionada})">Agregar publicación</a>
+                                                        </div>
+                                                    </div>                                                        
+                                                </form>
+                                                <div class="table-responsive" style="overflow: auto" ng-show="selected && (publicaciones.length > 0)">
                                                     <table class="table table-striped table-bordered table-hover">
                                                         <thead>
                                                             <tr class="uppercase">
-                                                                <th>Nombre</th>
+                                                                <th>Título</th>
+                                                                <th>Creador</th>
                                                                 <th>Acción</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr ng-repeat="publicacion in cartelera">
-                                                                <td style="width: 70%;">{{ publicacion.titulo }}</td>
+                                                            <tr ng-repeat="publicacion in publicaciones">
+                                                                <td style="width: 50%;">{{ publicacion.titulo }}</td>
+                                                                <td style="width: 20%;">{{ publicacion.creador.usuario }}</td>
                                                                 <td>
                                                                     <a type="button" class="btn yellow btn-sm btn-outline" ui-sref="editarPublicacion({publicacion: publicacion})">
                                                                         <i class="fa fa-pencil"></i> Editar
@@ -76,6 +80,15 @@
                                                             </tr>
                                                         </tbody>
                                                     </table>
+                                                </div>
+                                                <div class="alert alert-warning" ng-show="selected && publicaciones.length == 0">
+                                                    <strong>Atención</strong>, no hay publicaciones en esta cartelera
+                                                </div>
+                                                <div class="alert alert-warning" ng-show="carteleras.length == 0 && usuario.rol != 1">
+                                                    <strong>Atención</strong>, no hay carteleras en las que tengas permiso para publicar
+                                                </div>
+                                                <div class="alert alert-warning" ng-show="carteleras.length == 0 && usuario.rol == 1">
+                                                    <strong>Atención</strong>, no hay carteleras creadas
                                                 </div>
                                             </div>
                                         </div>

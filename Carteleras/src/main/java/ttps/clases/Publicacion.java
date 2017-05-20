@@ -64,6 +64,14 @@ public class Publicacion implements java.io.Serializable{
 		this.fechaCreacion = fechaCreacion;
 	}
 	
+	public Publicacion(long id, String titulo, String descripcion, Date fechaCreacion, Publicador creador){
+		this.id = id;
+		this.titulo = titulo;
+		this.descripcion = descripcion;
+		this.fechaCreacion = fechaCreacion;
+		this.creador = new Publicador(creador.getId(), creador.getNombre(), creador.getApellido(), creador.getFechaNacimiento(), creador.getDni(), creador.getEmail(), creador.getRol(), creador.getUsuario(), creador.getPassword());
+	}
+	
 	public Publicacion(long id, String titulo, String descripcion, Date fechaCreacion, String usuario, long idCartelera, String cartelera){
 		this.id = id;
 		this.titulo = titulo;
