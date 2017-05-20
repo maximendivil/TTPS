@@ -37,6 +37,8 @@ public class Publicacion implements java.io.Serializable{
 	@ManyToOne(optional=false)
 	@JoinColumn(name="PERSONA_ID")
 	private Publicador creador;
+	//1 -> Acepta 0 -> No
+	private int aceptaComentarios;
 	
 	public Publicacion(){
 		
@@ -152,5 +154,13 @@ public class Publicacion implements java.io.Serializable{
 
 	public void setBorrado(int borrado) {
 		this.borrado = borrado;
+	}
+
+	public int getAceptaComentarios() {
+		return aceptaComentarios;
+	}
+
+	public void setAceptaComentarios(int aceptaComentarios) {
+		this.aceptaComentarios = aceptaComentarios;
 	}
 } 

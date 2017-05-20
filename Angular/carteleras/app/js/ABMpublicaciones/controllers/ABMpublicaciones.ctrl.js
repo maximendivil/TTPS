@@ -36,11 +36,11 @@ angular.module('myapp.ABMpublicaciones')
 
 })
 .controller('AltaPublicacionCtrl', function($scope, $state, $stateParams, CarteleraService, LoginService, PublicacionService, $rootScope){	
-	
+	$scope.usuario = angular.fromJson(localStorage.getItem('usuario'));
 	$scope.carteleraActual = $stateParams.selected; //guardo id de cartelera seleccionada para mostrar su nombre
 
 	$scope.cargarCartelera = function(){ //obtengo nombre de la cartelera segun el id obtenido enviado por parametro
-		CarteleraService.getCartelera($scope.carteleraActual)
+		CarteleraService.getCarteleraPorId($scope.carteleraActual)
 		.then(function(response){
 			$scope.cartelera = response.data.nombre;
 			console.log(response.data);
@@ -50,7 +50,7 @@ angular.module('myapp.ABMpublicaciones')
 	$scope.cargarCartelera();
 
 	$scope.crearPublicacion = function() {
-		PublicacionService.agregarPublicacion($scope.usuario.id, $scope.publicacionEdit.titulo, $scope.publicacionEdit.descripcion, $scope.publicacionEdit.comentarios)
+		PublicacionService.agregarPublicacion($scope.usuario.id, $scope.publicacionEdit.titulo, $scope.publicacionEdit.descripcion, $scope.publicacionEdit.comentarios, $scope.carteleraActual)
 	    .then(function(){
 	      console.log("Se creo la publicacion");
 	      $state.go("ABMpublicaciones");

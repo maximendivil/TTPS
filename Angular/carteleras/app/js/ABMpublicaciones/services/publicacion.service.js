@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myapp.cartelera')
+angular.module('myapp.ABMpublicaciones')
 .factory('PublicacionService', function(ENV, $http){
 
   var config = {
@@ -9,15 +9,19 @@ angular.module('myapp.cartelera')
     }
   };
 
-  var agregarPublicacion = function(usuario, titulo, descripcion, comentarios) {
-    return $http.post(ENV.endpoint.url + '/Publicaciones',
+  var agregarPublicacion = function(usuario, titulo, descripcion, comentarios, idCartelera) {
+    return $http.post(ENV.endpoint.url + '/Carteleras/' + idCartelera,
     {
       "titulo": titulo,
       "fechaCreacion": new Date(),
       "descripcion": descripcion,
-      "multimedia": casa,
+      "multimedia": 'casa',
+      "aceptaComentarios": comentarios,
       "creador": { 
         "id" :  usuario
+      },
+      "cartelera": {
+        "id" : idCartelera
       }
     }, config);
   };
