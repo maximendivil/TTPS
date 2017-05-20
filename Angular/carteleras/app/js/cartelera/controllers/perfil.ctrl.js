@@ -1,21 +1,14 @@
 angular.module('myapp.perfil')
 .controller('PerfilCtrl', function($scope, $state, PerfilService, UsuarioService, $http){
 
-    $scope.uploadFiles = function () {
-        var formdata = new FormData();
-        angular.forEach($scope.files, function (file) {
-            console.log(file + 'foreach');
-            formdata.append('file', file);
-        });
-        $http.post('upload.php', formdata,
-        {
-          transformRequest:angular.identity,
-          headers: {'Content-Type': undefined, 'Process-Data': false}
-        }).success(function(response){
-          console.log(response);
-        });
-    }
+    $scope.uploadFile = function(){
+      var file = $scope.myFile;
+      console.log('File es' );
+      console.log(file);
 
+      var uploadUrl = "upload.php";
+      PerfilService.uploadFileToUrl(file,uploadUrl);
+    }
     $scope.modificarUsuario = function(usuario){
         console.log($scope.usuario);
         PerfilService.modificarUsuario($scope.usuario)
@@ -64,18 +57,20 @@ angular.module('myapp.perfil')
     }
   }
 })
-.directive("fileInput", function($parse){  
+.directive('fileModel',['$parse',function($parse){  
   return {  
+      restrinct: 'A',
        link: function($scope, element, attrs){  
-        element.on("change", function(event){  
-          var files = event.target.files;  
-          console.log(files[0]);  
-          $parse(attrs.fileInput).assign($scope, element[0].files);  
-          $scope.$apply();  
+        var model = $parse(attrs.fileModel);
+        var modelSetter = model.assign;
+        element.bind('change', function(){  
+          $scope.$apply(function(){
+            modelSetter($scope,element[0].files[0]);
+          });  
         });  
        }  
-  }  
-});
+  };  
+}]);
 
 
 

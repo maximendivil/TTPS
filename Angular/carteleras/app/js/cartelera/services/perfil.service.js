@@ -7,13 +7,22 @@ angular.module('myapp.perfil')
 	    headers : {
 	      'Content-Type': 'application/json;charset=utf-8;',
 	    }
-  	};
+  	}; 
 
-	/*var factory = {
-		modificarUsuario: modificarUsuario
+  	var uploadFileToUrl = function(file,uploadUrl){
+		var fd = new FormData();
+		fd.append('file',file);
+		$http.post(uploadUrl,fd,{
+			transformRequest: angular.identity,
+			headers:{'Content-Type': undefined, 'Process-Data': false}
+		})
+		.success(function(){
+			console.log("Success");
+		})
+		.error(function(){
+			console.log("Error");
+		});
 	};
-	return factory;*/
-
 
 	var modificarUsuario = function(usuario) {
 		/*var defer = $q.defer();
