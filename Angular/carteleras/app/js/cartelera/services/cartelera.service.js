@@ -21,6 +21,10 @@ angular.module('myapp.cartelera')
     return $http.get(ENV.endpoint.url + '/Carteleras');
   }
 
+  var getCartelerasHabilitadas = function(idPublicador) {
+    return $http.get(ENV.endpoint.url + '/Carteleras/Habilitadas/' + idPublicador);
+  }
+
   var getTodasPublicaciones = function() {
     return $http.get(ENV.endpoint.url + '/Publicaciones');
   }
@@ -78,6 +82,7 @@ angular.module('myapp.cartelera')
     agregarCartelera:agregarCartelera,
     modificarCartelera:modificarCartelera,
     eliminarCartelera:eliminarCartelera,
-    getCarteleraPorId:getCarteleraPorId
+    getCarteleraPorId:getCarteleraPorId,
+    getCartelerasHabilitadas:getCartelerasHabilitadas
   };
 });

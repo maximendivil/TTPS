@@ -17,6 +17,10 @@ angular.module('myapp.ABMusuarios')
     return $http.get(ENV.endpoint.url + '/Usuarios/Publicadores');
   };
 
+  var getAlumnosInteresados = function(idCartelera){
+    return $http.get(ENV.endpoint.url + '/Usuarios/AlumnosInteresados/' + idCartelera);
+  };
+
   var getPublicadoresHabilitados = function(idCartelera){
     return $http.get(ENV.endpoint.url + '/Usuarios/PublicadoresHabilitados/' + idCartelera);
   };
@@ -117,6 +121,7 @@ angular.module('myapp.ABMusuarios')
     getPublicadoresHabilitados:getPublicadoresHabilitados,
     getPublicadoresSinPermiso:getPublicadoresSinPermiso,
     darPermisos:darPermisos,
-    quitarPermisos:quitarPermisos
+    quitarPermisos:quitarPermisos,
+    getAlumnosInteresados:getAlumnosInteresados
   };
 });

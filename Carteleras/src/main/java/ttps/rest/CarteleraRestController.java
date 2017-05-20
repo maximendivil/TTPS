@@ -40,13 +40,14 @@ public class CarteleraRestController {
 	@ResponseBody
 	public ResponseEntity<List<Cartelera>> listarCarteleras() {
 	    List<Cartelera> carteleras = carteleraDAO.obtenerCarteleras();
-	    //List<Cartelera> carteleras = carteleraDAO.obtenerTodos();
-	    if(carteleras.isEmpty()){
-	    	//return new ResponseEntity<List<Cartelera>>(HttpStatus.NO_CONTENT); 
-    	}
-	    //String json = new Gson().toJson(carteleras);
 	    return new ResponseEntity<List<Cartelera>>(carteleras,HttpStatus.OK);
-	    //return json;
+	}
+	
+	@RequestMapping(value="/Habilitadas/{idPublicador}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseEntity<List<Cartelera>> listarCarteleras(@PathVariable("idPublicador") long idPublicador) {
+	    List<Cartelera> carteleras = carteleraDAO.obtenerCartelerasHabilitadas(idPublicador);
+	    return new ResponseEntity<List<Cartelera>>(carteleras,HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/Publicaciones/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)    

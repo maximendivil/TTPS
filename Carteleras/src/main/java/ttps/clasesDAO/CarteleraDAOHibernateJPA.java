@@ -1,5 +1,6 @@
 package ttps.clasesDAO;
 
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -29,6 +30,14 @@ public class CarteleraDAOHibernateJPA extends GenericDAOHibernateJPA<Cartelera> 
 	}
 	
 	@Override
+	public List<Cartelera> obtenerCartelerasHabilitadas(long idPublicador) {
+		Query q = this.getEntityManager().createQuery("Select new Cartelera(c.id,c.nombre,c.fechaCreacion,c.publica) from Cartelera c JOIN c.personasHabilitadas p Where c.borrado=0 and p.id=:id");
+		q.setParameter("id", idPublicador);
+		List<Cartelera> resultado = (List<Cartelera>) q.getResultList();
+		return resultado;
+	}
+	
+	@Override
 	public Cartelera obtenerPorId(long id) {
 		Query q = this.getEntityManager().createQuery("Select new Cartelera(c.id,c.nombre,c.fechaCreacion,c.publica) from Cartelera c Where c.borrado=0 and c.id=:id");
 		q.setParameter("id", id);
@@ -46,7 +55,7 @@ public class CarteleraDAOHibernateJPA extends GenericDAOHibernateJPA<Cartelera> 
 
 	@Override
 	public List<Alumno> obtenerAlumnosInteresados(long id) {
-		Query q = getEntityManager().createQuery("select a from Cartelera c JOIN c.alumnosInteresados a Where c.id=:id");
+		Query q = getEntityManager().createQuery("select new Alumno(a.id, a.nombre, a.apellido, a.fechaNacimiento, a.dni, a.email, a.rol, a.usuario, a.password, a.legajo) from Cartelera c JOIN c.alumnosInteresados a Where c.id=:id");
 		q.setParameter("id", id);
 		List<Alumno> resultado = (List<Alumno>) q.getResultList();
 		return resultado;

@@ -13,6 +13,7 @@ angular.module('myapp', [
 	'myapp.ABMusuarios',
 	'myapp.ABMpermisos',
 	'myapp.Intereses',
+	'myapp.AlumnosInteresados',
 	'LocalStorageModule',
 	'wu.masonry',
 	'myapp.login',
@@ -27,3 +28,4 @@ angular.module('myapp.ABMpublicaciones', []);
 angular.module('myapp.ABMusuarios', []);
 angular.module('myapp.Intereses', []);
 angular.module('myapp.ABMpermisos', []);
+angular.module('myapp.AlumnosInteresados', []);

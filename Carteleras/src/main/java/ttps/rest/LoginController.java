@@ -128,6 +128,13 @@ public class LoginController {
 	    return new ResponseEntity<List<Publicador>>(usuarios,HttpStatus.OK);
 	}
 	
+	@RequestMapping(value = "/AlumnosInteresados/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseEntity<List<Alumno>> getAlumnosInteresados(@PathVariable("id") long idCartelera) {
+	    List<Alumno> usuarios = carteleraDAO.obtenerAlumnosInteresados(idCartelera);
+	    return new ResponseEntity<List<Alumno>>(usuarios,HttpStatus.OK);
+	}
+	
 	@RequestMapping(value = "/PublicadoresSinPermiso/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<List<Publicador>> listarPublicadoresSinPermiso(@PathVariable("id") long idCartelera) {
