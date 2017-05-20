@@ -9,6 +9,27 @@ angular.module('myapp.ABMpublicaciones')
 				controller: 'ABMpublicacionesCtrl'
 			}
 		}
+	})
+	.state('AltaPublicacion', {
+		url:'/AltaPublicacion',
+		views:{
+			'main':{
+				templateUrl: 'js/ABMpublicaciones/views/AltaPublicacion.html',
+				controller: 'AltaPublicacionCtrl'
+			}
+		},
+		params:{
+			selected: null
+		}
+	})
+	.state('EdicionPublicacion', {
+		url:'/EdicionPublicacion',
+		views:{
+			'main':{
+				templateUrl: 'js/ABMpublicaciones/views/EdicionPublicacion.html',
+				controller: 'EdicionPublicacionCtrl'
+			}
+		}
 	});
 	
 

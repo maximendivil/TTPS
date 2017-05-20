@@ -1,0 +1,102 @@
+<div class="page-wrapper">
+    <div ng-controller="AdministracionCtrl">
+        <div ng-include src="'js/cartelera/views/menu.html'"></div>
+    </div>
+    <div class="page-wrapper-row full-height">
+        <div class="page-wrapper-middle">
+            <!-- BEGIN CONTAINER -->
+            <div class="page-container">
+                <!-- BEGIN CONTENT -->
+                <div class="page-content-wrapper">
+                    <!-- BEGIN CONTENT BODY -->
+                    <div class="page-head">
+                        <div class="container">
+                          <div class="page-title">
+                            <h1>Cartelera de la Facultad de Informática<br/>
+                              <small>Trabajo final</small>
+                            </h1>
+                          </div>
+                        </div>
+                    </div>
+                    <!-- BEGIN PAGE CONTENT BODY -->
+                    <div class="page-content">
+                        <div class="container">
+                            <!-- BEGIN PAGE BREADCRUMBS -->
+                            <ul class="page-breadcrumb breadcrumb">
+                                <li>
+                                    <a href="#" ui-sref="cartelera">Home</a> 
+                                    <i class="fa fa-circle"></i>
+                                </li>
+                                <li>
+                                    <span>Mi Perfil</span>
+                                </li>
+                            </ul>
+                            <div class="page-content-inner">
+                                <div class="row">
+                                    <div class="col-md-10 col-md-offset-1">
+                                        <div class="portlet light">
+                                            <div class="portlet-title">
+                                                <div class="caption">
+                                                    <span class="caption-subject bold uppercase"> Nueva publicacion en {{cartelera}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="portlet-body">
+                                                <form class="form-horizontal" name="formularioEditPublicacion" method="POST">
+                                                    <div class="form-group">
+                                                        <label class="col-md-3 control-label" for="titulo">Titulo:</label>
+                                                        <div class="col-md-6">
+                                                            <input class="form-control" type="text" name="titulo" id="titulo" ng-model="publicacionEdit.titulo" required/>
+                                                            <span class="help-block" ng-show="formularioEditPublicacion.$submitted || formularioEditPublicacion.titulo.$touched">
+                                                                <span ng-show="formularioEditPublicacion.titulo.$error.required">El titulo es requerido.</span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-md-3 control-label" for="descripcion">Descripcion:</label>
+                                                        <div class="col-md-6">
+                                                            <textarea class="form-control" name="descripcion" id="descripcion" ng-model="publicacionEdit.descripcion" rows="4">
+                                                            <!-- 
+                                                            <span class="help-block" ng-show="formularioEditPublicacion.$submitted || formularioEditPublicacion.descripcion.$touched">
+                                                                <span ng-show="formularioEditPublicacion.descripcion.$error.required">La descripcion es requerida.</span>
+                                                            </span>
+                                                            -->
+                                                            </textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-md-3 control-label" for="comentarios">Comentarios:</label>
+                                                        <div class="col-md-6">
+                                                            <div class="mt-radio-inline">
+                                                                <label class="mt-radio">
+                                                                    <input type="radio" name="permisos" ng-model="publicacionEdit.comentarios" value="1" /><span></span>
+                                                                    Activados
+                                                                </label>
+                                                                <label class="mt-radio">
+                                                                    <input type="radio" name="permisos" ng-model="publicacionEdit.comentarios" value="0"/><span></span>
+                                                                    Desactivados
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-actions">
+                                                        <div class="form-group">
+                                                            <div class="col-md-3 col-md-offset-9">
+                                                                <button type="button" class="btn default" ui-sref="ABMpublicaciones()">Atrás</button>
+                                                                <input type="submit" class="btn green" value="Crear" ng-click="crearPublicacion()" ng-disabled="formularioEditPublicacion.$invalid"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div footer style="width: 100%; display: table-row-group;"></div>
+</div>

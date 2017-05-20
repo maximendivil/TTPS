@@ -52,7 +52,7 @@
                                                             </select>                                                            
                                                         </div>
                                                         <div class="col-md-7">
-                                                            <a type="button" class="btn btn-primary uppercase col-md-6 col-md-offset-6" ng-show="selected && carteleras.length > 0" ui-sref="AgregarPermisos({cartelera: carteleraSeleccionada})">Agregar publicación</a>
+                                                            <a type="button" class="btn btn-primary uppercase col-md-6 col-md-offset-6" ng-show="selected && carteleras.length > 0" ui-sref="AltaPublicacion(selected)">Agregar publicación</a>
                                                         </div>
                                                     </div>                                                        
                                                 </form>
@@ -70,7 +70,7 @@
                                                                 <td style="width: 50%;">{{ publicacion.titulo }}</td>
                                                                 <td style="width: 20%;">{{ publicacion.creador.usuario }}</td>
                                                                 <td>
-                                                                    <a type="button" class="btn yellow btn-sm btn-outline" ui-sref="editarPublicacion({publicacion: publicacion})">
+                                                                    <a type="button" class="btn yellow btn-sm btn-outline" ui-sref="EdicionPublicacion({publicacion: publicacion})">
                                                                         <i class="fa fa-pencil"></i> Editar
                                                                     </a> 
                                                                     <button type="button" class="btn red btn-sm btn-outline" ng-click="eliminarPublicacion(publicacion.id);">
