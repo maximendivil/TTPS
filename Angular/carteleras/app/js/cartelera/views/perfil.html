@@ -41,13 +41,16 @@
                                             <div class="portlet light profile-sidebar-portlet ">
                                                 <!-- SIDEBAR USERPIC -->
                                                 <div class="profile-userpic">
-                                                    <img src="../app/js/cartelera/img/oreja_opt.jpg" class="img-responsive" alt="">
+                                                    <img ng-src="../app/js/cartelera/img/{{usuario.nombreArchivo}}" class="img-responsive" alt="" ng-show="usuario.tieneFoto == 1">
                                                 </div>
                                                 <!-- END SIDEBAR USERPIC -->
                                                 <!-- SIDEBAR USER TITLE -->
                                                 <div class="profile-usertitle">
                                                     <div class="profile-usertitle-name">{{usuario.nombre}} {{usuario.apellido}}</div>
-                                                    <div class="profile-usertitle-job" style="padding-bottom: 30px;"> Developer </div>
+                                                    <div class="profile-usertitle-job" style="padding-bottom: 30px;" ng-show="usuario.rol == 1"> Administrador </div>
+                                                    <div class="profile-usertitle-job" style="padding-bottom: 30px;" ng-show="usuario.rol == 2"> Profesor </div>
+                                                    <div class="profile-usertitle-job" style="padding-bottom: 30px;" ng-show="usuario.rol == 3"> Alumno </div>
+                                                    <div class="profile-usertitle-job" style="padding-bottom: 30px;" ng-show="usuario.rol == 4"> Publicador </div>
                                                 </div>
                                                 <!-- END SIDEBAR USER TITLE -->
                                                 <!-- SIDEBAR BUTTONS -->
@@ -133,7 +136,7 @@
                                                                 <!-- END PERSONAL INFO TAB -->
                                                                 <!-- CHANGE AVATAR TAB -->
                                                                 <div class="tab-pane" id="tab_1_2">
-                                                                    <form name="form" action="#" method="POST" role="form">
+                                                                    <form name="form">
                                                                         <div class="form-group">
                                                                             <div class="file-upload">
                                                                                 <div>

@@ -28,6 +28,7 @@ public class Persona implements java.io.Serializable{
 	@Id @GeneratedValue
 	protected long id;
 	protected int borrado;
+	protected int tieneFoto;
 	protected String nombre;
 	protected String apellido;
 	protected Date fechaNacimiento;
@@ -36,6 +37,7 @@ public class Persona implements java.io.Serializable{
 	protected int rol; // 1 -> Admin, 2 -> Profesor, 3 -> Alumno, 4 -> Publicador
 	protected String usuario;
 	protected String password;
+	protected String nombreArchivo;
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="creador",cascade={CascadeType.REMOVE})
 	private Set<Comentario> comentarios;
 
@@ -181,5 +183,21 @@ public class Persona implements java.io.Serializable{
 
 	public void setBorrado(int borrado) {
 		this.borrado = borrado;
+	}
+
+	public int getTieneFoto() {
+		return tieneFoto;
+	}
+
+	public void setTieneFoto(int tieneFoto) {
+		this.tieneFoto = tieneFoto;
+	}
+
+	public String getNombreArchivo() {
+		return nombreArchivo;
+	}
+
+	public void setNombreArchivo(String nombreArchivo) {
+		this.nombreArchivo = nombreArchivo;
 	}
 }

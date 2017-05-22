@@ -9,18 +9,14 @@ angular.module('myapp.perfil')
 	    }
   	}; 
 
-  	var uploadFileToUrl = function(file,uploadUrl){
+  	var uploadFileToUrl = function(file,usuario,nombre){
 		var fd = new FormData();
 		fd.append('file',file);
-		$http.post(uploadUrl,fd,{
+		fd.append('name',nombre);
+		var url = ENV.endpoint.url + '/Usuarios/uploadFile';
+		return $http.post("upload.php",fd,{
 			transformRequest: angular.identity,
-			headers:{'Content-Type': undefined, 'Process-Data': false}
-		})
-		.success(function(){
-			console.log("Success");
-		})
-		.error(function(){
-			console.log("Error");
+			headers:{'Content-Type': undefined}
 		});
 	};
 
@@ -52,7 +48,13 @@ angular.module('myapp.perfil')
 	    }, config);
 	}
 
+	var agregarFoto = function(usuario){
+		return $http.post(ENV.endpoint.url + '/Usuarios/AgregarFoto/' + usuario.id, usuario, config);
+	}
+
 	return {
-		modificarUsuario: modificarUsuario
+		modificarUsuario: modificarUsuario,
+		uploadFileToUrl:uploadFileToUrl,
+		agregarFoto:agregarFoto
 	};
 });

@@ -2,12 +2,24 @@ angular.module('myapp.perfil')
 .controller('PerfilCtrl', function($scope, $state, PerfilService, UsuarioService, $http){
 
     $scope.uploadFile = function(){
-      var file = $scope.myFile;
-      console.log('File es' );
-      console.log(file);
-
-      var uploadUrl = "upload.php";
-      PerfilService.uploadFileToUrl(file,uploadUrl);
+      var file = $scope.myFile;      
+      var extension = "." + file.name.split(".").pop();
+      var nombre = $scope.usuario.id + "_" + Math.random() + extension;
+      PerfilService.uploadFileToUrl(file,$scope.usuario,nombre)
+      .then(function(response){
+        $scope.usuario.nombreArchivo = nombre;
+        PerfilService.agregarFoto($scope.usuario).then(function(response){
+          console.log("La foto se agregó correctamente");
+          //Se actualiza el usuario en el almacenamiento local
+          $scope.usuario.tieneFoto = 1;
+          $scope.usuario.nombreArchivo = nombre;
+          localStorage.setItem('usuario', angular.toJson($scope.usuario));
+          $state.go("perfil");
+        });
+      })
+      .catch(function(){
+        console.log("Error");
+      });
     }
     $scope.modificarUsuario = function(usuario){
         console.log($scope.usuario);

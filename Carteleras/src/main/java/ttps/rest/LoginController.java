@@ -1,6 +1,9 @@
 package ttps.rest;
 
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
@@ -11,6 +14,8 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -34,9 +39,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ttps.clases.*;
 import ttps.jwt.TokenManagerSecurity;
@@ -70,6 +80,29 @@ public class LoginController {
 	
 	@Inject
 	private TokenManagerSecurity tokenManagerSecurity;
+	
+	
+	@RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
+	@ResponseBody
+	public Object saveUserDataAndFile(@RequestParam(value = "user") String userInfo,
+	        @RequestParam(value = "file") MultipartFile file,HttpServletRequest request) {
+		
+		System.out.println("Inside File upload" + userInfo);
+		String rootDirectory = "C:\\testUpload\\";
+		System.out.println("Root Directory "+rootDirectory);
+		try {
+			file.transferTo(new File(rootDirectory  + file.getOriginalFilename()));
+		} catch (IllegalStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+		
+	}
 	
 	@PostMapping("/Login")
 	public ResponseEntity<?> login(@RequestBody Persona userPost) {
@@ -169,6 +202,37 @@ public class LoginController {
 			return new ResponseEntity<List<Cartelera>>(HttpStatus.NOT_FOUND);
 		}
         return new ResponseEntity<List<Cartelera>>(carteleras, HttpStatus.OK);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, value="/AgregarFoto/{idUsuario}", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Void> agregarFoto(@RequestBody Persona user, @PathVariable("idUsuario") long idUsuario) {
+		Persona persona;
+		if (user.getRol() == 1) {
+			persona = new Administrador();
+		}
+		else if (user.getRol() == 2){
+			persona = new Profesor();
+		}
+		else if (user.getRol() == 3) {
+			persona = new Alumno();
+		}
+		else {
+			persona = new Publicador();
+		}
+		persona.setId(user.getId());
+		persona.setNombre(user.getNombre());
+		persona.setApellido(user.getApellido());
+		persona.setEmail(user.getEmail());
+		persona.setDni(user.getDni());
+		persona.setUsuario(user.getUsuario());
+		persona.setPassword(user.getPassword());
+		persona.setFechaNacimiento(user.getFechaNacimiento());
+		persona.setBorrado(user.getBorrado());
+		persona.setRol(user.getRol());
+		persona.setTieneFoto(1);
+		persona.setNombreArchivo(user.getNombreArchivo());
+		loginService.modificar(persona);
+		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value="/Publicadores/DarPermiso/{idCartelera}", consumes = MediaType.APPLICATION_JSON_VALUE)
