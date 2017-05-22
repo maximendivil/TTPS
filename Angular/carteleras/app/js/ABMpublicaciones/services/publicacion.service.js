@@ -26,20 +26,23 @@ angular.module('myapp.ABMpublicaciones')
     }, config);
   };
 
-  var modificarPublicacion = function(id, titulo, descripcion, comentarios) {
+  var modificarPublicacion = function(id, titulo, descripcion, comentarios, idCartelera) {
     return $http.put(ENV.endpoint.url + '/Publicaciones/' + id,
     {
       "titulo": titulo,
       "descripcion": descripcion,
-      "multimedia": casa,
-      "creador": { 
-        "id" :  usuario
-      }
+      "multimedia": 'casa',
+      "aceptaComentarios": comentarios
     }, config);
+  };
+
+  var eliminarPublicacion = function(id) {
+    return $http.delete(ENV.endpoint.url + '/Publicaciones/' + id, config);
   };
 
   return {
     agregarPublicacion:agregarPublicacion,
-    modificarPublicacion:modificarPublicacion
+    modificarPublicacion:modificarPublicacion,
+    eliminarPublicacion:eliminarPublicacion
   };
 });

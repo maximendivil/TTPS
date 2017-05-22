@@ -90,11 +90,11 @@ public class PublicacionRestController {
 		if (actual == null) {
 			return new ResponseEntity<Publicacion>(HttpStatus.NOT_FOUND);
 		}
-		actual.setCartelera(publicacion.getCartelera());;
+		//actual.setCartelera(publicacion.getCartelera());;
 		actual.setComentarios(publicacion.getComentarios());
-		actual.setCreador(publicacion.getCreador());
+		//actual.setCreador(publicacion.getCreador());
 		actual.setDescripcion(publicacion.getDescripcion());
-		actual.setFechaCreacion(publicacion.getFechaCreacion());
+		//actual.setFechaCreacion(publicacion.getFechaCreacion());
 		actual.setMultimedia(publicacion.getMultimedia());
 		actual.setTitulo(publicacion.getTitulo());
 		publicacionDAO.modificar(actual);

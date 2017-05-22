@@ -1,5 +1,5 @@
 angular.module('myapp.ABMpublicaciones')
-.controller('ABMpublicacionesCtrl', function($scope, $state, $stateParams, CarteleraService, LoginService, $rootScope){	
+.controller('ABMpublicacionesCtrl', function($scope, $state, $stateParams, CarteleraService, LoginService, PublicacionService, $rootScope){	
 	$scope.usuario = angular.fromJson(localStorage.getItem('usuario'));
 
 	$scope.cargarCarteleras = function() {
@@ -34,6 +34,16 @@ angular.module('myapp.ABMpublicaciones')
 		}		
 	};
 
+	$scope.eliminarPublicacion = function(id) {
+		PublicacionService.eliminarPublicacion(id)
+	    .then(function(){
+	      $scope.cargarPublicaciones();
+	    })
+	    .catch(function(){
+	      console.log('Ocurrió un error al eliminar la publicacion');
+	    });
+	};
+
 })
 .controller('AltaPublicacionCtrl', function($scope, $state, $stateParams, CarteleraService, LoginService, PublicacionService, $rootScope){	
 	$scope.usuario = angular.fromJson(localStorage.getItem('usuario'));
@@ -60,7 +70,20 @@ angular.module('myapp.ABMpublicaciones')
 	    });
 	}
 })
-.controller('EdicionPublicacionCtrl', function($scope, $state, $stateParams, CarteleraService, LoginService, $rootScope){	
+.controller('EdicionPublicacionCtrl', function($scope, $state, $stateParams, CarteleraService, LoginService, PublicacionService, $rootScope){	
 	
+	$scope.publicacionEdit = $stateParams.publicacion;
+
+	$scope.modificarPublicacion = function(){
+        console.log($scope.publicacionEdit);
+        PublicacionService.modificarPublicacion($scope.publicacionEdit.id, $scope.publicacionEdit.titulo, $scope.publicacionEdit.descripcion, $scope.publicacionEdit.aceptaComentarios, $scope.publicacionEdit.cartelera)
+        .then(function(response){
+        	console.log('Publicacion modificada con éxito');
+        	$state.go("ABMpublicaciones");	
+        })
+        .catch(function(){
+          console.error('Error al modificar la publicacion');
+        });
+    }
 
 });

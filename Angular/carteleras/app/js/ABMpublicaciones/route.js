@@ -29,6 +29,9 @@ angular.module('myapp.ABMpublicaciones')
 				templateUrl: 'js/ABMpublicaciones/views/EdicionPublicacion.html',
 				controller: 'EdicionPublicacionCtrl'
 			}
+		},
+		params:{
+			publicacion: null
 		}
 	});
 	
