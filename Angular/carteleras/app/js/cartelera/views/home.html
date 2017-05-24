@@ -48,16 +48,10 @@
                       <div class="caption">
                         <span class="caption-subject bold font-grey-gallery uppercase">{{ carteleraActual }}</span>
                       </div>
-                      <div class="tools">
-                        <a href="#portlet-config" data-toggle="modal" class="config"> </a>
-                        <a href="" class="reload"> </a>
-                        <a href="" class="fullscreen"> </a>
-                        <a href="" class="remove"> </a>
-                      </div>
                     </div>
                     <div class="portlet-body">
                       <div class="thumbnail">
-                        <img src="../app/js/cartelera/img/foto.jpg" alt="" style="width: 100%; height: 200px;">
+                        <img ng-src="../app/js/cartelera/img/publicaciones/{{ publicacion.multimedia }}" alt="" style="width: 100%; height: 200px;" ng-show="publicacion.tieneArchivo === 1"/>
                         <div class="caption">
                           <h3>{{ publicacion.titulo }}</h3>
                           <p>{{ publicacion.descripcion }}</p>                          
@@ -68,6 +62,9 @@
                       </div>
                     </div>
                   </div>
+                </div>
+                <div class="alert alert-warning" ng-show="cartelera.length == 0">
+                    <strong>Atención</strong>, no hay publicaciones en esta cartelera
                 </div>
               </div>
             </div>   

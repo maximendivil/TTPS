@@ -30,7 +30,7 @@ angular.module('myapp.administracion')
 	$scope.modificarCartelera = function() {
 		CarteleraService.modificarCartelera($scope.carteleraEdit.id, $scope.carteleraEdit.nombre, $scope.carteleraEdit.publica)
 	    .then(function(){
-	      $state.go("administracion");
+	      $state.go("ABMcarteleras");
 	    })
 	    .catch(function(){
 	      console.log('Ocurrió un error al eliminar la cartelera');

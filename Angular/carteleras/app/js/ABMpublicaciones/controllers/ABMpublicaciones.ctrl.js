@@ -48,7 +48,6 @@ angular.module('myapp.ABMpublicaciones')
 .controller('AltaPublicacionCtrl', function($scope, $state, $stateParams, CarteleraService, LoginService, PublicacionService, $rootScope){	
 	$scope.usuario = angular.fromJson(localStorage.getItem('usuario'));
 	$scope.carteleraActual = $stateParams.selected; //guardo id de cartelera seleccionada para mostrar su nombre
-
 	$scope.cargarCartelera = function(){ //obtengo nombre de la cartelera segun el id obtenido enviado por parametro
 		CarteleraService.getCarteleraPorId($scope.carteleraActual)
 		.then(function(response){
@@ -60,14 +59,19 @@ angular.module('myapp.ABMpublicaciones')
 	$scope.cargarCartelera();
 
 	$scope.crearPublicacion = function() {
-		PublicacionService.agregarPublicacion($scope.usuario.id, $scope.publicacionEdit.titulo, $scope.publicacionEdit.descripcion, $scope.publicacionEdit.comentarios, $scope.carteleraActual)
-	    .then(function(){
-	      console.log("Se creo la publicacion");
-	      $state.go("ABMpublicaciones");
-	    })
-	    .catch(function(){
-	      console.log('Ocurrió un error al crear la publicacion');
-	    });
+		var file = $scope.myFile;
+		var extension = "." + file.name.split(".").pop();
+      	var nombre = $scope.usuario.id + "_" + Math.random() + extension;
+      	PublicacionService.uploadFilePublicacion(file,$scope.usuario,nombre).then(function(response){
+      		PublicacionService.agregarPublicacion($scope.usuario.id, $scope.publicacionEdit.titulo, $scope.publicacionEdit.descripcion, $scope.publicacionEdit.comentarios, $scope.carteleraActual, nombre)
+		    .then(function(){
+		      console.log("Se creo la publicacion");
+		      $state.go("ABMpublicaciones");
+		    })
+		    .catch(function(){
+		      console.log('Ocurrió un error al crear la publicacion');
+		    });
+      	});		
 	}
 })
 .controller('EdicionPublicacionCtrl', function($scope, $state, $stateParams, CarteleraService, LoginService, PublicacionService, $rootScope){	
@@ -76,7 +80,7 @@ angular.module('myapp.ABMpublicaciones')
 
 	$scope.modificarPublicacion = function(){
         console.log($scope.publicacionEdit);
-        PublicacionService.modificarPublicacion($scope.publicacionEdit.id, $scope.publicacionEdit.titulo, $scope.publicacionEdit.descripcion, $scope.publicacionEdit.aceptaComentarios, $scope.publicacionEdit.cartelera)
+        PublicacionService.modificarPublicacion($scope.publicacionEdit.id, $scope.publicacionEdit.titulo, $scope.publicacionEdit.descripcion, $scope.publicacionEdit.aceptaComentarios, $scope.publicacionEdit.cartelera, $scope.publicacionEdit.multimedia, $scope.publicacionEdit.tieneArchivo)
         .then(function(response){
         	console.log('Publicacion modificada con éxito');
         	$state.go("ABMpublicaciones");	
@@ -86,4 +90,18 @@ angular.module('myapp.ABMpublicaciones')
         });
     }
 
-});
+})
+.directive('fileModel',['$parse',function($parse){  
+  return {  
+      restrinct: 'A',
+       link: function($scope, element, attrs){  
+        var model = $parse(attrs.fileModel);
+        var modelSetter = model.assign;
+        element.bind('change', function(){  
+          $scope.$apply(function(){
+            modelSetter($scope,element[0].files[0]);
+          });  
+        });  
+       }  
+  };  
+}]);

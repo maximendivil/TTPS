@@ -86,6 +86,9 @@ public class CarteleraRestController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.POST)
 	public ResponseEntity<Cartelera> agregarPublicacion(@RequestBody Publicacion publicacion, @PathVariable("id") long idCartelera, UriComponentsBuilder ucBuilder){
 		Cartelera cartelera = carteleraDAO.obtener(idCartelera);
+		if (publicacion.getMultimedia() != ""){
+			publicacion.setTieneArchivo(1);
+		}
 		publicacionDAO.guardar(publicacion);
 		cartelera.agregarPublicacion(publicacion);		
 		carteleraDAO.modificar(cartelera);

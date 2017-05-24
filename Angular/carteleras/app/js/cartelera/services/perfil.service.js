@@ -8,12 +8,12 @@ angular.module('myapp.perfil')
 	      'Content-Type': 'application/json;charset=utf-8;',
 	    }
   	}; 
+  	
 
-  	var uploadFileToUrl = function(file,usuario,nombre){
+	var uploadFileToUrl = function(file,usuario,nombre){
 		var fd = new FormData();
 		fd.append('file',file);
 		fd.append('name',nombre);
-		var url = ENV.endpoint.url + '/Usuarios/uploadFile';
 		return $http.post("upload.php",fd,{
 			transformRequest: angular.identity,
 			headers:{'Content-Type': undefined}

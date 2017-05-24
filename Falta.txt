@@ -1,0 +1,7 @@
+Precargar si acepta o no comentarios
+Mensaje de exito o alertas.
+Modificar archivo (puede no ser obligatorio)
+Ver paginacion y busqueda.
+Ver confirmacion al eliminar.
+ABM publicaciones de Profesor y Publicador ver solo las del usuario logueado.
+Limpiar la solución (eliminar archivos)

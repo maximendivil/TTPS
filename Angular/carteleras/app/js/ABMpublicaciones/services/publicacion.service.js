@@ -9,13 +9,23 @@ angular.module('myapp.ABMpublicaciones')
     }
   };
 
-  var agregarPublicacion = function(usuario, titulo, descripcion, comentarios, idCartelera) {
+  var uploadFilePublicacion = function(file,usuario,nombre){
+    var fd = new FormData();
+    fd.append('file',file);
+    fd.append('name',nombre);
+    return $http.post("uploadFilePublicacion.php",fd,{
+      transformRequest: angular.identity,
+      headers:{'Content-Type': undefined}
+    });
+  };
+
+  var agregarPublicacion = function(usuario, titulo, descripcion, comentarios, idCartelera, multimedia) {
     return $http.post(ENV.endpoint.url + '/Carteleras/' + idCartelera,
     {
       "titulo": titulo,
       "fechaCreacion": new Date(),
       "descripcion": descripcion,
-      "multimedia": 'casa',
+      "multimedia": multimedia,
       "aceptaComentarios": comentarios,
       "creador": { 
         "id" :  usuario
@@ -26,13 +36,14 @@ angular.module('myapp.ABMpublicaciones')
     }, config);
   };
 
-  var modificarPublicacion = function(id, titulo, descripcion, comentarios, idCartelera) {
+  var modificarPublicacion = function(id, titulo, descripcion, comentarios, idCartelera, multimedia, tieneArchivo) {
     return $http.put(ENV.endpoint.url + '/Publicaciones/' + id,
     {
       "titulo": titulo,
       "descripcion": descripcion,
-      "multimedia": 'casa',
-      "aceptaComentarios": comentarios
+      "aceptaComentarios": comentarios,
+      "tieneArchivo": tieneArchivo,
+      "multimedia": multimedia
     }, config);
   };
 
@@ -43,6 +54,7 @@ angular.module('myapp.ABMpublicaciones')
   return {
     agregarPublicacion:agregarPublicacion,
     modificarPublicacion:modificarPublicacion,
-    eliminarPublicacion:eliminarPublicacion
+    eliminarPublicacion:eliminarPublicacion,
+    uploadFilePublicacion:uploadFilePublicacion
   };
 });

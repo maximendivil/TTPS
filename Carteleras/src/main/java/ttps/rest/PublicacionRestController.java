@@ -95,6 +95,8 @@ public class PublicacionRestController {
 		//actual.setCreador(publicacion.getCreador());
 		actual.setDescripcion(publicacion.getDescripcion());
 		//actual.setFechaCreacion(publicacion.getFechaCreacion());
+		actual.setTieneArchivo(publicacion.getTieneArchivo());
+		actual.setAceptaComentarios(publicacion.getAceptaComentarios());
 		actual.setMultimedia(publicacion.getMultimedia());
 		actual.setTitulo(publicacion.getTitulo());
 		publicacionDAO.modificar(actual);
