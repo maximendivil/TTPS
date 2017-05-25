@@ -56,7 +56,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr ng-repeat="cartelera in carteleras">
+                                                            <tr dir-paginate="cartelera in carteleras | itemsPerPage: itemsPerPage" pagination-id="intereses">
                                                                 <td style="width: 70%;">{{ cartelera.nombre }}</td>
                                                                 <td>
                                                                     <button type="button" class="btn red btn-sm btn-outline" ng-click="quitarInteres(cartelera.id);" ng-if="intereses.includes(cartelera.id)">Cancelar suscripción</button> 
@@ -65,6 +65,7 @@
                                                             </tr>
                                                         </tbody>
                                                     </table>
+                                                    <dir-pagination-controls pagination-id="intereses" class="pull-right"></dir-pagination-controls>
                                                 </div>
                                             </div>
                                         </div>

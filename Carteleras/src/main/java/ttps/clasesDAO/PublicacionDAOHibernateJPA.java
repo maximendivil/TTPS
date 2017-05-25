@@ -21,7 +21,7 @@ public class PublicacionDAOHibernateJPA extends GenericDAOHibernateJPA<Publicaci
 	
 	@Override
 	public Publicacion obtenerPublicacion(long id) {
-		Query q = this.getEntityManager().createQuery("Select new Publicacion(p.id, p.titulo, p.descripcion, p.fechaCreacion, p.tieneArchivo, p.multimedia, p.aceptaComentarios, u.usuario, c.id, c.nombre) from Publicacion p JOIN p.creador u JOIN p.cartelera c Where p.borrado=0 and p.id=:id");
+		Query q = this.getEntityManager().createQuery("Select new Publicacion(p.id, p.titulo, p.descripcion, p.fechaCreacion, p.tieneArchivo, p.multimedia, p.aceptaComentarios, u, c.id, c.nombre) from Publicacion p JOIN p.creador u JOIN p.cartelera c Where p.borrado=0 and p.id=:id");
 		q.setParameter("id", id);
 		Publicacion resultado = (Publicacion) q.getSingleResult();
 		return resultado;

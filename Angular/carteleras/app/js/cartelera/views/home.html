@@ -42,7 +42,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-md-4" ng-repeat="publicacion in cartelera">
+                <div class="col-md-4" dir-paginate="publicacion in cartelera | itemsPerPage: itemsPerPage" pagination-id="publicaciones">
                   <div class="portlet light">
                     <div class="portlet-title">
                       <div class="caption">
@@ -50,19 +50,25 @@
                       </div>
                     </div>
                     <div class="portlet-body">
-                      <div class="thumbnail">
+                      <div class="thumbnail" ng-show="publicacion.tieneArchivo == 1">
                         <img ng-src="../app/js/cartelera/img/publicaciones/{{ publicacion.multimedia }}" alt="" style="width: 100%; height: 200px;" ng-show="publicacion.tieneArchivo === 1"/>
-                        <div class="caption">
+                        <!--<div class="caption">
                           <h3>{{ publicacion.titulo }}</h3>
                           <p>{{ publicacion.descripcion }}</p>                          
-                        </div>
+                        </div>-->
                       </div>
-                      <div ui-sref="detail({brick: publicacion.id})">
-                          <a class="btn btn-primary" role="button">Ver</a>                      
+                      <div class="caption">
+                          <h4>{{ publicacion.titulo }}</h4>
+                          <p>{{ publicacion.descripcion }}</p>                          
+                        </div>
+                      <div>
+                          <a class="btn btn-primary" role="button" ui-sref="detail({brick: publicacion.id})">Ver</a>
+                          <button type="button" class="btn yellow" ui-sref="EdicionPublicacion({publicacion: publicacion})" ng-show="publicacion.creador.id == usuario.id || usuario.rol == 1">Editar</button>                  
                       </div>
                     </div>
                   </div>
                 </div>
+                <dir-pagination-controls pagination-id="publicaciones" class="pull-right"></dir-pagination-controls>
                 <div class="alert alert-warning" ng-show="cartelera.length == 0">
                     <strong>Atención</strong>, no hay publicaciones en esta cartelera
                 </div>

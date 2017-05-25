@@ -7,6 +7,7 @@ import ttps.clasesDAO.*;
 
 public interface CarteleraDAO extends GenericDAO<Cartelera>{
 	List<Publicacion> obtenerPublicaciones(long id);
+	List<Publicacion> obtenerPublicacionesDeUnPublicador(long id, long idPublicador);
 	List<Alumno> obtenerAlumnosInteresados(long id);
 	void eliminarCartelerasDeIntereses(long id);
 	void eliminar(Cartelera entity);

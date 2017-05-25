@@ -17,7 +17,8 @@ angular.module('myapp', [
 	'LocalStorageModule',
 	'wu.masonry',
 	'myapp.login',
-	'myapp.environment'
+	'myapp.environment',
+	'angularUtils.directives.dirPagination'
 ]);
 
 angular.module('myapp.cartelera', []);

@@ -1,7 +1,7 @@
 angular.module('myapp.Intereses')
 .controller('InteresesCtrl', function($scope, $state, $stateParams, UsuarioService, CarteleraService, $rootScope){	
 	$scope.usuario = angular.fromJson(localStorage.getItem('usuario'));
-
+	$scope.itemsPerPage = 10;
 	$scope.cargarCarteleras = function() {
 		CarteleraService.getCarteleras().then(function(response){
 	  		$scope.carteleras = response.data;

@@ -55,24 +55,37 @@
                                                         <label class="col-md-3 control-label" for="descripcion">Descripcion:</label>
                                                         <div class="col-md-6">
                                                             <textarea class="form-control" name="descripcion" id="descripcion" ng-model="publicacionEdit.descripcion" rows="4">
-                                                            <!-- 
-                                                            <span class="help-block" ng-show="formularioEditPublicacion.$submitted || formularioEditPublicacion.descripcion.$touched">
-                                                                <span ng-show="formularioEditPublicacion.descripcion.$error.required">La descripcion es requerida.</span>
-                                                            </span>
-                                                            -->
                                                             </textarea>
                                                         </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-md-3 control-label" for="descripcion">Archivo:</label>
+                                                        <div class="col-md-6">
+                                                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                <div class="input-group input-large">
+                                                                    <div class="form-control uneditable-input input-fixed input-medium" data-trigger="fileinput">
+                                                                        <i class="fa fa-file fileinput-exists"></i>&nbsp;
+                                                                        <span class="fileinput-filename"> </span>
+                                                                    </div>
+                                                                    <span class="input-group-addon btn default btn-file">
+                                                                        <span class="fileinput-new"> Seleccionar archivo </span>
+                                                                        <span class="fileinput-exists"> Cambiar </span>
+                                                                        <input type="file" file-model="myFile"> </span>
+                                                                    <a href="javascript:;" class="input-group-addon btn red fileinput-exists" data-dismiss="fileinput"> Eliminar </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>                                                        
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label" for="comentarios">Comentarios:</label>
                                                         <div class="col-md-6">
                                                             <div class="mt-radio-inline">
                                                                 <label class="mt-radio">
-                                                                    <input type="radio" name="permisos" ng-model="publicacionEdit.comentarios" value="1" /><span></span>
+                                                                    <input type="radio" name="permisos" ng-model="publicacionEdit.aceptaComentarios" value="1" /><span></span>
                                                                     Activados
                                                                 </label>
                                                                 <label class="mt-radio">
-                                                                    <input type="radio" name="permisos" ng-model="publicacionEdit.comentarios" value="0"/><span></span>
+                                                                    <input type="radio" name="permisos" ng-model="publicacionEdit.aceptaComentarios" value="0"/><span></span>
                                                                     Desactivados
                                                                 </label>
                                                             </div>
@@ -80,8 +93,9 @@
                                                     </div>
                                                     <div class="form-actions">
                                                         <div class="form-group">
-                                                            <div class="col-md-3 col-md-offset-9">
+                                                            <div class="col-md-4 col-md-offset-8">
                                                                 <button type="button" class="btn default" ui-sref="ABMpublicaciones()">Atrás</button>
+                                                                <button type="button" class="btn yellow" ui-sref="detail({brick: publicacionEdit.id})">Ver publicación</button>
                                                                 <input type="submit" class="btn green" value="Modificar" ng-click="modificarPublicacion()" ng-disabled="formularioEditPublicacion.$invalid"/>
                                                             </div>
                                                         </div>

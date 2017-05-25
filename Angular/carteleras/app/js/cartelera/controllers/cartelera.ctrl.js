@@ -1,6 +1,6 @@
 angular.module('myapp.cartelera')
 .controller('CarteleraCtrl', function($scope, $state, CarteleraService, LoginService, $rootScope){
-
+	$scope.itemsPerPage = 9;
 	var  imagenRandom = function () {
 		var height = ~~(Math.random() * 500) + 100;
 		var id = ~~(Math.random() * 10000);

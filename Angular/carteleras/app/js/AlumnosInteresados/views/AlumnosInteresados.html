@@ -68,13 +68,14 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr ng-repeat="alumno in alumnos">
+                                                            <tr dir-paginate="alumno in alumnos | itemsPerPage: itemsPerPage" pagination-id="alumnos">
                                                                 <td style="width: 30%;">{{ alumno.usuario }}</td>
                                                                 <td style="width: 35%;">{{ alumno.nombre }}</td>
                                                                 <td style="width: 35%;">{{ alumno.apellido }}</td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
+                                                    <dir-pagination-controls pagination-id="alumnos" class="pull-right"></dir-pagination-controls>
                                                 </div>
                                                 <div class="alert alert-warning" ng-show="carteleraSeleccionada && alumnos.length == 0">
                                                     <strong>Atención</strong>, no hay alumnos interesados en esta cartelera

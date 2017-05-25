@@ -70,6 +70,17 @@ public class Publicacion implements java.io.Serializable{
 		this.creador = new Publicador(creador.getId(), creador.getNombre(), creador.getApellido(), creador.getFechaNacimiento(), creador.getDni(), creador.getEmail(), creador.getRol(), creador.getUsuario(), creador.getPassword());
 	}
 	
+	public Publicacion(long id, String titulo, String descripcion, Date fechaCreacion, Publicador creador, int tieneArchivo, String multimedia, int aceptaComentarios){
+		this.id = id;
+		this.titulo = titulo;
+		this.descripcion = descripcion;
+		this.fechaCreacion = fechaCreacion;
+		this.multimedia = multimedia;
+		this.aceptaComentarios = aceptaComentarios;
+		this.tieneArchivo = tieneArchivo;
+		this.creador = new Publicador(creador.getId(), creador.getNombre(), creador.getApellido(), creador.getFechaNacimiento(), creador.getDni(), creador.getEmail(), creador.getRol(), creador.getUsuario(), creador.getPassword());
+	}
+	
 	public Publicacion(long id, String titulo, String descripcion, Date fechaCreacion){
 		this.id = id;
 		this.titulo = titulo;
@@ -97,7 +108,19 @@ public class Publicacion implements java.io.Serializable{
 		this.comentarios = null;
 	}
 	
-	public Publicacion(long id, String titulo, String descripcion, Date fechaCreacion, int tieneArchivo, String multimedia, int aceptaComentarios, String usuario, long idCartelera, String cartelera){
+	public Publicacion(long id, String titulo, String descripcion, Date fechaCreacion, int tieneArchivo, String multimedia, Publicador creador, long idCartelera, String cartelera){
+		this.id = id;
+		this.titulo = titulo;
+		this.descripcion = descripcion;
+		this.fechaCreacion = fechaCreacion;
+		this.tieneArchivo = tieneArchivo;
+		this.multimedia = multimedia;
+		this.creador = new Publicador(creador.getId(), creador.getNombre(), creador.getApellido(), creador.getFechaNacimiento(), creador.getDni(), creador.getEmail(), creador.getRol(), creador.getUsuario(), creador.getPassword());
+		this.cartelera = new Cartelera(idCartelera, cartelera);
+		this.comentarios = null;
+	}
+	
+	public Publicacion(long id, String titulo, String descripcion, Date fechaCreacion, int tieneArchivo, String multimedia, int aceptaComentarios, Publicador creador, long idCartelera, String cartelera){
 		this.id = id;
 		this.titulo = titulo;
 		this.descripcion = descripcion;
@@ -105,7 +128,7 @@ public class Publicacion implements java.io.Serializable{
 		this.tieneArchivo = tieneArchivo;
 		this.multimedia = multimedia;
 		this.aceptaComentarios = aceptaComentarios;
-		this.creador = new Publicador(usuario);
+		this.creador = new Publicador(creador.getId(), creador.getNombre(), creador.getApellido(), creador.getFechaNacimiento(), creador.getDni(), creador.getEmail(), creador.getRol(), creador.getUsuario(), creador.getPassword());
 		this.cartelera = new Cartelera(idCartelera, cartelera);
 		this.comentarios = null;
 	}

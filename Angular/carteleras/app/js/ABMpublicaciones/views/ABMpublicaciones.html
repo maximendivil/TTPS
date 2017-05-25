@@ -66,7 +66,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr ng-repeat="publicacion in publicaciones">
+                                                            <tr dir-paginate="publicacion in publicaciones | itemsPerPage: itemsPerPage" pagination-id="publicaciones">
                                                                 <td style="width: 50%;">{{ publicacion.titulo }}</td>
                                                                 <td style="width: 20%;">{{ publicacion.creador.usuario }}</td>
                                                                 <td>
@@ -80,9 +80,10 @@
                                                             </tr>
                                                         </tbody>
                                                     </table>
+                                                    <dir-pagination-controls pagination-id="publicaciones" class="pull-right"></dir-pagination-controls>
                                                 </div>
                                                 <div class="alert alert-warning" ng-show="selected && publicaciones.length == 0">
-                                                    <strong>Atención</strong>, no hay publicaciones en esta cartelera
+                                                    <strong>Atención</strong>, no tienes publicaciones en esta cartelera
                                                 </div>
                                                 <div class="alert alert-warning" ng-show="carteleras.length == 0 && usuario.rol != 1">
                                                     <strong>Atención</strong>, no hay carteleras en las que tengas permiso para publicar

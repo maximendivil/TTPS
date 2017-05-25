@@ -66,7 +66,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr ng-repeat="usuario in usuarios">
+                                                            <tr dir-paginate="usuario in usuarios | itemsPerPage: itemsPerPage" pagination-id="permisos">
                                                                 <td style="width: 35%;">{{ usuario.usuario }}</td>
                                                                 <td style="width: 35%;">{{ usuario.nombre }} {{usuario.apellido}}</td>
                                                                 <td>
@@ -75,6 +75,7 @@
                                                             </tr>
                                                         </tbody>
                                                     </table>
+                                                    <dir-pagination-controls pagination-id="permisos" class="pull-right"></dir-pagination-controls>
                                                 </div>
                                                 <div class="alert alert-warning" ng-show="carteleraSeleccionada && usuarios.length == 0">
                                                     <strong>Atención</strong>, no hay publicadores habilitados para publicar en esta cartelera

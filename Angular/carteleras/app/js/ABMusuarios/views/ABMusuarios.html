@@ -57,7 +57,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr ng-repeat="usuario in usuarios">
+                                                            <tr dir-paginate="usuario in usuarios | itemsPerPage: itemsPerPage" pagination-id="administradores">
                                                                 <td style="width: 35%;">{{ usuario.usuario }}</td>
                                                                 <td ng-show="usuario.rol == 1" style="width: 35%;">Administrador</td>
                                                                 <td ng-show="usuario.rol == 2" style="width: 35%;">Profesor</td>
@@ -74,6 +74,7 @@
                                                             </tr>
                                                         </tbody>
                                                     </table>
+                                                    <dir-pagination-controls pagination-id="administradores" class="pull-right"></dir-pagination-controls>
                                                 </div>
                                             </div>
                                         </div>

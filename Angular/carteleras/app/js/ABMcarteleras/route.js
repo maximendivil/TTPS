@@ -5,7 +5,7 @@ angular.module('myapp.administracion')
 		url:'/ABMcarteleras',
 		views:{
 			'main':{
-				templateUrl: 'js/administracion/views/ABMCartelera.html',
+				templateUrl: 'js/ABMcarteleras/views/ABMCartelera.html',
 				controller: 'AdministracionCtrl'
 			}
 		}
@@ -14,7 +14,7 @@ angular.module('myapp.administracion')
 		url:'/nuevaCartelera',
 		views:{
 			'main':{
-				templateUrl: 'js/administracion/views/nuevaCartelera.html',
+				templateUrl: 'js/ABMcarteleras/views/nuevaCartelera.html',
 				controller: 'NuevaCarteleraCtrl'
 			}
 		}
@@ -23,7 +23,7 @@ angular.module('myapp.administracion')
 		url:'/editarCartelera',
 		views:{
 			'main':{
-				templateUrl: 'js/administracion/views/editarCartelera.html',
+				templateUrl: 'js/ABMcarteleras/views/editarCartelera.html',
 				controller: 'EdicionCarteleraCtrl'
 			}
 		},

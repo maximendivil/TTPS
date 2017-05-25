@@ -1,7 +1,7 @@
 angular.module('myapp.administracion')
 .controller('AdministracionCtrl', function($scope, $state, $stateParams, CarteleraService, LoginService, $rootScope){	
 	$scope.usuario = angular.fromJson(localStorage.getItem('usuario'));
-
+	$scope.itemsPerPage = 5;
 	$scope.cargarCarteleras = function() {
 		CarteleraService.getCarteleras().then(function(response){
 	  		$scope.carteleras = response.data;

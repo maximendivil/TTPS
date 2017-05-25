@@ -56,7 +56,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr ng-repeat="cartelera in carteleras">
+                                                            <tr dir-paginate="cartelera in carteleras | itemsPerPage: itemsPerPage" pagination-id="carteleras">
                                                                 <td style="width: 70%;">{{ cartelera.nombre }}</td>
                                                                 <td>
                                                                     <a type="button" class="btn yellow btn-sm btn-outline" ui-sref="editarCartelera({cartelera: cartelera})">
@@ -67,8 +67,9 @@
                                                                     </button>
                                                                 </td>
                                                             </tr>
-                                                        </tbody>
+                                                        </tbody>                                                        
                                                     </table>
+                                                    <dir-pagination-controls pagination-id="carteleras" class="pull-right"></dir-pagination-controls>
                                                 </div>
                                             </div>
                                         </div>

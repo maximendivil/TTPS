@@ -1,7 +1,7 @@
 angular.module('myapp.ABMusuarios')
 .controller('ABMusuariosCtrl', function($scope, $state, $stateParams, UsuarioService, $rootScope){	
 	$scope.usuario = angular.fromJson(localStorage.getItem('usuario'));
-
+	$scope.itemsPerPage = 10;
 	$scope.cargarUsuarios = function() {
 		UsuarioService.getAdministradores().then(function(response){
 	  		$scope.usuarios = response.data;

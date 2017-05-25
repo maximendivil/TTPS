@@ -47,8 +47,17 @@ public class CarteleraDAOHibernateJPA extends GenericDAOHibernateJPA<Cartelera> 
 	
 	@Override
 	public List<Publicacion> obtenerPublicaciones(long id) {
-		Query q = this.getEntityManager().createQuery("Select new Publicacion(p.id, p.titulo, p.descripcion, p.fechaCreacion, p.creador, p.tieneArchivo, p.multimedia) from Cartelera c JOIN c.publicaciones p Where p.borrado=0 and c.id=:id");		
+		Query q = this.getEntityManager().createQuery("Select new Publicacion(p.id, p.titulo, p.descripcion, p.fechaCreacion, p.creador, p.tieneArchivo, p.multimedia, p.aceptaComentarios) from Cartelera c JOIN c.publicaciones p Where p.borrado=0 and c.id=:id");		
 		q.setParameter("id", id);
+		List<Publicacion> resultado = (List<Publicacion>) q.getResultList();
+		return resultado;
+	}
+	
+	@Override
+	public List<Publicacion> obtenerPublicacionesDeUnPublicador(long id, long idPublicador) {
+		Query q = this.getEntityManager().createQuery("Select new Publicacion(p.id, p.titulo, p.descripcion, p.fechaCreacion, p.creador, p.tieneArchivo, p.multimedia, p.aceptaComentarios) from Cartelera c JOIN c.publicaciones p Where p.borrado=0 and c.id=:id and p.creador.id=:idPublicador");		
+		q.setParameter("id", id);
+		q.setParameter("idPublicador", idPublicador);
 		List<Publicacion> resultado = (List<Publicacion>) q.getResultList();
 		return resultado;
 	}
