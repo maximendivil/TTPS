@@ -29,8 +29,7 @@ angular.module('myapp.cartelera')
 			}
 		},
 		params:{
-			brick: null,
-			edita: null
+			brick: null
 		}
 	});
 	

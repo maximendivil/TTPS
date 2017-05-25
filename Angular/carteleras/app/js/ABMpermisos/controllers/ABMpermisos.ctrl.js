@@ -41,6 +41,12 @@ angular.module('myapp.ABMpermisos')
 .controller('AgregarPermisosCtrl', function($scope, $state, $stateParams, UsuarioService, CarteleraService, $rootScope){	
 	$scope.usuario = angular.fromJson(localStorage.getItem('usuario'));
 	$scope.idCartelera = $stateParams.cartelera;
+	if ($scope.idCartelera == null) {
+		$scope.idCartelera = localStorage.getItem('idCartelera');
+	}
+	else {
+		localStorage.setItem('idCartelera', $scope.idCartelera);
+	}
 
 	$scope.cargarCartelera = function(idCartelera) {
 		CarteleraService.getCarteleraPorId(idCartelera).then(function(response){

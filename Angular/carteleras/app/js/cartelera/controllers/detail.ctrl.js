@@ -2,7 +2,13 @@ angular.module('myapp.cartelera')
 .controller('DetailCtrl', function($scope, $stateParams, CarteleraService) {
 
   $idPublicacion = $stateParams.brick;
-  $scope.edita = $stateParams.edita;
+  if ($idPublicacion == null) {
+    $idPublicacion = localStorage.getItem('idPublicacion');
+  }
+  else {
+    localStorage.setItem('idPublicacion', $idPublicacion);
+  }
+
   CarteleraService.getPublicacion($idPublicacion).then(function(response){
       $scope.brick = response.data;
   });

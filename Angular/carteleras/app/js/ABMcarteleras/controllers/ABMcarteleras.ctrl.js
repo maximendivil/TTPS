@@ -26,7 +26,12 @@ angular.module('myapp.administracion')
 })
 .controller('EdicionCarteleraCtrl', function($scope, $state, $stateParams, CarteleraService, LoginService, $rootScope){
 	$scope.carteleraEdit = $stateParams.cartelera;
-
+	if ($scope.carteleraEdit == null) {
+		$scope.carteleraEdit = angular.fromJson(localStorage.getItem('idCartelera'));
+	}
+	else {
+		localStorage.setItem('idCartelera', angular.toJson($scope.carteleraEdit));
+	}
 	$scope.modificarCartelera = function() {
 		CarteleraService.modificarCartelera($scope.carteleraEdit.id, $scope.carteleraEdit.nombre, $scope.carteleraEdit.publica)
 	    .then(function(){

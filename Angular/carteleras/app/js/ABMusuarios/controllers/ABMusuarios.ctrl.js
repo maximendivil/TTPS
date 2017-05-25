@@ -48,6 +48,12 @@ angular.module('myapp.ABMusuarios')
 })
 .controller('EdicionUsuariosCtrl', function($scope, $state, $stateParams, UsuarioService, PerfilService, $rootScope){
 	$scope.usuario = $stateParams.usuario;
+	if ($scope.usuario == null) {
+		$scope.usuario = angular.fromJson(localStorage.getItem('usuario'));
+	}
+	else {
+		localStorage.setItem('usuario', angular.toJson($scope.usuario));
+	}
 	$scope.usuario.fechaNacimiento = new Date($scope.usuario.fechaNacimiento);
 	$scope.modificarAdministrador = function(){
         console.log($scope.usuario);

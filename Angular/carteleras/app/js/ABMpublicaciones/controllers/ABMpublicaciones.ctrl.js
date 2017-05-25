@@ -57,6 +57,12 @@ angular.module('myapp.ABMpublicaciones')
 .controller('AltaPublicacionCtrl', function($scope, $state, $stateParams, CarteleraService, LoginService, PublicacionService, $rootScope){	
 	$scope.usuario = angular.fromJson(localStorage.getItem('usuario'));
 	$scope.carteleraActual = $stateParams.selected; //guardo id de cartelera seleccionada para mostrar su nombre
+	if ($scope.carteleraActual == null){
+		$scope.carteleraActual = localStorage.getItem('idCartelera');
+	}
+	else {
+		localStorage.setItem('idCartelera',$scope.carteleraActual);
+	}
 	$scope.publicacionEdit = {};
 	$scope.publicacionEdit.comentarios = {
 		value: 1
@@ -89,6 +95,12 @@ angular.module('myapp.ABMpublicaciones')
 .controller('EdicionPublicacionCtrl', function($scope, $state, $stateParams, CarteleraService, LoginService, PublicacionService, $rootScope){	
 	
 	$scope.publicacionEdit = $stateParams.publicacion;
+	if ($scope.publicacionEdit == null){
+		$scope.publicacionEdit = angular.fromJson(localStorage.getItem('publicacion'));
+	}
+	else {
+		localStorage.setItem('publicacion', angular.toJson($scope.publicacionEdit));
+	}
 
 	$scope.modificarPublicacion = function(){
         console.log($scope.publicacionEdit);
