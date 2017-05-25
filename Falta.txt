@@ -4,4 +4,4 @@ Modificar archivo (puede no ser obligatorio)
 Ver paginacion y busqueda. -> Hecho
 Ver confirmacion al eliminar.
 ABM publicaciones de Profesor y Publicador ver solo las del usuario logueado. -> Hecho
-Limpiar la solución (eliminar archivos)
+Limpiar la solución (eliminar archivos) -> Hecho
