@@ -42,6 +42,9 @@
                                                 </div>
                                             </div>
                                             <div class="portlet-body">
+                                                <div ng-if="mensaje" class="alert alert-success" role="alert">
+                                                  <strong ng-bind="mensaje"></strong>
+                                                </div>
                                                 <form class="form-horizontal" name="formularioUsuario" method="POST" ng-show="carteleras.length > 0">
                                                     <div class="form-group">
                                                         <label class="col-md-1 control-label" for="cartelera">Cartelera:</label>

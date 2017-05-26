@@ -8,6 +8,9 @@ angular.module('myapp.administracion')
 				templateUrl: 'js/ABMcarteleras/views/ABMCartelera.html',
 				controller: 'AdministracionCtrl'
 			}
+		},
+		params:{
+			exito: null
 		}
 	})
 	.state('nuevaCartelera', {

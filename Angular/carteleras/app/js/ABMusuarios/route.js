@@ -8,6 +8,9 @@ angular.module('myapp.ABMusuarios')
 				templateUrl: 'js/ABMusuarios/views/ABMusuarios.html',
 				controller: 'ABMusuariosCtrl'
 			}
+		},
+		params:{
+			exito: null
 		}
 	})
 	.state('AltaUsuarios', {

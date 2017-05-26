@@ -8,6 +8,9 @@ angular.module('myapp.ABMpublicaciones')
 				templateUrl: 'js/ABMpublicaciones/views/ABMpublicaciones.html',
 				controller: 'ABMpublicacionesCtrl'
 			}
+		},
+		params:{
+			exito: null
 		}
 	})
 	.state('AltaPublicacion', {

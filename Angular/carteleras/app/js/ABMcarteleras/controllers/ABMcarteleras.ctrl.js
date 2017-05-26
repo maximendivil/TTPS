@@ -2,6 +2,7 @@ angular.module('myapp.administracion')
 .controller('AdministracionCtrl', function($scope, $state, $stateParams, CarteleraService, LoginService, $rootScope){	
 	$scope.usuario = angular.fromJson(localStorage.getItem('usuario'));
 	$scope.itemsPerPage = 5;
+	$scope.mensaje = $stateParams.exito;
 	$scope.cargarCarteleras = function() {
 		CarteleraService.getCarteleras().then(function(response){
 	  		$scope.carteleras = response.data;
@@ -35,7 +36,7 @@ angular.module('myapp.administracion')
 	$scope.modificarCartelera = function() {
 		CarteleraService.modificarCartelera($scope.carteleraEdit.id, $scope.carteleraEdit.nombre, $scope.carteleraEdit.publica)
 	    .then(function(){
-	      $state.go("ABMcarteleras");
+	      $state.go("ABMcarteleras", {"exito": "La cartelera se ha modificado con exito!"});
 	    })
 	    .catch(function(){
 	      console.log('Ocurrió un error al eliminar la cartelera');
@@ -52,8 +53,7 @@ angular.module('myapp.administracion')
 	$scope.crearCartelera = function() {
 		CarteleraService.agregarCartelera($scope.cartelera.nombre, $scope.permisos.value)
 	    .then(function(){
-	      $scope.nuevaCartelera = false;
-	      $scope.cargarCarteleras();
+	      $state.go("ABMcarteleras", {"exito": "La cartelera se ha creado con exito!"});
 	    })
 	    .catch(function(){
 	      console.log('Ocurrió un error al eliminar la cartelera');

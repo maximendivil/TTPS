@@ -1,6 +1,6 @@
 Precargar si acepta o no comentarios -> Hecho
 Mensaje de exito o alertas.
-Modificar archivo (puede no ser obligatorio)
+Modificar archivo (puede no ser obligatorio) -> Hecho
 Ver paginacion y busqueda. -> Hecho
 Ver confirmacion al eliminar.
 ABM publicaciones de Profesor y Publicador ver solo las del usuario logueado. -> Hecho

@@ -1,7 +1,8 @@
 angular.module('myapp.ABMpublicaciones')
 .controller('ABMpublicacionesCtrl', function($scope, $state, $stateParams, CarteleraService, LoginService, PublicacionService, $rootScope){	
 	$scope.usuario = angular.fromJson(localStorage.getItem('usuario'));
-	$scope.itemsPerPage = 10;
+	$scope.itemsPerPage = 3;
+	$scope.mensaje = $stateParams.exito;
 	$scope.cargarCarteleras = function() {
 		if ($scope.usuario.rol == 1) {
 			CarteleraService.getCarteleras().then(function(response){
@@ -88,12 +89,12 @@ angular.module('myapp.ABMpublicaciones')
 		PublicacionService.agregarPublicacion($scope.usuario.id, $scope.publicacionEdit.titulo, $scope.publicacionEdit.descripcion, $scope.publicacionEdit.comentarios.value, $scope.carteleraActual, nombre)
 	    .then(function(){
 	      console.log("Se creo la publicacion");
-	      $state.go("ABMpublicaciones");
+	      $state.go("ABMpublicaciones", {"exito": "La publicacion se ha creado con exito!"});
 	    });
 	}
 })
 .controller('EdicionPublicacionCtrl', function($scope, $state, $stateParams, CarteleraService, LoginService, PublicacionService, $rootScope){	
-	
+	$scope.usuario = angular.fromJson(localStorage.getItem('usuario'));
 	$scope.publicacionEdit = $stateParams.publicacion;
 	if ($scope.publicacionEdit == null){
 		$scope.publicacionEdit = angular.fromJson(localStorage.getItem('publicacion'));
@@ -103,11 +104,19 @@ angular.module('myapp.ABMpublicaciones')
 	}
 
 	$scope.modificarPublicacion = function(){
+		var file = $scope.myFile;
+		var nombre = '';
+		if (file != undefined) {
+			var extension = "." + file.name.split(".").pop();
+      		nombre = $scope.usuario.id + "_" + Math.random() + extension;
+      		$scope.publicacionEdit.multimedia = nombre;
+      		PublicacionService.uploadFilePublicacion(file,$scope.usuario,nombre).then(function(response){});
+		}
         console.log($scope.publicacionEdit);
         PublicacionService.modificarPublicacion($scope.publicacionEdit.id, $scope.publicacionEdit.titulo, $scope.publicacionEdit.descripcion, $scope.publicacionEdit.aceptaComentarios, $scope.publicacionEdit.cartelera, $scope.publicacionEdit.multimedia, $scope.publicacionEdit.tieneArchivo)
         .then(function(response){
         	console.log('Publicacion modificada con éxito');
-        	$state.go("ABMpublicaciones");	
+        	$state.go("ABMpublicaciones", {"exito": "La publicacion se ha modificado con exito!"});	
         })
         .catch(function(){
           console.error('Error al modificar la publicacion');

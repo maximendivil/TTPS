@@ -2,6 +2,7 @@ angular.module('myapp.ABMusuarios')
 .controller('ABMusuariosCtrl', function($scope, $state, $stateParams, UsuarioService, $rootScope){	
 	$scope.usuario = angular.fromJson(localStorage.getItem('usuario'));
 	$scope.itemsPerPage = 10;
+	$scope.mensaje = $stateParams.exito;
 	$scope.cargarUsuarios = function() {
 		UsuarioService.getAdministradores().then(function(response){
 	  		$scope.usuarios = response.data;
@@ -39,7 +40,7 @@ angular.module('myapp.ABMusuarios')
 		LoginService.crearUsuario($scope.usuario)
 	    .then(function(){
 	      console.log("Se registró al usuario");
-	      $state.go("ABMusuarios");
+	      $state.go("ABMusuarios", {"exito": "El usuario ha sido creado con exito!"});
 	    })
 	    .catch(function(){
 	      console.log("Algo salió mal");
@@ -60,7 +61,7 @@ angular.module('myapp.ABMusuarios')
         PerfilService.modificarUsuario($scope.usuario)
         .then(function(response){
         	console.log('Usuario modificado con éxito');
-        	$state.go("ABMusuarios");	
+        	$state.go("ABMusuarios", {"exito": "El usuario ha sido modificado con exito!"});	
         })
         .catch(function(){
           console.error('Error al modificar el usuario');
